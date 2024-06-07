@@ -1,0 +1,36 @@
+@startuml ProcedoDeNegocio
+skinparam NoteBackgroundColor transparent
+skinparam NoteBorderColor transparent
+hide empty description
+state Sesion
+state conditional1 <<choice>>
+state conditional2 <<choice>>
+state start <<start>>
+state end1 <<end>>
+state end2 <<end>>
+state Registrar 
+state "Exponer propuesta" as EP
+state "Evaluación de \nla propuesta" as verification
+state "Aval tecnico \notorgado" as ATO
+state "Propuesta \nrechazado" as PR
+state "Especificar porcentaje \nde lucro" as EPL
+
+start -> Sesion 
+Sesion -> conditional1
+note on link : ¿Registrado?
+conditional1 -> Registrar
+note on link : No
+Registrar  --> EP
+conditional1 -d-> EP
+note on link  : Si
+EP -> verification
+verification -> conditional2
+note on link : ¿Aceptada?
+conditional2 -> PR
+note on link : No
+PR -> end1
+conditional2 -d-> ATO
+note on link : Si
+ATO -> EPL
+EPL -> end2
+@enduml

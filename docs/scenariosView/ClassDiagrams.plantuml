@@ -1,0 +1,73 @@
+@startuml ModeloDeDominio
+skinparam NoteBackgroundColor transparent
+skinparam NoteBorderColor transparent
+class Sesion{
+    +nombre: string
+    +apellido: string
+    +correo: string
+    -contraseña : string
+}
+
+class Proponente{
+    +PerfilDocente : string
+    +TipoDePerfil : string
+
+}
+
+class Propuesta{
+    +Objetivo: string
+    +Funcionamiento : string
+    +EstructuraCurricular : string
+    +EstrategiaEvaluativa : string
+    +Exigencias : string
+    +Duracion : string
+    +EstructuraDeCosto : string
+    +cronograma : string
+}
+
+class Aliado{
+    +tipo : string
+    +Expediente : string
+}
+
+class "Aval Tecnico" as AT{
+
+}
+class administrador {
+
+}
+
+class UCV{
+    +RIF : string
+}
+
+class "Curso de Extensión" as CE{
+    +nombre : string
+    +caracter : string
+    +formato : string
+    +tipo : string
+    +modalidad : string
+    +formato : string
+    +duracion : string
+
+}
+
+class "Curso Diplomatico" as CD {
+
+}
+
+Sesion  <|--right administrador
+UCV -- administrador
+Proponente -- Propuesta
+CE -- Propuesta
+Sesion <|--down Proponente 
+Proponente --up AT
+Aliado --right AT
+Proponente "1..1"-right---"1..3" CE
+note on link : Propone
+CE <|--right CD
+administrador -- CD
+AT -- administrador
+note on link : Valida
+
+@enduml
