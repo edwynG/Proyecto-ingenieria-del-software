@@ -5,18 +5,20 @@ hide empty description
 state Sesion
 state conditional1 <<choice>>
 state conditional2 <<choice>>
+state conditional3 <<choice>>
 state start <<start>>
 state end1 <<end>>
 state end2 <<end>>
 state Registrar 
+state "Ver observaciones" as VO
 state "Exponer propuesta" as EP
 state "Evaluación de \nla propuesta" as verification
 state "Aval tecnico \notorgado" as ATO
-state "Propuesta \nrechazado" as PR
+state "Propuesta \nrechazada" as PR
 state "Especificar porcentaje \nde lucro" as EPL
 
 start -> Sesion 
-Sesion -> conditional1
+Sesion --> conditional1
 note on link : ¿Registrado?
 conditional1 -> Registrar
 note on link : No
@@ -26,8 +28,14 @@ note on link  : Si
 EP -> verification
 verification -> conditional2
 note on link : ¿Aceptada?
-conditional2 -> PR
+conditional2 -> VO
 note on link : No
+VO -u-> conditional3
+note on link: ¿Intentos disponibles?
+conditional3 -r--> PR
+note on link : No
+conditional3 -> EP
+note on link : Si
 PR -> end1
 conditional2 -d-> ATO
 note on link : Si
