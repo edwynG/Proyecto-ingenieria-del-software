@@ -1,0 +1,31 @@
+@startuml UseCase
+left to right direction
+skinparam packageStyle rectangle
+skinparam NoteBackgroundColor transparent
+skinparam NoteBorderColor transparent
+:Proponente: as proponente
+:Administradores: as administrador
+:Aliado: as aliado
+
+rectangle "Course Stack"{
+    (Inicio de sesión) as sesion
+    (Registrar) as registrar
+    (Generar propuesta) as GP
+    (Verificar estado) as VE
+    (Generar aval técnico) as GAT
+    (Generar cronograma\n de ejecución\n y costo) as GCEC
+    (Validar intentos\n disponibles) as VID
+}
+
+registrar -u-> sesion: <<include>>
+GP <. sesion: <<extends>>
+VID -u-> GP:<<include>>
+VE <. sesion : <<extends>>
+
+proponente -- sesion
+aliado -u-- GCEC
+administrador -u-- GAT
+administrador -u--GP: Determina la aprobación
+aliado -- GAT: verifica
+
+@enduml
