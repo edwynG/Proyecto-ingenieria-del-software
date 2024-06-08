@@ -2,7 +2,7 @@
 skinparam NoteBackgroundColor transparent
 skinparam NoteBorderColor transparent
 hide empty description
-state Sesion
+state " Iniciar sesion" as Sesion
 state conditional1 <<choice>>
 state conditional2 <<choice>>
 state conditional3 <<choice>>

@@ -1,72 +1,74 @@
 @startuml ModeloDeDominio
 skinparam NoteBackgroundColor transparent
 skinparam NoteBorderColor transparent
-class Sesion{
-    +nombre: string
-    +apellido: string
-    +correo: string
-    -contraseña : string
+object Sesion{
+    nombre
+    apellido
+    correo
+    contraseña 
 }
 
-class Proponente{
-    +PerfilDocente : string
-    +TipoDePerfil : string
-
-}
-
-class Propuesta{
-    +Objetivo: string
-    +Funcionamiento : string
-    +EstructuraCurricular : string
-    +EstrategiaEvaluativa : string
-    +Exigencias : string
-    +Duracion : string
-    +EstructuraDeCosto : string
-    +cronograma : string
-}
-
-class Aliado{
-    +tipo : string
-    +Expediente : string
-}
-
-class "Aval Tecnico" as AT{
-
-}
-class administrador {
+object Proponente{
+    perfilDocente
+    tipoDePerfil 
 
 }
 
-class UCV{
-    +RIF : string
+object Propuesta{
+    objetivo
+    funcionamiento
+    fstructuraCurricular
+    estrategiaEvaluativa
+    exigencias
+    duracion 
+    estructuraDeCosto 
+    cronograma 
 }
 
-class "Curso de Extensión" as CE{
-    +nombre : string
-    +caracter : string
-    +formato : string
-    +tipo : string
-    +modalidad : string
-    +formato : string
-    +duracion : string
+object Aliado{
+    tipo
+    expediente
+}
+
+object "Aval Tecnico" as AT{
+
+}
+object administrador {
 
 }
 
-class "Curso Diplomatico" as CD {
+object UCV{
+    rif
+}
+
+object "Curso de Extensión" as CE{
+    nombre
+    caracter
+    formato
+    tipo
+    modalidad
+    formato
+    duracion
+
+}
+
+object "Curso Diplomatico" as CD {
 
 }
 
 Sesion  <|--right administrador
 UCV -- administrador
 Proponente -- Propuesta
-CE -- Propuesta
+note on link : Realiza
+CE *-- Propuesta
 Sesion <|--down Proponente 
 Proponente --up AT
 Aliado --right AT
+note on link: Produce 
 Proponente "1..1"-right---"1..3" CE
 note on link : Propone
 CE <|--right CD
-administrador -- CD
+administrador o-- CD
 AT -- administrador
 note on link : Valida
 
