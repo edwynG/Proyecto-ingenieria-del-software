@@ -4,8 +4,8 @@ El desarrollo de este proyecto ha sido posible gracias a la colaboración del **
 - **Patricia Cibeira**
 - **Diego Heredia**
 - **Edwyn Guzmán**
-- **Omerin Otamendis**
 - **Simón Uzcategui**
+- **Omerin Otamendis**
 
 **Agradecimientos:**
 A todos los que han contribuido de alguna manera a este proyecto, ¡muchas gracias!
