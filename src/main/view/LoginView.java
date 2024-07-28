@@ -1,4 +1,4 @@
-package grupo03.view;
+package main.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -71,17 +71,17 @@ public class LoginView extends JFrame {
         dimensionTextButton = new Font("SansSerif", Font.BOLD, 20);
         dimensionLabelRegisterMessage =  new Font("SansSerif", Font.BOLD, 15);
 
-        courseStackLogo = new ImageIcon("proyecto/src/main/resources/img/logoCourseStack.png");
+        courseStackLogo = new ImageIcon("src/resources/img/logoCourseStack.png");
         labelCourseStackLogo = new JLabel(courseStackLogo);
 
-        emailImageIcon = new ImageIcon("proyecto/src/main/resources/img/correo.png");
+        emailImageIcon = new ImageIcon("src/resources/img/correo.png");
         labelEmail = new JLabel(emailImageIcon);
         textfieldEmail = new JTextField();
         textfieldEmail.setPreferredSize(new Dimension(260, 35));
         textfieldEmail.setFont(dimensionTextFieldFont);
         textfieldEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Email", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 
-        passwordImageIcon = new ImageIcon("proyecto/src/main/resources/img/candado.png");
+        passwordImageIcon = new ImageIcon("src/resources/img/candado.png");
         labelPassword = new JLabel(passwordImageIcon);
         passwordfieldPassword = new JPasswordField();
         passwordfieldPassword.setPreferredSize(new Dimension(260, 40));
@@ -123,6 +123,7 @@ public class LoginView extends JFrame {
         });
 
         labelRegisterMessage.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 // Acción al hacer clic en el mensaje de registro
                 JOptionPane.showMessageDialog(LoginView.this,

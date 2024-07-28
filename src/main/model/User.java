@@ -1,4 +1,4 @@
-package grupo03.model;
+package main.model;
 
 public class User {
     
