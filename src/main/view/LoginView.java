@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.text.View;
 
 
 public class LoginView extends JFrame {
@@ -112,6 +113,7 @@ public class LoginView extends JFrame {
         panelLight.setBackground(foregroundColor);
 
         buttonLogin.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Acción al hacer clic en el botón de iniciar sesión
@@ -119,12 +121,18 @@ public class LoginView extends JFrame {
                         "¡Has iniciado sesión correctamente!",
                         "Inicio de Sesión Exitoso",
                         JOptionPane.INFORMATION_MESSAGE);
+                        new ProponentView().setVisible(true);
+                        setVisible(false);
             }
+           
+            
+                
         });
 
         labelRegisterMessage.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
+
                 // Acción al hacer clic en el mensaje de registro
                 JOptionPane.showMessageDialog(LoginView.this,
                         "Redireccionar a la página de registro...",
