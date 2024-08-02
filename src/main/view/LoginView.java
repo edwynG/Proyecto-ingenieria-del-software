@@ -1,10 +1,14 @@
 package main.view;
 
+import main.controller.UserController;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Scanner;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -117,10 +121,13 @@ public class LoginView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Acción al hacer clic en el botón de iniciar sesión
-                        new ProponentView().setVisible(true);
-                        setVisible(false);
-            }
-           
+                UserController entra = new UserController();
+                System.out.println(entra.leer(textfieldEmail.getText()));
+                if(entra.leer(textfieldEmail.getText())){
+                    System.out.print("cerró");
+                    setVisible(false);
+                }
+            } 
             
                 
         });

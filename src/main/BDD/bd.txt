@@ -1,0 +1,6 @@
+edwyn@gmail.com,edwyn,deu,1234
+diego@gmail.com,Diego,comision de extension,1234
+simon@gmail.com,Simon,consejo de facultad,1234
+patricia@gmail.com,Patricia,coordinacion de extension,1234
+pepe@gmail.com,Pepe,natural,1234
+omerin@gmail.com,Omerin,juridica,1234
