@@ -1,10 +1,14 @@
 package main.view;
 
+import main.controller.UserController;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.util.Scanner;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -117,10 +121,20 @@ public class LoginView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Acción al hacer clic en el botón de iniciar sesión
-                        new ProponentView().setVisible(true);
+                UserController entra = new UserController();
+
+                char[] pw = passwordfieldPassword.getPassword();
+                String password = new String(pw);
+
+                if(!password.isEmpty()){
+                    if(entra.leer(textfieldEmail.getText(), password)){
+                        System.out.print("cerró");
                         setVisible(false);
-            }
-           
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Contraseña inválida");
+                }
+            } 
             
                 
         });

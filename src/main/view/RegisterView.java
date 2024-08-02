@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 
 import org.w3c.dom.events.MouseEvent;
 
+import main.controller.UserController;
+
 
 public class RegisterView extends JFrame {
 	// paneles 
@@ -127,12 +129,12 @@ public class RegisterView extends JFrame {
 		// Etiqueta y campo Nombres
 		labelName = new JLabel(imageiconUser);
 		textfieldName = new JTextField();
-		textfieldName.setBorder(javax.swing.BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Nombres", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+		textfieldName.setBorder(javax.swing.BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Nombre", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 		
 		// Etiqueta y campo Apellidos
 		labelLastName = new JLabel(imageiconUser);
 		textfieldLastName = new JTextField();
-		textfieldLastName.setBorder(javax.swing.BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Apellidos", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+		textfieldLastName.setBorder(javax.swing.BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.GRAY), "Apellido", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
 		
 		// Etiqueta y campo cédula
 		labelNumberID = new JLabel(imageiconUser);
@@ -457,9 +459,31 @@ lightGroupLayout.setVerticalGroup(
 
     
     public void addRegisterButtonListener(ActionEvent listener) {
-       System.out.println("Siguiente");
-       new TipoPersona().setVisible(true);
-       setVisible(false);
+        while (rootPaneCheckingEnabled) {
+                char[] pw = passwordfieldPasswordRegisterForm.getPassword();
+                String password = new String(pw);
+            if(textfieldName.getText().equals("") || textfieldLastName.getText().equals("") || textfieldNumberID.getText().equals("") || textfieldPhoneNumber.getText().equals("") || textfieldEmailRegisterForm.getText().equals("") || password.equals("")){
+                JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+                new RegisterView().setVisible(true);
+                setVisible(false);
+                break;
+            }else{
+                System.out.println("Siguiente");
+
+                String nombre = textfieldName.getText();
+                String apellido = textfieldLastName.getText();
+                String ci = textfieldNumberID.getText();
+                String tlf = textfieldPhoneNumber.getText();
+                String role = selectedOptionComboboxUserType;
+                String mail = textfieldEmailRegisterForm.getText();
+
+                String[] userInfo = {nombre + "," + apellido + "," + role + "," + password + "," + ci + "," + tlf + "," + mail};
+                UserController.escribir(userInfo);
+                new TipoPersona().setVisible(true);
+                setVisible(false);
+                break;
+            }
+        }
      
     }
 
