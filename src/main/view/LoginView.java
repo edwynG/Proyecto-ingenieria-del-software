@@ -122,7 +122,6 @@ public class LoginView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Acción al hacer clic en el botón de iniciar sesión
                 UserController entra = new UserController();
-                System.out.println(entra.leer(textfieldEmail.getText()));
                 if(entra.leer(textfieldEmail.getText())){
                     System.out.print("cerró");
                     setVisible(false);

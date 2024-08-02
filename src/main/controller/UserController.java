@@ -8,6 +8,7 @@ import main.view.*;
 
 public class UserController {
     public boolean leer(String correo){
+        boolean valIU = false;
         // Fichero del que queremos leer        
 		File leerBD = new File("src/main/BDD/bd.txt");
 		Scanner s = null;
@@ -18,48 +19,53 @@ public class UserController {
 
 			// Leemos linea a linea el fichero
 			while (s.hasNextLine()) {
+                System.out.print("1");
 				String dato = s.nextLine(); 	// Guardamos la linea en un String
                 String verIU = selecInterfaz(dato, correo); //Obtiene el rol del usuario
                 if(verIU != ""){ //Manda al usuario a su interfaz correspondiente
                     if(verIU.equalsIgnoreCase("deu")){
                         new DireccionExtension().setVisible(true);
-                        return true;
+                        valIU = true;
+                        break;
                     }else if(verIU.equalsIgnoreCase("comision de extension")){
-                        System.out.println("Entró");
                         new ComisionExtension().setVisible(true);
-                        return true;
+                        valIU = true;
+                        break;
                     }else if(verIU.equalsIgnoreCase("consejo de facultad")){
                         new ConsejoDeFacultad().setVisible(true);
-                        return true;
+                        valIU = true;
+                        break;
                     }else if(verIU.equalsIgnoreCase("coordinacion de extension")){
                         new Coordinacion().setVisible(true);
-                        return true;
-                    }else if(verIU.equalsIgnoreCase("natural")){
-                        new PersonaNatura().setVisible(true);
-                        return true;
-                    }else if(verIU.equalsIgnoreCase("juridica")){
-                        new PersonaJuridic().setVisible(true);
-                        return true;
+                        valIU = true;
+                        break;
+                    }else if(verIU.equalsIgnoreCase("proponente")){
+                        new ProponentView().setVisible(true);
+                        valIU = true;
+                        break;
                     }
                 }
 			}
 
-            JOptionPane.showMessageDialog(null, "Usuario no encontrado");
-            return false;
+            if(!valIU){
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+                return valIU;
+            }
 
 		} catch (Exception ex) {
 			System.out.println("Mensaje: " + ex.getMessage());
-            return false;
-		} finally {
+            return valIU;
+		} //finally {
 			// Cerramos el fichero tanto si la lectura ha sido correcta o no
-			try {
+			/*try {
 				if (s != null)
 					s.close();
-                    return false;
+                    return valIU;
 			} catch (Exception ex2) {
 				System.out.println("Mensaje 2: " + ex2.getMessage());
-			}
-		}
+			}*/
+		//}
+        return valIU;
     }
 
     public static String selecInterfaz(String dato, String correo){
