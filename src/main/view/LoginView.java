@@ -117,10 +117,6 @@ public class LoginView extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Acción al hacer clic en el botón de iniciar sesión
-                JOptionPane.showMessageDialog(LoginView.this,
-                        "¡Has iniciado sesión correctamente!",
-                        "Inicio de Sesión Exitoso",
-                        JOptionPane.INFORMATION_MESSAGE);
                         new ProponentView().setVisible(true);
                         setVisible(false);
             }
@@ -134,11 +130,10 @@ public class LoginView extends JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
 
                 // Acción al hacer clic en el mensaje de registro
-                JOptionPane.showMessageDialog(LoginView.this,
-                        "Redireccionar a la página de registro...",
-                        "Registro",
-                        JOptionPane.INFORMATION_MESSAGE);
+                new RegisterView().setVisible(true);
+                setVisible(false);
             }
+            
         });
 
 // Configuración GroupLayout para lightPanel
