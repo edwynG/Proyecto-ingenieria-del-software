@@ -122,9 +122,17 @@ public class LoginView extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // Acción al hacer clic en el botón de iniciar sesión
                 UserController entra = new UserController();
-                if(entra.leer(textfieldEmail.getText())){
-                    System.out.print("cerró");
-                    setVisible(false);
+
+                char[] pw = passwordfieldPassword.getPassword();
+                String password = new String(pw);
+
+                if(!password.isEmpty()){
+                    if(entra.leer(textfieldEmail.getText(), password)){
+                        System.out.print("cerró");
+                        setVisible(false);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Contraseña inválida");
                 }
             } 
             
