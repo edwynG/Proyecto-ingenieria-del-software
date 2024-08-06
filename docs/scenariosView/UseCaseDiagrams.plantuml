@@ -17,9 +17,9 @@ rectangle "Course Stack"{
     (Validar intentos\n disponibles) as VID
 }
 
-registrar -u-> sesion: <<include>>
-GP <. sesion: <<extends>>
-VID -u-> GP:<<include>>
+registrar <-u. sesion: <<include>>
+GP .> sesion: <<extends>>
+VID <-u. GP:<<include>>
 VE <. sesion : <<extends>>
 
 proponente -- sesion
