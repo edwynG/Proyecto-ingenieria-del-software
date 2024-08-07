@@ -21,3 +21,29 @@ En el siguente diagrama de estados muestra el **proceso de negocios que se quier
 En este diagrama mostramos el **¿Como?** del proyecto. Este representa los casos de uso mas relevantes.
 
 ![UseCase](https://www.plantuml.com/plantuml/png/RP5DRjj038NtSmeYgtQX740mXBYs8NXJ24tgLJRC3ADEFI853XKqA7gWhdk4NApGZrsxxMw6ttipZ-HTDbGRkWIVCsqmaqlqR6026jil1Y4gUOl2BXyZzwZOGO_-Y2tTssiY635oc-X2y56CFg0_jYe3XuqaKJ15pZqgiVsj50sa_whAHgKN9ZOg0JFqvwihrw6B7BCf1b7A4yVBcYlNAMAGcKn7vyvPuMOZWsQ2UqD_lFdk003UxJdwA108CkNuzelVZ-RnB3mhFb4xVQ0JqTDjXZKnAUgKSw1iE8dgPgO7qlWSFIgCACW43xjhAxvW0dlxwJdwML6l7wubNeMbLUpmaSUez9NyuCUqZmolu2NRujpiDilNc690XSX6R997OyozS7nAbESW-wtxCGvewGXMnN2xj5x2QXNPfo5GLRcwWTlgWj0t8mwvgjnXlvrjTLDUEWuxM9tUWckB-xDJA8hJgETrGJ4KnTp5rMQN-lhXF-MwAM5BHjf5HaW8sAiyuJIUyxEJkOINPI7EtH67eKk_0G00 "UseCase")
+
+### Área de trabajo local
+Para poder trabajar en el proyecto utilizando Visual Studio Code, se recomienda seguir los siguientes pasos después de clonar el repositorio:
+
+1. Crea una carpeta llamada **.vscode** en la raíz del proyecto.
+2. Dentro de la carpeta **.vscode**, crea un archivo llamado **settings.json**.
+3. Copia y pega la siguiente estructura dentro del archivo:
+
+```json
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "./src/lib/sqlite/sqlite-jdbc-3.46.0.1.jar",
+        "./src/lib/sqlite/slf4j-api-1.7.36.jar",
+    ]
+}
+```
+
+
+> ####**:fa-github-alt: IMPORTANTE**
+ Asegúrate de tener instalada la extensión **Extension Pack for Java** en Visual Studio Code.
+ 
+ 
