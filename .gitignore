@@ -1,6 +1,7 @@
 *.class
 *.db
 *.sql
+*.db-journal
 # Ignora carpetas generadas por vscode
 bin 
 .vscode

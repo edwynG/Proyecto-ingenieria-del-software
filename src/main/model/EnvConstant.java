@@ -1,6 +1,6 @@
 package main.model;
 
 public class EnvConstant {
-    public static final String PATH_DATABASE = "./src/database/";
-    public  static  final String NAME_DATABASE = "Course-Stack.db";
+    public final String PATH_DATABASE = "./src/database/";
+    public final String NAME_DATABASE = "data-Course_Stack.db";
 }
