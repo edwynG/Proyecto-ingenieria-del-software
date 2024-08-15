@@ -5,10 +5,13 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import main.Env;
 
 public class AccessDatabase {
     private String sorucePath;
-    private static Connection db = null;
+    private Connection db = null;
     private static AccessDatabase singletonDb = null;
 
     private AccessDatabase(String path, String name) {
@@ -37,6 +40,7 @@ public class AccessDatabase {
         new File(path).mkdirs();
         try {
             if (file.createNewFile()) {
+                this.createTablesDatabase(Env.CREATE_DATABASE);
                 System.out.println("base de datos creada.");
                 return true;
             }
@@ -45,6 +49,34 @@ public class AccessDatabase {
             System.err.println("No se pudo crear la base de datos.");
         }
         return false;
+    }
+
+    private boolean createTablesDatabase(String query) {
+        boolean isSuccess = true;
+        Connection conn = this.openConnection();
+        Statement statement = null;
+
+        try {
+            statement = conn.createStatement();
+            statement.executeUpdate(query);
+
+        } catch (SQLException e) {
+            isSuccess = false;
+
+        } finally {
+
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+
+            }
+
+        }
+
+        this.closeConnection();
+        return isSuccess;
     }
 
     public Connection openConnection() {

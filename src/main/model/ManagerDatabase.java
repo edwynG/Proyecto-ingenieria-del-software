@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import main.Env;
+
 public class ManagerDatabase {
    private AccessDatabase db = null;
-   private EnvConstant envConstant = null;
-
+ 
    public ManagerDatabase() {
-      this.envConstant = new EnvConstant();
-      this.db = AccessDatabase.getSingletonAccess(envConstant.PATH_DATABASE, envConstant.NAME_DATABASE);
+      this.db = AccessDatabase.getSingletonAccess(Env.PATH_DATABASE, Env.NAME_DATABASE);
       System.out.println(db != null ? "Gestor activado!!." : "Hubo un error con el gestor.");
    }
 

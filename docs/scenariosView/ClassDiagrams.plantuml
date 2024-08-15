@@ -5,12 +5,12 @@ object Sesion{
     nombre
     apellido
     correo
-    contraseña 
+    contraseña
 }
 
 object Proponente{
     perfilDocente
-    tipoDePerfil 
+    tipoDePerfil
 
 }
 
@@ -20,9 +20,9 @@ object Propuesta{
     fstructuraCurricular
     estrategiaEvaluativa
     exigencias
-    duracion 
-    estructuraDeCosto 
-    cronograma 
+    duracion
+    estructuraDeCosto
+    cronograma
 }
 
 object Aliado{
@@ -61,10 +61,10 @@ UCV -- administrador
 Proponente -- Propuesta
 note on link : Realiza
 CE *-- Propuesta
-Sesion <|--down Proponente 
+Sesion <|--down Proponente
 Proponente --up AT
 Aliado --right AT
-note on link: Produce 
+note on link: Produce
 Proponente "1..1"-right---"1..3" CE
 note on link : Propone
 CE <|--right CD
