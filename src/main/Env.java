@@ -18,9 +18,10 @@ public class Env {
             "CREATE TABLE\r\n" + //
             "    Usuarios (\r\n" + //
             "        UsuarioID INTEGER PRIMARY KEY,\r\n" + //
-            "        Correo TEXT,\r\n" + //
+            "        Correo TEXT UNIQUE,\r\n" + //
             "        'Contraseña' TEXT,\r\n" + //
-            "        TipoDeUsuario TEXT\r\n" + //
+            "        TipoDeUsuario TEXT,\r\n" + //
+            "        TipoDePersona TEXT\r\n" + //
             "    );\r\n" + //
             "\r\n" + //
             "CREATE TABLE\r\n" + //

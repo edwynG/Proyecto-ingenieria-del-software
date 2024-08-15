@@ -28,7 +28,7 @@ public class AccessDatabase {
 
     };
 
-    public static AccessDatabase getSingletonAccess(String path, String name) {
+    public static AccessDatabase getAccessDatabase(String path, String name) {
         if (singletonDb == null) {
             singletonDb = new AccessDatabase(path, name);
         }
