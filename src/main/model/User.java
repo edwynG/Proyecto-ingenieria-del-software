@@ -11,7 +11,7 @@ public class User {
     private String password;
     private List<Proposal> courseProposal;
     
-    public User(String user,int id,String typePerson, String password, String typeUser){
+    public User(int id, String user,String password, String typeUser,String typePerson){
         this.user=user;
         this.id=id;
         this.typePerson=typePerson;

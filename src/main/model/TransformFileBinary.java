@@ -23,21 +23,21 @@ public class TransformFileBinary {
         }
     }
 
-    public byte[] transformToFile(String base64) {
+    public boolean transformToFile(String base64, String route) {
         byte[] fileBytes = null;
         try {
             // Convertir la cadena Base64 a un arreglo de bytes
             fileBytes = convertBase64ABytes(base64);
             // Guardar los bytes en un archivo en la ubicación de destino
-            return fileBytes;
+            return this.saveBytesAsFile(fileBytes,route);
         } catch (Exception e) {
             System.out.println("Error al convertir la cadena Base64 a un archivo");
-            return fileBytes;
+            return false;
 
         }
     }
 
-    public boolean saveBytesAsFile(byte[] bytes, String route){
+    private boolean saveBytesAsFile(byte[] bytes, String route){
         try {
             Path destinationPath = Path.of(route);
             Files.write(destinationPath, bytes);

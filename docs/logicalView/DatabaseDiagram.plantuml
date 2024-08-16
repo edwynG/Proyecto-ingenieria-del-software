@@ -1,21 +1,22 @@
 @startuml DatabaseDiagram
 
-object Usuarios{
-    UsuarioID:int (PK)
+object Proponentes{
+    ProponenteID:int (PK)
     Correo: string
     Contraseña: int
-    TipoDeUsuario: string
+    TipoDePersona: string
 }
 
 object Administradores{
     AdministradorID: int (PK)
-    UsuarioID: int (FK)
+    Correo: string
+    Contraseña: int
     TipoDeAdministrador: string
 }
 
-object RegistrosDeUsuarios{
-    RegistrosDeUsuarioID :int (PK)
-    UsuarioID: int (FK)
+object DocumentosDeRegistros{
+    DocumentosDeRegistrosID :int (PK)
+    ProponenteID: int (FK)
     RIF: string
     ISLR: string
     Curriculum: string
@@ -27,7 +28,7 @@ object RegistrosDeUsuarios{
 
 object Propuestas{
     PropuestaID:int (PK)
-    UsuarioID: int (FK)
+    ProponenteID: int (FK)
     TipoDeAdministrador: String
     Denominacion: string
     ObjetivosYFundamentacion: string
@@ -52,19 +53,19 @@ object ResultadosPropuestas{
 
 object Aliados{
     AliadoID: int (PK)
-    UsuarioID: int (FK)
+    ProponenteID: int (FK)
     PropuestaID: int (FK)
     CartaDeIntecion: string
     CartaDeCompromiso: string
 }
 
-Administradores "1"--"1" Usuarios
+
 
 ResultadosPropuestas "1"--"1" Propuestas
 ResultadosPropuestas "1..n   "-r-- " 1 " Administradores
-RegistrosDeUsuarios "1"-u-"1" Usuarios
-Propuestas "1..n "-r-" 1" Usuarios
-Aliados "1"-u-"1" Usuarios
+DocumentosDeRegistros "1"-u-"1" Proponentes
+Propuestas "1..n "-r-" 1" Proponentes
+Aliados "1"-u-"1" Proponentes
 Aliados "1"-u-"1..n" Propuestas
 
 @enduml

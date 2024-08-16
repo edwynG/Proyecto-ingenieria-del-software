@@ -21,10 +21,11 @@ public class AccessDatabase {
         if (!file.exists()) {
             System.err.println("Fallo!!, No existe la base de datos.");
             System.out.println("Creando base de datos..");
-            createDatabase(path, name);
-        }
+            if (createDatabase(path, name)) {
+                System.out.println("Listo!!, Active su conexión a la base de datos.");
 
-        System.out.println("Listo!!, Active su conexión a la base de datos.");
+            }
+        }
 
     };
 
@@ -36,16 +37,19 @@ public class AccessDatabase {
     }
 
     private boolean createDatabase(String path, String name) {
-        File file = new File(path + name);
         new File(path).mkdirs();
+        File file = new File(path + name);
         try {
             if (file.createNewFile()) {
-                this.createTablesDatabase(Env.CREATE_DATABASE);
+                if (!this.createTablesDatabase(Env.CREATE_DATABASE)) {
+                    throw new IOException();
+                }
                 System.out.println("base de datos creada.");
                 return true;
             }
 
         } catch (IOException e) {
+
             System.err.println("No se pudo crear la base de datos.");
         }
         return false;
@@ -57,11 +61,23 @@ public class AccessDatabase {
         Statement statement = null;
 
         try {
+
+            conn.setAutoCommit(false);
             statement = conn.createStatement();
             statement.executeUpdate(query);
+            conn.commit();
 
         } catch (SQLException e) {
+
             isSuccess = false;
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Retroceder cambios
+                    System.out.println("Transacción revertida debido a un error");
+                } catch (SQLException rollbackEx) {
+                    System.err.println("Error al revertir la transacción");
+                }
+            }
 
         } finally {
 

@@ -16,11 +16,12 @@ public class ManagerDatabase {
 
    private ManagerDatabase() {
       this.db = AccessDatabase.getAccessDatabase(Env.PATH_DATABASE, Env.NAME_DATABASE);
-      System.out.println(db != null ? "Gestor de la base de datos activado!!." : "Hubo un error con el gestor de la base de datos.");
+      System.out.println(
+            db != null ? "Gestor de la base de datos activado!!." : "Hubo un error con el gestor de la base de datos.");
    }
 
-   public static ManagerDatabase getManagerDatabase(){
-      if ( managerDatabase == null) {
+   public static ManagerDatabase getManagerDatabase() {
+      if (managerDatabase == null) {
          managerDatabase = new ManagerDatabase();
       }
 
@@ -39,7 +40,7 @@ public class ManagerDatabase {
 
    public List<List<String>> getData(String query) {
       List<List<String>> arrayRegister = new ArrayList<>();
-      
+
       if (!this.queryStartWith(query, Arrays.asList("SELECT"))) {
          return arrayRegister;
       }
@@ -95,11 +96,23 @@ public class ManagerDatabase {
       Statement statement = null;
 
       try {
+
+         conn.setAutoCommit(false);
          statement = conn.createStatement();
          statement.executeUpdate(query);
+         conn.commit();
 
       } catch (SQLException e) {
+
          isSuccess = false;
+         if (conn != null) {
+            try {
+               conn.rollback(); // Retroceder cambios
+               System.out.println("Transacción revertida debido a un error");
+            } catch (SQLException rollbackEx) {
+               System.err.println("Error al revertir la transacción");
+            }
+         }
 
       } finally {
 
@@ -126,13 +139,24 @@ public class ManagerDatabase {
       Connection conn = this.db.openConnection();
       Statement statement = null;
       try {
+
+         conn.setAutoCommit(false);
          statement = conn.createStatement();
          statement.execute("PRAGMA foreign_keys = OFF");
          statement.executeUpdate(query);
          statement.execute("PRAGMA foreign_keys = ON");
+         conn.commit();
 
       } catch (SQLException e) {
          isDelete = false;
+         if (conn != null) {
+            try {
+               conn.rollback(); // Retroceder cambios
+               System.out.println("Transacción revertida debido a un error");
+            } catch (SQLException rollbackEx) {
+               System.err.println("Error al revertir la transacción");
+            }
+         }
       } finally {
          try {
             if (statement != null) {
@@ -147,4 +171,11 @@ public class ManagerDatabase {
       return isDelete;
    }
 
+   public boolean isThereDataInTheQuery(String query) {
+      List<List<String>> arrayRegister = new ArrayList<>();
+      arrayRegister = this.getData(query);
+      if (arrayRegister.isEmpty())
+         return false;
+      return true;
+   }
 }
