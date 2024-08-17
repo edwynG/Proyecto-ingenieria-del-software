@@ -7,14 +7,13 @@ public class User {
     private String user;
     private int id; 
     protected String typeUser;
-    private String typePerson;
+    protected String type;
     private String password;
     private List<Proposal> courseProposal;
     
-    public User(int id, String user,String password, String typeUser,String typePerson){
+    public User(int id, String user,String password, String typeUser){
         this.user=user;
         this.id=id;
-        this.typePerson=typePerson;
         this.typeUser=typeUser;
         this.password=password;
         this.courseProposal = new ArrayList<>();
@@ -44,12 +43,8 @@ public class User {
         this.courseProposal.add(proposal);
     }
 
-    public String getTypePerson(){
-        return this.typePerson;
-    }
-
-    public String getTyperUser(){
-        return this.typeUser;
+    public String getType(){
+        return this.type;
     }
     
 }

@@ -6,7 +6,7 @@ public class Env {
     public final static String QUERY_REGISTER_DOCUMENT = "INSERT INTO DocumentosDeRegistros(%s)\nVALUES(%s);\n";
     public final static String QUERY_REGISTER_USER = "INSERT INTO Proponentes(%s)\nVALUES(%s);\n";
     public final static String QUERY_REGISTER_ADMIN = "INSERT INTO Administradores(%s)\nVALUES(%s);\n";
-    public final static String QUERY_LOGIN = "SELECT * FROM Usuarios WHERE Correo = '%s' and Contraseña = '%s';\n";
+    public final static String QUERY_LOGIN = "SELECT * FROM %s WHERE Correo = '%s' and Contraseña = '%s';\n";
     public final static String QUERY_VALIDATE_DATA = "SELECT * FROM Usuarios WHERE %s = '%s';\n";
     public final static String CREATE_DATABASE = "DROP TABLE IF EXISTS Proponente;\r\n" + //
                 "\r\n" + //
