@@ -3,12 +3,18 @@ package main;
 public class Env {
     public final static String PATH_DATABASE = "./src/database/";
     public final static String NAME_DATABASE = "data-Course_Stack.db";
+    public final static String QUERY_DATA_TABLE = "PRAGMA table_info(%s)";
+    public final static String QUERY_FOREING_KEY_ON = "PRAGMA foreign_keys = ON";
+    public final static String QUERY_FOREING_KEY_OFF = "PRAGMA foreign_keys = OF";
+    public final static String QUERY_PROPOSAL_PROPONENT = "SELECT * FROM Propuestas WHERE ProponenteID = %s";
+    public final static String QUERY_PROPOSAL_ADMINISTRADOR = "SELECT * FROM Propuestas WHERE TipoDeAdministrador = '%s'";
     public final static String QUERY_REGISTER_DOCUMENT = "INSERT INTO DocumentosDeRegistros(%s)\nVALUES(%s);\n";
     public final static String QUERY_REGISTER_USER = "INSERT INTO Proponentes(%s)\nVALUES(%s);\n";
     public final static String QUERY_REGISTER_ADMIN = "INSERT INTO Administradores(%s)\nVALUES(%s);\n";
     public final static String QUERY_LOGIN = "SELECT * FROM %s WHERE Correo = '%s' and Contraseña = '%s';\n";
-    public final static String QUERY_VALIDATE_DATA = "SELECT * FROM Usuarios WHERE %s = '%s';\n";
-    public final static String CREATE_DATABASE = "DROP TABLE IF EXISTS Proponente;\r\n" + //
+    public final static String QUERY_REGISTER_PROPOSAL = "INSERT INTO Propuestas(%s)\nVALUES(%s);";
+    public final static String QUERY_VALIDATE_DATA_USER = "SELECT * FROM Usuarios WHERE %s = '%s';\n";
+    public final static String CREATE_DATABASE = "DROP TABLE IF EXISTS Proponentes;\r\n" + //
                 "\r\n" + //
                 "DROP TABLE IF EXISTS DocumentosDeRegistros;\r\n" + //
                 "\r\n" + //
@@ -45,7 +51,7 @@ public class Env {
                 "        Curriculum TEXT,\r\n" + //
                 "        TituloUniversitario TEXT,\r\n" + //
                 "        RegistroMercantil TEXT,\r\n" + //
-                "        FOREIGN KEY (ProponenteID) REFERENCES Proponente (ProponenteID)\r\n" + //
+                "        FOREIGN KEY (ProponenteID) REFERENCES Proponentes (ProponenteID)\r\n" + //
                 "    );\r\n" + //
                 "\r\n" + //
                 "CREATE TABLE\r\n" + //
@@ -63,7 +69,7 @@ public class Env {
                 "        EstructuraDeCostos TEXT,\r\n" + //
                 "        CronogramaDeEjecucionAnual TEXT,\r\n" + //
                 "        UnidadResponsable TEXT,\r\n" + //
-                "        FOREIGN KEY (ProponenteID) REFERENCES Proponente (ProponenteID)\r\n" + //
+                "        FOREIGN KEY (ProponenteID) REFERENCES Proponentes (ProponenteID)\r\n" + //
                 "    );\r\n" + //
                 "\r\n" + //
                 "CREATE TABLE\r\n" + //
@@ -81,8 +87,12 @@ public class Env {
                 "    Aliados (\r\n" + //
                 "        AliadoID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
                 "        ProponenteID INTEGER,\r\n" + //
-                "        PropuestaID INTEGER CartaDeIntecion TEXT CartaDeCompromiso TEXT,\r\n" + //
-                "        FOREIGN KEY (ProponenteID) REFERENCES Proponente (ProponenteID),\r\n" + //
+                "        PropuestaID INTEGER,\r\n" + //
+                "        CartaDeIntecion TEXT, \r\n" + //
+                "        CartaDeCompromiso TEXT,\r\n" + //
+                "        CronogramaDeEjecucion TEXT,\r\n" + //
+                "        EstructuraDeCostosEingresos TEXT,\r\n" + //
+                "        FOREIGN KEY (ProponenteID) REFERENCES Proponentes (ProponenteID),\r\n" + //
                 "        FOREIGN KEY (PropuestaID) REFERENCES Propuestas (PropuestaID)\r\n" + //
                 "    );";
 }

@@ -1,6 +1,10 @@
 package main.model;
 
+import java.util.Map;
+
 public class Proposal {
+    private int proposalId;
+    private int proponentId;
     private String denom;
     private String objFund;
     private String admGradProfile;
@@ -11,6 +15,23 @@ public class Proposal {
     private String costStruct;
     private String annualExecSchedule;
     private String respUnit;
+    private String typeAdmin;
+
+    public Proposal(Map<String,String> proposal){
+        this.denom = proposal.get("Denominacion");
+        this.objFund = proposal.get("ObjetivosYFundamentacion");
+        this.admGradProfile = proposal.get("PerfilDeIngresoYEgreso");
+        this.teachStaffProfile = proposal.get("PerfilDocente");
+        this.compCurriculum = proposal.get("EstructuraCurricularPorCompetencias");
+        this.evalStratDuration = proposal.get("EstrategiasDeEvaluacionYDuracion");
+        this.matServRequirements= proposal.get("ExigenciasEnMaterialesYservicios");
+        this.costStruct = proposal.get("EstructuraDeCostos");
+        this.annualExecSchedule = proposal.get("CronogramaDeEjecucionAnual");
+        this.respUnit = proposal.get("UnidadResponsable");
+        this.proponentId = Integer.parseInt(proposal.get("ProponenteID"));
+        this.proposalId = Integer.parseInt(proposal.get("PropuestaID"));
+        this.typeAdmin = proposal.get("TipoDeAdministrador");
+    }
 
     public String getDenom() {
         return denom;
@@ -90,5 +111,16 @@ public class Proposal {
 
     public void setRespUnit(String respUnit) {
         this.respUnit = respUnit;
+    }
+
+    public int getProposalId(){
+        return this.proposalId;
+    }
+
+    public int getProponentId(){
+        return this.proponentId;
+    }
+    public String getTypeAdmin(){
+        return this.typeAdmin;
     }
 }

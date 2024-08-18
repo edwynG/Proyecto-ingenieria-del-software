@@ -57,6 +57,8 @@ object Aliados{
     PropuestaID: int (FK)
     CartaDeIntecion: string
     CartaDeCompromiso: string
+    CronogramaDeEjecucion: string
+    EstructuraDeCostosEingresos: string
 }
 
 

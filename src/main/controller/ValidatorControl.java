@@ -11,6 +11,6 @@ public class ValidatorControl {
 
     }
     public boolean doesTheDataExist(String campo, String dato) {
-        return this.managerDatabase.isThereDataInTheQuery(String.format(Env.QUERY_VALIDATE_DATA, campo, dato));
+        return this.managerDatabase.isThereDataInTheQuery(String.format(Env.QUERY_VALIDATE_DATA_USER, campo, dato));
     }
 }

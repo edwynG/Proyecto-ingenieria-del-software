@@ -25,16 +25,17 @@ public class SesionControl {
 
         String table = option ? "Proponentes" : "Administradores";
         query = String.format(query, table, email, password);
-      
+
         List<List<String>> registro = this.managerDatabase.getData(query);
         if (!registro.isEmpty()) {
             List<String> fields = registro.get(0);
 
             if (option) {
-                this.user = new Proponent(Integer.parseInt(fields.get(0)), fields.get(1), fields.get(2), fields.get(3),"Proponente");
+                this.user = new Proponent(Integer.parseInt(fields.get(0)), fields.get(1), fields.get(2), fields.get(3));
 
             } else {
-                this.user = new Administrator(Integer.parseInt(fields.get(0)), fields.get(1), fields.get(2), fields.get(3), "Administrador");
+                this.user = new Administrator(Integer.parseInt(fields.get(0)), fields.get(1), fields.get(2),
+                        fields.get(3));
 
             }
         }
@@ -58,8 +59,8 @@ public class SesionControl {
         boolean singIn = managerDatabase.updateOrInsertData(query);
 
         if (singIn) {
-            this.user = new Proponent(Integer.parseInt(data.get("ProponenteID")), data.get("Correo"),
-                    data.get("Contraseña"), "Proponente", data.get("TipoDePersona"));
+            this.user = new Proponent(Integer.parseInt(data.get("ProponenteID")), data.get("Correo").replace("'", ""), data.get("Contraseña").replace("'",""), data.get("TipoDePersona").replace("'", ""));
+
         }
 
         return this.user;
@@ -74,8 +75,7 @@ public class SesionControl {
 
         boolean singIn = managerDatabase.updateOrInsertData(admin);
         if (singIn) {
-            this.user = new Administrator(Integer.parseInt(data.get("AdministradorID")), data.get("Correo"),
-                    data.get("Contraseña"), "Administrador", data.get("TipoDeAdministrador"));
+            this.user = new Administrator(Integer.parseInt(data.get("AdministradorID")),data.get("Correo").replace("'", ""), data.get("Contraseña").replace("'", ""), data.get("TipoDeAdministrador").replace("'", ""));
         }
 
         return this.user;

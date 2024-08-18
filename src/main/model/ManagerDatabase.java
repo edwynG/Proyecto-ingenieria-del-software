@@ -96,11 +96,12 @@ public class ManagerDatabase {
       Statement statement = null;
 
       try {
-
-         conn.setAutoCommit(false);
          statement = conn.createStatement();
+         statement.execute(Env.QUERY_FOREING_KEY_ON);
+         conn.setAutoCommit(false);
          statement.executeUpdate(query);
          conn.commit();
+         statement.execute(Env.QUERY_FOREING_KEY_OFF);
 
       } catch (SQLException e) {
 
@@ -140,12 +141,12 @@ public class ManagerDatabase {
       Statement statement = null;
       try {
 
-         conn.setAutoCommit(false);
          statement = conn.createStatement();
-         statement.execute("PRAGMA foreign_keys = OFF");
+         statement.execute(Env.QUERY_FOREING_KEY_OFF);
+         conn.setAutoCommit(false);
          statement.executeUpdate(query);
-         statement.execute("PRAGMA foreign_keys = ON");
          conn.commit();
+         statement.execute(Env.QUERY_FOREING_KEY_ON);
 
       } catch (SQLException e) {
          isDelete = false;
@@ -177,5 +178,39 @@ public class ManagerDatabase {
       if (arrayRegister.isEmpty())
          return false;
       return true;
+   }
+
+   public List<String> getNameFields(String table){
+      List<String> nameFields = new ArrayList<>();
+
+      Connection conn = this.db.openConnection();
+      Statement statement = null;
+      ResultSet result = null;
+
+      try {
+         statement = conn.createStatement();
+         result = statement.executeQuery(String.format(Env.QUERY_DATA_TABLE, table));
+         while (result.next()) {
+            nameFields.add(result.getString("name"));
+         }
+      } catch (SQLException e) {
+         nameFields.clear();
+      } finally {
+
+         try {
+            if (result != null) {
+               result.close();
+            }
+            if (statement != null) {
+               statement.close();
+            }
+         } catch (SQLException e) {
+
+         }
+
+      }
+
+      this.db.closeConnection();
+      return nameFields;
    }
 }

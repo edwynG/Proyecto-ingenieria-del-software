@@ -62,8 +62,8 @@ public class AccessDatabase {
 
         try {
 
-            conn.setAutoCommit(false);
             statement = conn.createStatement();
+            conn.setAutoCommit(false);
             statement.executeUpdate(query);
             conn.commit();
 
