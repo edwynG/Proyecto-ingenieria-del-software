@@ -16,7 +16,7 @@ public class ProponentControl extends UserControl {
     }
 
     @Override
-    public boolean courseFormulation(Map<String, String> form) {
+    public boolean proposeCourse(Map<String, String> form) {
         TransformFileBinary transform = new TransformFileBinary();
         List<String> fields = new ArrayList<>(form.keySet());
         List<String> paths = new ArrayList<>(form.values());
@@ -33,7 +33,7 @@ public class ProponentControl extends UserControl {
 
         String query = String.format(Env.QUERY_REGISTER_PROPOSAL,  "ProponenteID" +","+String.join(",", fields),this. user.getId() +","+ String.join(",", registers));
 
-        return this.managerdfDatabase.updateOrInsertData(query);
+        return this.managerDatabase.updateOrInsertData(query);
 
     }
 }

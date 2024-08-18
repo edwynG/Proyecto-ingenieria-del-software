@@ -43,8 +43,7 @@ object Propuestas{
 }
 
 object ResultadosPropuestas{
-    ResultadoPropuestaID: int (PK)
-    PropuestaID: int (FK)
+    PropuestaID: int (PK)-(FK)
     AdministradorID: int (FK)
     Observaciones: string
     Resultado: string
@@ -64,7 +63,7 @@ object Aliados{
 
 
 ResultadosPropuestas "1"--"1" Propuestas
-ResultadosPropuestas "1..n   "-r-- " 1 " Administradores
+Administradores "1   "-l- " 1..n" ResultadosPropuestas
 DocumentosDeRegistros "1"-u-"1" Proponentes
 Propuestas "1..n "-r-" 1" Proponentes
 Aliados "1"-u-"1" Proponentes
