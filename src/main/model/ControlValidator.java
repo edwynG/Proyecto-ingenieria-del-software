@@ -1,12 +1,11 @@
-package main.controller;
+package main.model;
 
 import main.Env;
-import main.model.ManagerDatabase;
 
-public class ValidatorControl {
+public class ControlValidator {
     private ManagerDatabase managerDatabase;
 
-    public ValidatorControl() {
+    public ControlValidator() {
         this.managerDatabase = ManagerDatabase.getManagerDatabase();
 
     }

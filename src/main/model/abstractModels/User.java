@@ -1,7 +1,9 @@
-package main.model;
+package main.model.abstractModels;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import main.model.Proposal;
 
 public abstract class User {
     private String user;

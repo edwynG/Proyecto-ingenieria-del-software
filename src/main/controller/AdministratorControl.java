@@ -1,8 +1,10 @@
 package main.controller;
 
 import main.Env;
+import main.controller.abstractControllers.UserControl;
 import main.model.TransformFileBinary;
-import main.model.User;
+import main.model.abstractModels.User;
+import main.model.ControlValidator;
 
 public class AdministratorControl extends UserControl {
 
@@ -28,7 +30,7 @@ public class AdministratorControl extends UserControl {
             query = String.format(Env.QUERY_EVALUATE_COURSE_UPDATE, observation, assessment, Integer.toString(id));
             
             boolean UpdateWithoutError = this.managerDatabase.updateOrInsertData(query);
-            boolean exists = new ValidatorControl().doesTheDataExist("ResultadosPropuestas", "PropuestaID",Integer.toString(id));
+            boolean exists = new ControlValidator().doesTheDataExist("ResultadosPropuestas", "PropuestaID",Integer.toString(id));
 
             boolean result = exists && UpdateWithoutError;
 

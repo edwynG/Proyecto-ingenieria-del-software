@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import main.Env;
+import main.model.abstractModels.User;
 
 public class Proponent extends User {
     

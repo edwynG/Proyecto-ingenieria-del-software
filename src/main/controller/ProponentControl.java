@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import main.Env;
+import main.controller.abstractControllers.UserControl;
 import main.model.TransformFileBinary;
-import main.model.User;
+import main.model.abstractModels.User;
 
 public class ProponentControl extends UserControl {
 

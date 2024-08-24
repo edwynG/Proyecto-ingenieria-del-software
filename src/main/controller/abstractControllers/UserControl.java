@@ -1,11 +1,11 @@
-package main.controller;
+package main.controller.abstractControllers;
 
 import java.util.List;
 import java.util.Map;
 
 import main.model.ManagerDatabase;
 import main.model.Proposal;
-import main.model.User;
+import main.model.abstractModels.User;
 
 public abstract class UserControl {
     protected User user;
@@ -27,4 +27,5 @@ public abstract class UserControl {
     public boolean evaluateCourse(String assessment, String observations, int id){
         return false;
     };
+    
 }

@@ -1,7 +1,7 @@
 @startuml ModeloDeDominio
 skinparam NoteBackgroundColor transparent
 skinparam NoteBorderColor transparent
-object Sesion{
+object Usuario{
     nombre
     apellido
     correo
@@ -56,12 +56,12 @@ object "Curso Diplomatico" as CD {
 
 }
 
-Sesion  <|--right administrador
+Usuario  <|--right administrador
 UCV -- administrador
 Proponente -- Propuesta
 note on link : Realiza
 CE *-- Propuesta
-Sesion <|--down Proponente
+Usuario <|--down Proponente
 Proponente --up AT
 Aliado --right AT
 note on link: Produce

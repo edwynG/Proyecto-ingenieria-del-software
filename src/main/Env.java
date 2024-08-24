@@ -1,8 +1,19 @@
 package main;
 
 public class Env {
+    // Base de datos
     public final static String PATH_DATABASE = "./src/database/";
     public final static String NAME_DATABASE = "data-Course_Stack.db";
+
+    // imagenes
+    public final static String PATH_ICON_WINDOW ="src/assets/icon_window.png";
+    public final static String PATH_IMAGE_MAIN ="src/assets/main_image.png";
+    public final static String PATH_ICON_USER ="src/assets/user_image.png";
+    public final static String PATH_ICON_PADLOCK ="src/assets/padlock_image.png";
+    public final static String PATH_ICON_UPLOAD ="src/assets/upload_image.png";
+    public final static String PATH_ICON_EMAIL ="src/assets/email_image.png";
+
+    // Consultas de SQL
     public final static String QUERY_DATA_TABLE = "PRAGMA table_info(%s)";
     public final static String QUERY_FOREING_KEY_ON = "PRAGMA foreign_keys = ON";
     public final static String QUERY_FOREING_KEY_OFF = "PRAGMA foreign_keys = OF";

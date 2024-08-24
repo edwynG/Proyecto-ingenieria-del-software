@@ -8,7 +8,7 @@ import main.Env;
 import main.model.Administrator;
 import main.model.ManagerDatabase;
 import main.model.Proponent;
-import main.model.User;
+import main.model.abstractModels.User;
 
 public class SesionControl {
     private User user;
