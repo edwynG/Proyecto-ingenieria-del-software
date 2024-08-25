@@ -1,11 +1,12 @@
 package main.view.components.AbstractComponents;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import main.view.utils.RoundedBorder;
 
 public class AbstractInputText extends AbstractEffectFields {
-    private RoundedBorder configBorder;
+    protected RoundedBorder configBorder;
     
     public AbstractInputText(int comluns) {
         super(comluns);
@@ -19,6 +20,7 @@ public class AbstractInputText extends AbstractEffectFields {
 
     public void initAbstractInputText() {
         this.configBorder = new RoundedBorder(0);
+        setMinimumSize(new Dimension(200,30));
         setBorder(this.configBorder);
     
     }
@@ -70,9 +72,5 @@ public class AbstractInputText extends AbstractEffectFields {
         return this.configBorder.getBorderColor();
     }
 
-    public Color getColorBackgroundField() {
-        return this.configBorder.getBackgroundRect();
-    }
 
-  
 }

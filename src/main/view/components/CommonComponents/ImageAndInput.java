@@ -1,8 +1,7 @@
 package main.view.components.CommonComponents;
 
-
-
-import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -19,9 +18,13 @@ public class ImageAndInput extends TransparentPanel {
     }
 
     private void initImagenAndInput(){
-        setLayout(new FlowLayout());
-        add(this.icon);
-        add(this.input);
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx =0;
+        gbc.gridy=0;
+        add(this.icon,gbc);
+        gbc.gridx=1;
+        add(this.input,gbc);
     }
 
     public JTextField getInput(){

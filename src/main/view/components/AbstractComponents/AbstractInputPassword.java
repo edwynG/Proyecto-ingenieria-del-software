@@ -101,4 +101,5 @@ public class AbstractInputPassword extends AbstractInputText {
     public void setEchoChar(char c) {
         this.ch = c;
     }
+    
 }

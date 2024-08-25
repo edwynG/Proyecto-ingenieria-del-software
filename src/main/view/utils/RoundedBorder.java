@@ -15,7 +15,7 @@ import javax.swing.border.Border;
     
     public RoundedBorder(int radius) {
         this.radius = radius;
-        this.backgroundColor = Color.WHITE;
+        this.backgroundColor = ColorPalette.TRANSPARENT;
         this.borderColor = Color.BLACK;
     
     }

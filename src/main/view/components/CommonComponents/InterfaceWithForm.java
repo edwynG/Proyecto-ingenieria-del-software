@@ -64,7 +64,7 @@ public class InterfaceWithForm extends AbstractPanelRounded {
         container.add(image, gbc);
     }
    
-    private void configContainerForm(JPanel container) {
+    private static void configContainerForm(JPanel container) {
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -73,8 +73,7 @@ public class InterfaceWithForm extends AbstractPanelRounded {
         gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.BOTH;
-        int gap = 60;
-        gbc.insets = new Insets(gap, gap, gap, gap);
+        gbc.insets = new Insets(50, 50, 50, 50);
         container.add(formulation, gbc);
 
     }
@@ -95,28 +94,29 @@ public class InterfaceWithForm extends AbstractPanelRounded {
       Components.removeElement(containerImage, image);
     }
 
-    public AbstractForm getForm(){
+    public static AbstractForm getForm(){
         return formulation;
     }
 
-    public JLabel getImage(){
+    public static JLabel getImage(){
         return image;
     }
 
-    public JPanel getContainerForm(){
+    public static JPanel getContainerForm(){
         return containerForm;
     }
 
-    public JPanel getContainerImage(){
+    public static JPanel getContainerImage(){
         return containerImage;
     }
 
-    public void setFormulation(AbstractForm form){
-        if (form != null) {
-            Components.removeElement(containerForm,form);
+    public static void setFormulation(AbstractForm form){
+        if (formulation != null) {
+            Components.removeElement(containerForm,formulation);
         }
         
         formulation = form;
-        this.configContainerForm(containerForm);
+        configContainerForm(containerForm);
     }
+
 }
