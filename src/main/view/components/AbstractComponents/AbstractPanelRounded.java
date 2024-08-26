@@ -54,4 +54,9 @@ public abstract class AbstractPanelRounded extends JPanel {
         return this.configBorder.getBorderRounded();
     }
 
+    public void setConfigBorder(RoundedBorder borde) {
+        this.configBorder = borde;
+        setBorder(borde);
+    }
+
 }

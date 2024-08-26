@@ -1,12 +1,10 @@
 package main.view.components;
 
-import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Font;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -16,35 +14,36 @@ import javax.swing.SwingConstants;
 
 import main.Env;
 import main.view.components.AbstractComponents.AbstractForm;
-import main.view.components.AbstractComponents.AbstractInputText;
 import main.view.components.AbstractComponents.AbstractButtonRounded;
 import main.view.components.CommonComponents.ButtonRounded;
-import main.view.components.CommonComponents.ImageAndInput;
+import main.view.components.CommonComponents.ImageAndComponent;
 import main.view.components.CommonComponents.InputPassword;
 import main.view.components.CommonComponents.InputText;
-import main.view.components.CommonComponents.JText;
+import main.view.components.CommonComponents.TextOption;
+import main.view.components.CommonComponents.TextSubtitle;
+import main.view.components.CommonComponents.TextTitle;
 import main.view.components.CommonComponents.TransparentPanel;
 import main.view.components.loginComponents.LoginActions;
-import main.view.utils.ColorPalette;
 
 public class Login extends AbstractForm {
     // Componentes
     public InputText inputEmail;
     public InputPassword inputPassword;
     private AbstractButtonRounded button;
-
-    private JText title;
-    private JText subTitle;
-    private JText optionPassword;
-    private JText optionRegister;
+    private TransparentPanel containerOptions;
+    private TextTitle title;
+    private TextSubtitle subTitle;
+    private TextOption optionPassword;
+    private TextOption optionRegister;
 
     // Estilos globales
-    private String fontFamily = "Arial";
-    private int radiusGobal = 15;
-    private int fontSizeTitle = 30;
+    private int roundedButtonGlobal = 15;
+    private int fontSizeTitle = 40;
     private int fontSizeSubTitle = 12;
     private int fontSizeOptionPassword = 11;
     private int fontSizeOptionRegister = 11;
+    private int columnsInputStandard = 18;
+    private int gapOptions = 26;
 
     // Funcionalidad
     LoginActions actions;
@@ -64,69 +63,71 @@ public class Login extends AbstractForm {
         this.createInputs();
         this.createBoton();
         this.createAside();
-        this.settingResize();
 
     };
 
     private void configLogin() {
         this.actions = new LoginActions();
-      
+
     }
 
     private void createTitle() {
+        int marginBottom = 7;
+        int gap = 6;
         // Titula
-        this.title = new JText("Bienvenido", SwingConstants.CENTER);
-        Font style = new Font(this.fontFamily, Font.BOLD, fontSizeTitle);
-        this.title.setForeground(ColorPalette.COLOR_TITLE);
-        this.title.setConfig(style);
+        this.title = new TextTitle("Bienvenido", SwingConstants.CENTER);
 
         // sub-Titulo
-        this.subTitle = new JText("Iniciar sesión", SwingConstants.CENTER);
-        style = new Font(this.fontFamily, Font.PLAIN, fontSizeSubTitle);
-        this.subTitle.setConfig(style);
+        this.subTitle = new TextSubtitle("Iniciar sesión", SwingConstants.CENTER);
 
         // contenedor
         TransparentPanel container = new TransparentPanel();
-        container.setLayout(new GridLayout(2, 1, 5, 6));
+        container.setLayout(new GridLayout(2, 1, gap, gap));
         container.add(this.title);
         container.add(this.subTitle);
-        this.addContent(container);
-        this.addContent(Box.createVerticalStrut(7));// margin vertical
+        addContent(container);
+        addContent(Box.createVerticalStrut(marginBottom));// margin vertical
 
     }
 
     private void createInputs() {
-        int colums = 16;
         int widthImage = 42;
         int heightImage = 42;
-
+        int gap = 10;
+        int marginBottom = 15;
         // input Correo
-        this.inputEmail = this.createInputText("Correo", colums);
-        this.customInput(this.inputEmail);
+        this.inputEmail = createInputText("Correo", this.columnsInputStandard);
         this.addInputList(this.inputEmail);
-        ImageAndInput labelEmail = new ImageAndInput(Env.PATH_ICON_EMAIL, widthImage, heightImage, inputEmail);
-        this.addContent(labelEmail);
-        this.addContent(Box.createVerticalStrut(10));
-
+        ImageAndComponent labelEmail = new ImageAndComponent(Env.PATH_ICON_EMAIL, widthImage, heightImage, inputEmail);
+        addContent(labelEmail);
+        addContent(Box.createVerticalStrut(gap));
 
         // input password
-        this.inputPassword = this.createInputPassword("Contraseña", colums);
-        this.customInput(this.inputPassword);
-        this.addInputList(this.inputPassword);
-        ImageAndInput labelPassword = new ImageAndInput(Env.PATH_ICON_PADLOCK, widthImage, heightImage, this.inputPassword);
-        this.addContent(labelPassword);
-        this.addContent(Box.createVerticalStrut(25));
+        this.inputPassword = createInputPassword("Contraseña", this.columnsInputStandard);
+        addInputList(this.inputPassword);
+        ImageAndComponent labelPassword = new ImageAndComponent(Env.PATH_ICON_PADLOCK, widthImage, heightImage,
+                this.inputPassword);
+        addContent(labelPassword);
+        addContent(Box.createVerticalStrut(marginBottom));
 
     }
 
     private void createBoton() {
-        this.button = new ButtonRounded("Iniciar Sesión", radiusGobal);
-        this.button.setFontWeightText(Font.BOLD);
-        this.button.setFontSizeText(13);
-        this.button.setColorText(Color.WHITE);
-        this.button.setFontFamilyText(this.fontFamily);
-        TransparentPanel containerBtn = new TransparentPanel();
-        containerBtn.setLayout(new GridBagLayout());
+        int marginBottom = 8;
+        this.button = new ButtonRounded("Iniciar sesión", this.roundedButtonGlobal);
+        TransparentPanel container = new TransparentPanel();
+        container.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(0, 10, 0, 0);
+        container.add(this.button, gbc);
+
+        addContent(container);
+        addContent(Box.createVerticalStrut(marginBottom));// margin vertical
 
         // Accion del boton
         this.button.addMouseListener(new MouseAdapter() {
@@ -137,20 +138,29 @@ public class Login extends AbstractForm {
             }
         });
 
-        // se añade al contenido del formulario
-        this.addContent(button);
-        this.addContent(Box.createVerticalStrut(8));// margin vertical
-
     };
 
     private void createAside() {
         // primer titulo
-        this.optionPassword = new JText("¿Olvidaste tu Contraseña?", SwingConstants.CENTER);
-        Font style = new Font(this.fontFamily, Font.PLAIN, this.fontSizeOptionPassword);
-        this.optionPassword.setConfig(style);
-        this.optionPassword.createEventHover(Color.BLUE);
+        this.optionPassword = new TextOption("¿Olvidaste tu Contraseña?", SwingConstants.CENTER);
+
         TransparentPanel opPass = new TransparentPanel();
         opPass.setLayout(new FlowLayout());
+
+        // segundo titulo
+        this.optionRegister = new TextOption("¿Aún no tiene cuenta? Registrate", SwingConstants.RIGHT);
+        TransparentPanel opRegis = new TransparentPanel();
+        opRegis.setLayout(new FlowLayout(FlowLayout.RIGHT));
+
+        // contenedor
+        this.containerOptions = new TransparentPanel();
+        this.containerOptions.setLayout(new GridLayout(2, 1, this.gapOptions, this.gapOptions));
+        opPass.add(this.optionPassword);
+        opRegis.add(this.optionRegister);
+        this.containerOptions.add(opPass);
+        this.containerOptions.add(opRegis);
+        // se añade al contenido del formulario
+        addContent(this.containerOptions);
 
         this.optionPassword.addMouseListener(new MouseAdapter() {
             @Override
@@ -160,14 +170,6 @@ public class Login extends AbstractForm {
             }
         });
 
-        // segundo titulo
-        this.optionRegister = new JText("¿Aún no tiene cuenta? Registrate", SwingConstants.RIGHT);
-        style = new Font(this.fontFamily, Font.PLAIN, this.fontSizeOptionRegister);
-        this.optionRegister.setConfig(style);
-        this.optionRegister.createEventHover(Color.BLUE);
-        TransparentPanel opRegis = new TransparentPanel();
-        opRegis.setLayout(new FlowLayout(FlowLayout.RIGHT));
-
         this.optionRegister.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -176,79 +178,57 @@ public class Login extends AbstractForm {
             }
         });
 
-        // contenedor
-        TransparentPanel container = new TransparentPanel();
-        container.setLayout(new GridLayout(2, 1, 20, 25));
-        opPass.add(this.optionPassword);
-        opRegis.add(this.optionRegister);
-        container.add(opPass);
-        container.add(opRegis);
-
-        // se añade al contenido del formulario
-        this.addContent(container);
-
     }
 
-    private void settingResize() {
-        // Tamaños del input
-        int smColum = 16;
-        int midColum = 22;
-        int lgColum = 32;
-        int smRow = 36;
-        int lgRow = 42;
-
-        // Tamaño de la pantalla para la redimención
-        int sm = 400;
-        int mid = 540;
-
-        // Ajuste de tamaños
-        this.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentResized(ComponentEvent e) {
-                super.componentResized(e);
-                if (getWidth() > mid) {
-                    // Inputs
-                    for (JTextField input : getInputList()) {
-                        setRedimentionFields(input, lgColum, lgRow);
-                    }
-                    optionPassword.setFontSize(13);
-                    optionRegister.setFontSize(13);
-                    title.setFontSize(40);
-                    subTitle.setFontSize(14);
-
-                }
-
-                if (getWidth() > sm && getWidth() <= mid) {
-                    // Inputs
-                    for (JTextField input : getInputList()) {
-                        setRedimentionFields(input, midColum, smRow);
-                    }
-                    optionPassword.setFontSize(fontSizeOptionPassword);
-                    optionRegister.setFontSize(fontSizeOptionRegister);
-                    title.setFontSize(fontSizeTitle);
-                    subTitle.setFontSize(fontSizeSubTitle);
-                }
-
-                if (getWidth() <= sm) {
-                    // Inputs
-                    for (JTextField input : getInputList()) {
-                        setRedimentionFields(input, smColum, smRow);
-                    }
-                    optionPassword.setFontSize(fontSizeOptionPassword);
-                    optionRegister.setFontSize(fontSizeOptionRegister);
-                    title.setFontSize(fontSizeTitle);
-                    subTitle.setFontSize(fontSizeSubTitle);
-
-                }
-            }
-        });
+    private void resizeOptionsLg(int gap) {
+        this.containerOptions.setLayout(new GridLayout(2, 1, gap, gap));
 
     }
 
     @Override
-    protected void customInput(AbstractInputText input) {
-        input.setFontFamilyText(this.fontFamily);
-        input.setBorderColorField(ColorPalette.COLOR_FIELD);
+    protected void configResizeLarge() {
+        int lgColum = 32;
+        int lgRow = 43;
+        for (JTextField input : getInputList()) {
+            setRedimentionFields(input, lgColum, lgRow);
+        }
+        optionPassword.setFontSize(13);
+        optionRegister.setFontSize(13);
+        title.setFontSize(55);
+        subTitle.setFontSize(14);
+        resizeOptionsLg(70);
+
+    }
+
+    @Override
+    protected void configResizeMedium() {
+
+        int smRow = 37;
+        int midColum = 22;
+
+        for (JTextField input : getInputList()) {
+            setRedimentionFields(input, midColum, smRow);
+        }
+        optionPassword.setFontSize(fontSizeOptionPassword);
+        optionRegister.setFontSize(fontSizeOptionRegister);
+        title.setFontSize(fontSizeTitle);
+        subTitle.setFontSize(fontSizeSubTitle);
+        resizeOptionsLg(gapOptions);
+    }
+
+    @Override
+    protected void configResizeSmall() {
+        int smColum = this.columnsInputStandard;
+        int smRow = 37;
+
+        for (JTextField input : getInputList()) {
+            setRedimentionFields(input, smColum, smRow);
+        }
+        optionPassword.setFontSize(fontSizeOptionPassword);
+        optionRegister.setFontSize(fontSizeOptionRegister);
+        title.setFontSize(fontSizeTitle);
+        subTitle.setFontSize(fontSizeSubTitle);
+        resizeOptionsLg(gapOptions);
     }
 
 }

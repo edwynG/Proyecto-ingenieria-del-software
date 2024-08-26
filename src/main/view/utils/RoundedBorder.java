@@ -37,7 +37,7 @@ import javax.swing.border.Border;
 
     @Override
     public Insets getBorderInsets(Component c) {
-        return new Insets(this.radius + 1, this.radius + 1, this.radius + 2, this.radius);
+        return new Insets(1, 1, 1, 1);
     }
 
     @Override

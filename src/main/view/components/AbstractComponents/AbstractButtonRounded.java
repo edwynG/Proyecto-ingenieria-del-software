@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -36,11 +37,14 @@ public abstract class AbstractButtonRounded extends AbstractPanelRounded {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
-        text.setOpaque(true); // Hacer que el JLabel sea opaco
+        text.setOpaque(false); // Hacer que el JLabel sea opaco
         text.setBackground(ColorPalette.TRANSPARENT); //
         add(text, gbc);
     }
-
+    @Override
+    public Insets getInsets() {
+        return new Insets(5, 5, 5, 5);
+    }
     public void setColorText(Color color) {
         this.text.setForeground(color);
     }
@@ -60,4 +64,5 @@ public abstract class AbstractButtonRounded extends AbstractPanelRounded {
         this.text.setFont(new Font(font.getName(), weight, font.getSize()));
     }
 
+    
 }

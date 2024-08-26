@@ -31,7 +31,7 @@ public class AbstractEffectText extends JLabel {
     }
 
 
-    public void createEventHover(Color hover){
+    public void addEffectHover(Color hover){
         this.addMouseListener(new MouseAdapter() {
             private Color before = getForeground();
             private Cursor point = getCursor();

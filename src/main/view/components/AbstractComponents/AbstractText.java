@@ -3,7 +3,7 @@ package main.view.components.AbstractComponents;
 import java.awt.Font;
 
 
-public class AbstractText extends AbstractEffectText{
+public abstract class AbstractText extends AbstractEffectText{
    
     public AbstractText(String string){
         super(string);
@@ -37,6 +37,7 @@ public class AbstractText extends AbstractEffectText{
 
     public void setConfig(Font style){
         this.config=style;
+        setFont(style);
     }
 
 }

@@ -15,7 +15,7 @@ import javax.swing.JScrollPane;
 public class Main extends JFrame {
     private int height;
     private int width;
-    public static JPanel WINDOW;
+    public static final JPanel WINDOW = new JPanel();
     private static JPanel content;
     private String windowName;
     private static UserControl userControl;
@@ -28,7 +28,6 @@ public class Main extends JFrame {
     private void configMain(String name) {
         userControl = null;
         content = new JPanel();
-        WINDOW = new JPanel();
         this.height = 560;
         this.width = 870;
         this.windowName = name;

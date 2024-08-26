@@ -18,6 +18,10 @@ import java.awt.Insets;
 public class InterfaceWithForm extends AbstractPanelRounded {
     private static JPanel containerImage;
     private static JPanel containerForm;
+    private static TransparentPanel contentForm;
+    public static int widthFormulation = 550;
+    public static int heightFormulation = 550;
+
     private static AbstractForm formulation;
     private static JLabel image; 
 
@@ -65,7 +69,11 @@ public class InterfaceWithForm extends AbstractPanelRounded {
     }
    
     private static void configContainerForm(JPanel container) {
+        contentForm = new TransparentPanel();
         container.setLayout(new GridBagLayout());
+        contentForm.setLayout(new GridBagLayout());
+        
+        // configuracion para el container
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -74,7 +82,16 @@ public class InterfaceWithForm extends AbstractPanelRounded {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(50, 50, 50, 50);
-        container.add(formulation, gbc);
+        container.add(contentForm, gbc);
+
+        // Configuracion container
+        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.BASELINE;
+
+        contentForm.add(formulation,gbc);
+        formulation.setPreferredSize(new Dimension(widthFormulation,heightFormulation));
+        formulation.setMinimumSize(new Dimension(widthFormulation,heightFormulation));
 
     }
 
@@ -112,7 +129,7 @@ public class InterfaceWithForm extends AbstractPanelRounded {
 
     public static void setFormulation(AbstractForm form){
         if (formulation != null) {
-            Components.removeElement(containerForm,formulation);
+            Components.removeElement(contentForm,formulation);
         }
         
         formulation = form;

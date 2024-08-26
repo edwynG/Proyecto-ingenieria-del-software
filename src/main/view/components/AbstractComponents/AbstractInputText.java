@@ -3,6 +3,8 @@ package main.view.components.AbstractComponents;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Insets;
+
 import main.view.utils.RoundedBorder;
 
 public class AbstractInputText extends AbstractEffectFields {
@@ -21,8 +23,14 @@ public class AbstractInputText extends AbstractEffectFields {
     public void initAbstractInputText() {
         this.configBorder = new RoundedBorder(0);
         setMinimumSize(new Dimension(200,30));
+        setPreferredSize(new Dimension(200,40));
         setBorder(this.configBorder);
     
+    }
+
+    @Override
+    public Insets getInsets() {
+        return new Insets(10, 10, 10, 10);
     }
 
     public void setColorText(Color color) {
@@ -46,15 +54,14 @@ public class AbstractInputText extends AbstractEffectFields {
 
     public void setRoundedField(int radius) {
         this.configBorder.setBorderRounded(radius);
-        setBorder(new RoundedBorder(this.configBorder.getBorderRounded(), getBackground()));
+        setBorder(this.configBorder);
         revalidate();
         repaint();
     }
 
     public void setBorderColorField(Color color) {
         this.configBorder.setBorderColor(color);
-        setBorder(new RoundedBorder(this.configBorder.getBorderRounded(), configBorder.getBackgroundRect(),
-                configBorder.getBorderColor()));
+        setBorder(this.configBorder);
         revalidate();
         repaint();
     }
@@ -63,7 +70,7 @@ public class AbstractInputText extends AbstractEffectFields {
         return this.configBorder.getBorderRounded();
     }
 
-    public void setBorderField(RoundedBorder borde) {
+    public void setConfigBorder(RoundedBorder borde) {
         this.configBorder = borde;
         setBorder(borde);
     }
