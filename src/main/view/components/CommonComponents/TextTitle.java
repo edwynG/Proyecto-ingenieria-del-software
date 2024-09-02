@@ -1,5 +1,6 @@
 package main.view.components.CommonComponents;
 
+
 import java.awt.Font;
 
 import main.view.components.AbstractComponents.AbstractText;
@@ -23,5 +24,6 @@ public class TextTitle extends AbstractText {
     private void initJText() {
         setConfig(new Font(this.fontFamilyGlobal, Font.BOLD, this.fontSizeTitle));
         setForeground(ColorPalette.COLOR_TITLE);
+        
     }
 }

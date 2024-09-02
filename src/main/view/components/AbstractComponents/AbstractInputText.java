@@ -9,23 +9,24 @@ import main.view.utils.RoundedBorder;
 
 public class AbstractInputText extends AbstractEffectFields {
     protected RoundedBorder configBorder;
-    
+
     public AbstractInputText(int comluns) {
         super(comluns);
         initAbstractInputText();
     }
+
     public AbstractInputText(int comluns, String placeholder) {
-        super(comluns,placeholder);
+        super(comluns, placeholder);
         initAbstractInputText();
 
     }
 
     public void initAbstractInputText() {
         this.configBorder = new RoundedBorder(0);
-        setMinimumSize(new Dimension(200,30));
-        setPreferredSize(new Dimension(200,40));
+        setMinimumSize(new Dimension(200, 30));
+        setPreferredSize(new Dimension(200, 40));
         setBorder(this.configBorder);
-    
+
     }
 
     @Override
@@ -79,5 +80,8 @@ public class AbstractInputText extends AbstractEffectFields {
         return this.configBorder.getBorderColor();
     }
 
+    public String getInput() {
+        return getText().equals(getPlaceholder()) ? "" : getText();
+    };
 
 }

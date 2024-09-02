@@ -3,8 +3,8 @@ package main.view.components.loginComponents;
 import javax.swing.JOptionPane;
 
 import main.view.Main;
-import main.view.components.Register;
-import main.view.components.CommonComponents.InterfaceWithForm;
+import main.view.components.InterfaceWithoutAppbar;
+import main.view.components.registerComponents.Register;
 
 public class LoginActions {
 
@@ -15,12 +15,12 @@ public class LoginActions {
     }
 
     public void eventOptionRegister() {
-        InterfaceWithForm.setFormulation(new Register(25));
+        InterfaceWithoutAppbar.setFormulation(new Register(25));
 
     }
 
     public boolean eventButtonLogin(String email, String passwonrd) {
-        String message = String.format("Correo: %s \nContraseña: %s", email, passwonrd);
+        String message = String.format("Correo electrónico: %s\nContraseña: %s", email, passwonrd);
         JOptionPane.showMessageDialog(Main.WINDOW, message, "Iniciar sesión", JOptionPane.WARNING_MESSAGE);
         return true;
     }

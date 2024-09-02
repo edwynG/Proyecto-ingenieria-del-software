@@ -9,7 +9,6 @@ import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import main.view.components.CommonComponents.InputText;
@@ -20,9 +19,9 @@ import main.view.components.CommonComponents.InputPassword;
 public abstract class AbstractForm extends AbstractPanelRounded {
 
     private ArrayList<JTextField> inputList;
-    private TransparentPanel content;
-    protected int upperLimit = 450;
-    protected int lowerLimit = 400;
+    protected TransparentPanel content;
+    protected int upperLimit = 470;
+    protected int lowerLimit = 430;
     protected int heightLimit = 450;
 
     public AbstractForm(int rounded) {
@@ -35,14 +34,17 @@ public abstract class AbstractForm extends AbstractPanelRounded {
     }
 
     private void initAbstractForm() {
+
         setPreferredSize(new Dimension(300, 400));
         this.inputList = new ArrayList<>();
-        this.configDefauld();
+        this.configDefault();
         this.settingResize();
+
     }
 
     protected InputText createInputText(String placeholder, int columns) {
         InputText input = new InputText(columns, placeholder);
+        this.addInputList(input);
         input.addEffectPlaceHolder();
         return input;
 
@@ -50,6 +52,7 @@ public abstract class AbstractForm extends AbstractPanelRounded {
 
     protected InputPassword createInputPassword(String placeholder, int columns) {
         InputPassword input = new InputPassword(columns, placeholder);
+        this.addInputList(input);
         input.addEffectPlaceHolder();
         return input;
     }
@@ -61,10 +64,10 @@ public abstract class AbstractForm extends AbstractPanelRounded {
         input.repaint();
     }
 
-    protected void setRedimentionButton(JPanel btn, int width, int height) {
-        btn.setPreferredSize(new Dimension(width, height));
-        revalidate();
-        repaint();
+    protected void setRedimentionPane(Component component, int width, int height) {
+        component.setPreferredSize(new Dimension(width, height));
+        component.revalidate();
+        component.repaint();
     }
 
     private void settingResize() {
@@ -93,12 +96,16 @@ public abstract class AbstractForm extends AbstractPanelRounded {
 
     }
 
-    protected void configDefauld() {
+    protected void configDefault() {
         setBorderColor(getBackgroundRect());
         this.content = new TransparentPanel();
         this.content.setLayout(new BoxLayout(this.content, BoxLayout.Y_AXIS));
         setBorderColor(ColorPalette.TRANSPARENT);
         setLayout(new GridBagLayout());
+        this.configDefauldLayout();
+    }
+
+    protected void configDefauldLayout() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -110,6 +117,10 @@ public abstract class AbstractForm extends AbstractPanelRounded {
 
     public void addContent(Component component) {
         this.content.add(component);
+    }
+
+    public void addContent(Component component, Object obj) {
+        this.content.add(component, obj);
     }
 
     public void removeContent(Component component) {

@@ -30,7 +30,7 @@ public class ProponentType extends AbstractForm {
     private ButtonRounded buttonNext;
     TransparentPanel containerbuttons = new TransparentPanel();
 
-    private int widthDropdown = 195;
+    private int widthDropdown = 250;
     private int heightDropdown = 40;
     private int fontSizeTitle = 40;
     private int fontSizeSubtitle = 12;

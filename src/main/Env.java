@@ -12,6 +12,13 @@ public class Env {
     public final static String PATH_ICON_PADLOCK ="src/assets/padlock_image.png";
     public final static String PATH_ICON_UPLOAD ="src/assets/upload_image.png";
     public final static String PATH_ICON_EMAIL ="src/assets/email_image.png";
+    public final static String PATH_IMAGE_APPBAR = "src/assets/appbar_image.png";
+    public final static String PATH_ICON_HOME = "src/assets/icon_home.png";
+    public final static String PATH_ICON_BACK = "src/assets/icon_back.png";
+    public final static String PATH_ICON_DROPDOWN = "src/assets/icon_dropdown.png";
+
+
+
 
     // Consultas de SQL
     public final static String QUERY_DATA_TABLE = "PRAGMA table_info(%s)";

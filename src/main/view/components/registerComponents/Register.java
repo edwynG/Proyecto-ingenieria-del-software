@@ -1,4 +1,4 @@
-package main.view.components;
+package main.view.components.registerComponents;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -24,7 +24,6 @@ import main.view.components.CommonComponents.InputText;
 import main.view.components.CommonComponents.TextOption;
 import main.view.components.CommonComponents.TextTitle;
 import main.view.components.CommonComponents.TransparentPanel;
-import main.view.components.registerComponents.RegisterActions;
 
 public class Register extends AbstractForm {
     // Componentes de la interfaz
@@ -40,7 +39,7 @@ public class Register extends AbstractForm {
     private int fontSizeTitle = 40;
     private int fontSizeOptionLogin = 11;
     private int roundedButtonGlobal = 15;
-    private int columnsInputStandard = 18;
+    private int columnsInputStandard = 20;
     private int widthDropdown = 218;
     private int heightDropdown = 40;
     // Funcionalidad
@@ -82,14 +81,13 @@ public class Register extends AbstractForm {
     private void createInputs() {
         int width = 41;
         int height = 41;
-        int gap = 12;
+        int gap = 17;
 
         // input correo
         this.inputEmail = createInputText("Correo electrónico", this.columnsInputStandard);
         ImageAndComponent labelEmail = new ImageAndComponent(Env.PATH_ICON_EMAIL, width, height, this.inputEmail);
         addContent(labelEmail);
         addContent(Box.createVerticalStrut(gap));
-        addInputList(inputEmail);
 
         // input contraseña
         this.inputPassword = createInputPassword("Contraseña", this.columnsInputStandard);
@@ -98,15 +96,12 @@ public class Register extends AbstractForm {
         addContent(labelPassword);
         addContent(Box.createVerticalStrut(gap));
 
-        addInputList(this.inputPassword);
-
         // input confirmar contraseña
         this.inputPasswordConfirm = createInputPassword("Confirmar contraseña", this.columnsInputStandard);
         ImageAndComponent labelPasswordConfirm = new ImageAndComponent(Env.PATH_ICON_PADLOCK, width, height,
                 this.inputPasswordConfirm);
         addContent(labelPasswordConfirm);
         addContent(Box.createVerticalStrut(gap));
-        addInputList(this.inputPasswordConfirm);
 
         inputEmail.addComponentListener(new ComponentAdapter() {
             @Override
@@ -152,7 +147,7 @@ public class Register extends AbstractForm {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                actions.eventButtonRegister();
+                actions.eventButtonContinueRegister();
             }
         });
 
@@ -182,7 +177,7 @@ public class Register extends AbstractForm {
 
     @Override
     protected void configResizeLarge() {
-        int lgColum = 32;
+        int lgColum = 33;
         int lgRow = 42;
         for (JTextField input : getInputList()) {
             setRedimentionFields(input, lgColum, lgRow);
@@ -194,7 +189,7 @@ public class Register extends AbstractForm {
     @Override
     protected void configResizeMedium() {
         int smRow = 36;
-        int midColum = 22;
+        int midColum = 24;
 
         for (JTextField input : getInputList()) {
             setRedimentionFields(input, midColum, smRow);

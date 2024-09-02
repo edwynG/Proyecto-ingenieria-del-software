@@ -2,8 +2,8 @@ package main.view;
 
 import main.Env;
 import main.controller.abstractControllers.UserControl;
-import main.view.components.Login;
-import main.view.components.CommonComponents.InterfaceWithForm;
+import main.view.components.InterfaceWithoutAppbar;
+import main.view.components.loginComponents.Login;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
@@ -28,8 +28,8 @@ public class Main extends JFrame {
     private void configMain(String name) {
         userControl = null;
         content = new JPanel();
-        this.height = 560;
-        this.width = 870;
+        this.height = 580;
+        this.width = 940;
         this.windowName = name;
     }
 
@@ -46,7 +46,7 @@ public class Main extends JFrame {
         // Configuración de los paneles principales
         this.configContentWindow(WINDOW); // Contenedor de la App
         this.configContent(content); // Contenido de la ventana
-
+        
     }
 
     private void configContentWindow(JPanel main) {
@@ -57,8 +57,8 @@ public class Main extends JFrame {
 
     private void configContent(JPanel panel) {
         panel.setLayout(new BorderLayout());
-        InterfaceWithForm desing = new InterfaceWithForm(Env.PATH_IMAGE_MAIN);
-        InterfaceWithForm.setFormulation(new Login(25));
+        InterfaceWithoutAppbar desing = new InterfaceWithoutAppbar(Env.PATH_IMAGE_MAIN);
+        InterfaceWithoutAppbar.setFormulation(new Login(25));
         panel.add(desing, BorderLayout.CENTER);
     }
 
@@ -67,11 +67,12 @@ public class Main extends JFrame {
         return content;
     }
 
-    public static void addContent(JPanel panel) {
+    public static void setContent(JPanel panel) {
+        cleanContent();
         content.add(panel, BorderLayout.CENTER);
     }
 
-    public static void removeContent() {
+    public static void cleanContent() {
         content.removeAll(); // Elimina todos los componentes
         content.revalidate(); // Vuelve a validar el panel
         content.repaint(); // Redibuja el pane
@@ -85,4 +86,5 @@ public class Main extends JFrame {
         return userControl;
     }
 
+    
 }

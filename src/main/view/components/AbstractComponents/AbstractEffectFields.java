@@ -3,16 +3,17 @@ package main.view.components.AbstractComponents;
 import java.awt.Dimension;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JTextField;
 
-public class AbstractEffectFields extends JTextField{
+public class AbstractEffectFields extends JTextField {
     private String placeholder;
 
-    
     public AbstractEffectFields(int comluns) {
         super(comluns);
-        this.placeholder="";
+        this.placeholder = "";
         initAbstractEffectFields();
     }
 
@@ -24,8 +25,16 @@ public class AbstractEffectFields extends JTextField{
 
     public void initAbstractEffectFields() {
         setText(this.placeholder);
-        setPreferredSize(new Dimension(100,36));
+        setPreferredSize(new Dimension(100, 36));
         setOpaque(false);
+        setFocusable(false);
+        
+        this.addMouseListener(new MouseAdapter() {
+          @Override
+          public void mouseEntered(MouseEvent e) {
+              setFocusable(true);
+          }
+        });
     }
 
     private void effectPlaceHolderFocusGained() {
@@ -40,8 +49,7 @@ public class AbstractEffectFields extends JTextField{
         }
     }
 
-
-    public void addEffectPlaceHolder(){
+    public void addEffectPlaceHolder() {
         if (this.placeholder.isEmpty()) {
             return;
         }

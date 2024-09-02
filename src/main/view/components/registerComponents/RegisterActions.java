@@ -3,27 +3,32 @@ package main.view.components.registerComponents;
 import javax.swing.JOptionPane;
 
 import main.view.Main;
-import main.view.components.Login;
-import main.view.components.Register;
-import main.view.components.CommonComponents.InterfaceWithForm;
+import main.view.components.InterfaceWithAppbar;
+import main.view.components.InterfaceWithoutAppbar;
+import main.view.components.loginComponents.Login;
 
 public class RegisterActions {
 
     public void eventOptionLogin() {
-        InterfaceWithForm.setFormulation(new Login(25));
-        
+        InterfaceWithoutAppbar.setFormulation(new Login(25));
+
     }
 
-    public void eventButtonRegister(){
-        InterfaceWithForm.setFormulation(new ProponentType(25));
+    public void eventButtonContinueRegister() {
+        InterfaceWithoutAppbar.setFormulation(new ProponentType(25));
     }
 
-    public void eventButtonBefore(){
-        InterfaceWithForm.setFormulation(new Register(25));
+    public void eventButtonFinishRegister() {
+        JOptionPane.showMessageDialog(Main.WINDOW, "Lo sentimos, opción no disponible.", "Finalizar registro",
+                JOptionPane.ERROR_MESSAGE);
     }
 
-    public void eventButtonNext(){
-        JOptionPane.showMessageDialog(Main.WINDOW, "Lo sentimos, opción no disponible.", "Continuar registro", JOptionPane.INFORMATION_MESSAGE);
+    public void eventButtonBefore() {
+        InterfaceWithoutAppbar.setFormulation(new Register(25));
+    }
+
+    public void eventButtonNext() {
+        Main.setContent(new InterfaceWithAppbar());
     }
 
 }

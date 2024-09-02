@@ -27,6 +27,6 @@ public class Dropdown extends AbstractDropdown {
         setBorderColor(ColorPalette.COLOR_FIELD);
         setStyleTitle(new Font(this.fontFamilyGlobal, Font.PLAIN, this.borderInputGlobal));
         setPreferredSize(new Dimension(this.widthDropdown, this.heightDropdown));
-
+        setColorText(ColorPalette.COLOR_FIELD);
     }
 }

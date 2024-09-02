@@ -1,4 +1,4 @@
-package main.view.components;
+package main.view.components.loginComponents;
 
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
@@ -23,7 +23,6 @@ import main.view.components.CommonComponents.TextOption;
 import main.view.components.CommonComponents.TextSubtitle;
 import main.view.components.CommonComponents.TextTitle;
 import main.view.components.CommonComponents.TransparentPanel;
-import main.view.components.loginComponents.LoginActions;
 
 public class Login extends AbstractForm {
     // Componentes
@@ -42,7 +41,7 @@ public class Login extends AbstractForm {
     private int fontSizeSubTitle = 12;
     private int fontSizeOptionPassword = 11;
     private int fontSizeOptionRegister = 11;
-    private int columnsInputStandard = 18;
+    private int columnsInputStandard = 20;
     private int gapOptions = 26;
 
     // Funcionalidad
@@ -68,7 +67,6 @@ public class Login extends AbstractForm {
 
     private void configLogin() {
         this.actions = new LoginActions();
-
     }
 
     private void createTitle() {
@@ -76,7 +74,6 @@ public class Login extends AbstractForm {
         int gap = 6;
         // Titula
         this.title = new TextTitle("Bienvenido", SwingConstants.CENTER);
-
         // sub-Titulo
         this.subTitle = new TextSubtitle("Iniciar sesión", SwingConstants.CENTER);
 
@@ -93,18 +90,16 @@ public class Login extends AbstractForm {
     private void createInputs() {
         int widthImage = 42;
         int heightImage = 42;
-        int gap = 10;
+        int gap = 17;
         int marginBottom = 15;
         // input Correo
-        this.inputEmail = createInputText("Correo", this.columnsInputStandard);
-        this.addInputList(this.inputEmail);
+        this.inputEmail = createInputText("Correo electrónico", this.columnsInputStandard);
         ImageAndComponent labelEmail = new ImageAndComponent(Env.PATH_ICON_EMAIL, widthImage, heightImage, inputEmail);
         addContent(labelEmail);
         addContent(Box.createVerticalStrut(gap));
 
         // input password
         this.inputPassword = createInputPassword("Contraseña", this.columnsInputStandard);
-        addInputList(this.inputPassword);
         ImageAndComponent labelPassword = new ImageAndComponent(Env.PATH_ICON_PADLOCK, widthImage, heightImage,
                 this.inputPassword);
         addContent(labelPassword);
@@ -134,7 +129,7 @@ public class Login extends AbstractForm {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                actions.eventButtonLogin(inputEmail.getText(), inputPassword.getPassword());
+                actions.eventButtonLogin(inputEmail.getInput(), inputPassword.getPassword());
             }
         });
 
@@ -187,7 +182,7 @@ public class Login extends AbstractForm {
 
     @Override
     protected void configResizeLarge() {
-        int lgColum = 32;
+        int lgColum = 34;
         int lgRow = 43;
         for (JTextField input : getInputList()) {
             setRedimentionFields(input, lgColum, lgRow);
@@ -204,7 +199,7 @@ public class Login extends AbstractForm {
     protected void configResizeMedium() {
 
         int smRow = 37;
-        int midColum = 22;
+        int midColum = 24;
 
         for (JTextField input : getInputList()) {
             setRedimentionFields(input, midColum, smRow);

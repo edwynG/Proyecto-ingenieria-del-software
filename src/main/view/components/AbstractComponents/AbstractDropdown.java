@@ -1,6 +1,7 @@
 package main.view.components.AbstractComponents;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -11,6 +12,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
+
+import main.Env;
 
 
 public abstract class AbstractDropdown extends AbstractPanelRounded {
@@ -36,6 +39,25 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
 
     }
 
+    public void setColorText(Color color) {
+        this.text.setForeground(color);
+    }
+
+    public void setFontSizeText(int size) {
+        Font font = this.text.getFont();
+        this.text.setFont(new Font(font.getName(), font.getStyle(), size));
+    }
+
+    public void setFontFamilyText(String family) {
+        Font font = this.text.getFont();
+        this.text.setFont(new Font(family, font.getStyle(), font.getSize()));
+    }
+
+    public void setFontWeightText(int weight) {
+        Font font = this.text.getFont();
+        this.text.setFont(new Font(font.getName(), weight, font.getSize()));
+    }
+
 
     private void initAbstractDropdown() {
         this.text = new JLabel(this.title);
@@ -49,7 +71,7 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
     }
 
     private ImageIcon createIcon() {
-        ImageIcon src = new ImageIcon("src/assets/icon_dropdown.png");
+        ImageIcon src = new ImageIcon(Env.PATH_ICON_DROPDOWN);
         Image img = src.getImage().getScaledInstance(12, 11, Image.SCALE_SMOOTH);
         return new ImageIcon(img);
     }
