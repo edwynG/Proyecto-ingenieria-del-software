@@ -28,7 +28,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
 
     private void initInterfaceWithAppbar() {
         this.configInterfaceWithAppbar();
-        this.createFormulationNatural();
+        this.createFormulationJuridico();
     }
 
     private void configInterfaceWithAppbar() {
@@ -109,14 +109,29 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(15, 90, 15, 90);
+        gbc.insets = new Insets(17, 50, 17, 50);
         content.add(container, gbc);
 
         LegalProponent legalPerson = new LegalProponent(25);
         gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.fill = GridBagConstraints.BASELINE;
+        gbc.anchor = GridBagConstraints.CENTER;
         container.add(legalPerson, gbc);
 
-    
+        int lg = 720;
+        int heightLg = 720;
+        container.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if (getWidth() > lg && getHeight() > heightLg) {
+                    legalPerson.resize(900, 530);
+             
+                } else {
+                    legalPerson.resizeRestore();
+
+                }
+            }
+        });
     }
 
     public static void cleanContent() {

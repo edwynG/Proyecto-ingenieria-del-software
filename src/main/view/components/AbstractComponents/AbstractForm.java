@@ -14,11 +14,16 @@ import javax.swing.JTextField;
 import main.view.components.CommonComponents.InputText;
 import main.view.components.CommonComponents.TransparentPanel;
 import main.view.utils.ColorPalette;
+import main.view.components.CommonComponents.FileChooser;
 import main.view.components.CommonComponents.InputPassword;
 
 public abstract class AbstractForm extends AbstractPanelRounded {
+    protected int defaultWidth = 0;
+    protected int defaultHeigth = 0;
 
     private ArrayList<JTextField> inputList;
+    private ArrayList<FileChooser> fileChoosersList;
+
     protected TransparentPanel content;
     protected int upperLimit = 470;
     protected int lowerLimit = 430;
@@ -37,6 +42,7 @@ public abstract class AbstractForm extends AbstractPanelRounded {
 
         setPreferredSize(new Dimension(300, 400));
         this.inputList = new ArrayList<>();
+        this.fileChoosersList = new ArrayList<>();
         this.configDefault();
         this.settingResize();
 
@@ -57,14 +63,37 @@ public abstract class AbstractForm extends AbstractPanelRounded {
         return input;
     }
 
+    protected FileChooser createFileChoosers(String str) {
+        FileChooser fileChooser = new FileChooser(str);
+        this.fileChoosersList.add(fileChooser);
+        return fileChooser;
+    }
+
+    protected void setRedimentionFileChoosers(int width, int height) {
+        for (FileChooser fileChooser : fileChoosersList) {
+            setRedimentionPane(fileChooser, width, height);
+        }
+    }
+
+    public void resize(int width, int height) {
+        setPreferredSize(new Dimension(width, height));
+        revalidate();
+        repaint();
+    }
+
+    public void resizeRestore() {
+        resize(this.defaultWidth, this.defaultHeigth);
+    }
+
     protected void setRedimentionFields(JTextField input, int columns, int height) {
         input.setColumns(columns);
-        input.setPreferredSize(new Dimension(input.getWidth(), height));
+        input.setMinimumSize(new Dimension(input.getWidth(), height));
         input.revalidate();
         input.repaint();
     }
 
     protected void setRedimentionPane(Component component, int width, int height) {
+        if(component == null) return;
         component.setPreferredSize(new Dimension(width, height));
         component.revalidate();
         component.repaint();

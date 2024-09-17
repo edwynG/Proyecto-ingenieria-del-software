@@ -5,7 +5,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.SwingConstants;
 
@@ -17,10 +16,6 @@ import main.view.components.CommonComponents.TextTitle;
 import main.view.components.CommonComponents.TransparentPanel;
 
 public class NaturalProponent extends AbstractForm {
-    private int defaultWidth = 380;
-    private int defaultHeigth = 450;
-
-    private ArrayList<FileChooser> fileChoosersList;
 
     private TextTitle title;
     private InputText inputID;
@@ -56,9 +51,9 @@ public class NaturalProponent extends AbstractForm {
 
     private void configNaturalProponent() {
         setPreferredSize(new Dimension(this.defaultWidth, this.defaultHeigth));
-        this.fileChoosersList = new ArrayList<>();
         this.actions = new RegisterActions();
-
+        defaultWidth = 380;
+        defaultHeigth = 450;
     }
 
     private void createTitle() {
@@ -88,10 +83,8 @@ public class NaturalProponent extends AbstractForm {
                 int width = inputID.getWidth();
                 int height = inputID.getHeight();
                 setRedimentionFileChoosers(width, height);
+                setRedimentionPane(button, width, heightButton);
 
-                if (button != null) {
-                    setRedimentionPane(button, width, heightButton);
-                }
             }
         });
 
@@ -100,11 +93,11 @@ public class NaturalProponent extends AbstractForm {
     private void createFileChooser() {
         int marginBottom = 5;
 
-        this.fileChooserRIF = createFileChoosers("Registro de información(RIF)");
+        this.fileChooserRIF = createFileChoosers("Registro de información (RIF)");
         TransparentPanel container_1 = new TransparentPanel();
         container_1.add(this.fileChooserRIF);
 
-        this.fileChooserISLR = createFileChoosers("Certificado de Declaración ISLR");
+        this.fileChooserISLR = createFileChoosers("Certificado de declaración ISLR");
         TransparentPanel container_2 = new TransparentPanel();
         container_2.add(this.fileChooserISLR);
 
@@ -112,7 +105,7 @@ public class NaturalProponent extends AbstractForm {
         TransparentPanel container_3 = new TransparentPanel();
         container_3.add(this.fileChooserCurriculum);
 
-        this.fileChooserDegree = createFileChoosers("Copia de titulo universitario");
+        this.fileChooserDegree = createFileChoosers("Copia del título universitario");
         TransparentPanel container_4 = new TransparentPanel();
         container_4.add(this.fileChooserDegree);
 
@@ -145,40 +138,18 @@ public class NaturalProponent extends AbstractForm {
 
     }
 
-    private FileChooser createFileChoosers(String str) {
-        FileChooser fileChooser = new FileChooser(str);
-        this.fileChoosersList.add(fileChooser);
-        return fileChooser;
-    }
-
-    public void resize(int width, int height) {
-        setPreferredSize(new Dimension(width, height));
-        revalidate();
-        repaint();
-    }
-
-    private void setRedimentionFileChoosers(int width, int height) {
-        for (FileChooser fileChooser : fileChoosersList) {
-            setRedimentionPane(fileChooser, width, height);
-        }
-    }
-
-    public void resizeRestore() {
-        resize(this.defaultWidth, this.defaultHeigth);
-    }
-
     @Override
     protected void configResizeLarge() {
-        setRedimentionFields(inputID, columnsInputDefault+7, 41);
-        this.title.setFontSize(this.fontSizeTitle+1);
+        setRedimentionFields(inputID, columnsInputDefault + 7, 45);
+        this.title.setFontSize(this.fontSizeTitle + 1);
         revalidate();
         repaint();
-     
+
     }
 
     @Override
     protected void configResizeMedium() {
- 
+
     }
 
     @Override

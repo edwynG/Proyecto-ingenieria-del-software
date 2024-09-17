@@ -10,12 +10,12 @@ public abstract class AbstractPanelRounded extends JPanel {
     private RoundedBorder configBorder;
 
     public AbstractPanelRounded() {
-        this.configBorder = new RoundedBorder(12, getBackground());
+        this.configBorder = new RoundedBorder(12, getBackground(),getBackground());
         initAbstractPanelRounded();
     }
 
     public AbstractPanelRounded(int rounded) {
-        this.configBorder = new RoundedBorder(rounded, getBackground());
+        this.configBorder = new RoundedBorder(rounded, getBackground(),getBackground());
         initAbstractPanelRounded();
 
     }
