@@ -22,7 +22,7 @@ public class InputText extends AbstractInputText {
         setBorderColorField(ColorPalette.COLOR_FIELD);
         setForeground(ColorPalette.COLOR_FIELD);
         setFontSizeText(this.fontSize);
-
+       
     }
 
 }

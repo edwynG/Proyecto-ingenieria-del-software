@@ -39,8 +39,7 @@ public class AppBar extends AbstractPanelRounded {
 
     private void configAppBar() {
         setLayout(new BorderLayout());
-        setBackgroundRect(ColorPalette.COLOR_PRIMARY);
-        setBorderColor(getBackgroundRect());
+        setBackground(ColorPalette.COLOR_PRIMARY);
         setPreferredSize(new Dimension(getWidth(), this.height));
         this.leftContent = new TransparentPanel();
         this.rightContent = new TransparentPanel();

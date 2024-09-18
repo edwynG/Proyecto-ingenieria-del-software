@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import main.Env;
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractForm;
 
 import main.view.components.CommonComponents.ButtonRounded;
@@ -119,7 +120,7 @@ public class Register extends AbstractForm {
         int height = 41;
         int width = 41;
         int marginBottom = 20;
-        this.dropdown = new Dropdown("Tipo de usuario");
+        this.dropdown = new Dropdown(Main.WINDOW,"Tipo de usuario");
         ImageAndComponent container = new ImageAndComponent(Env.PATH_ICON_USER, width, height, dropdown);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));

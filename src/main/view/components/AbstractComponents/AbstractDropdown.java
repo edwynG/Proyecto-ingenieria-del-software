@@ -10,31 +10,37 @@ import java.awt.Insets;
 
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
 import main.Env;
+import main.view.utils.RoundedBorder;
 
 
 public abstract class AbstractDropdown extends AbstractPanelRounded {
+
+    private AbstractPanelRounded panel;
     protected JList<String> options;
     protected DefaultListModel<String> elements;
     protected String title;
     protected JLabel text;
     protected JLabel imagen;
 
-    public AbstractDropdown(String text) {
+    public AbstractDropdown(JComponent context,String text) {
         this.options = new JList<>();
         this.elements = new DefaultListModel<>();
         this.title = text;
+
         initAbstractDropdown();
     }
 
-    public AbstractDropdown(String text, int rounded) {
+    public AbstractDropdown(JComponent context,String text, int rounded) {
         super(rounded);
         this.options = new JList<>();
         this.elements = new DefaultListModel<>();
         this.title = text;
+  
         initAbstractDropdown();
 
     }
@@ -65,9 +71,12 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
         this.imagen.setIcon(createIcon());
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         setLayout(new BorderLayout());
+        RoundedBorder borde = new RoundedBorder(10);
+        borde.setBorderColor(Color.black);
+        setBorder(borde);
         add(this.text, BorderLayout.CENTER);
         add(this.imagen, BorderLayout.EAST);
-
+        createPopupPanel();
     }
 
     private ImageIcon createIcon() {
@@ -100,6 +109,13 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
 
     public void setStyleTitle(Font font){
         this.text.setFont(font);
+    }
+
+    private void createPopupPanel(){
+        this.panel = new AbstractPanelRounded(){};
+        panel.setBackground(Color.red);
+        panel.setBounds(0,0, 100,100);
+       
     }
 
     @Override

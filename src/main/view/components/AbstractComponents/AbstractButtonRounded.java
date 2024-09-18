@@ -25,8 +25,7 @@ public abstract class AbstractButtonRounded extends AbstractPanelRounded {
     }
 
     private void initButtonRounded(String string) {
-        setBorderColor(ColorPalette.TRANSPARENT);
-        setBackgroundRect(ColorPalette.COLOR_PRIMARY);
+        setBackground(ColorPalette.COLOR_PRIMARY);
         setPreferredSize(new Dimension(200, 40));
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         text = new JLabel(string, SwingConstants.CENTER);

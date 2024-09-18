@@ -12,6 +12,7 @@ import javax.swing.Box;
 import javax.swing.SwingConstants;
 
 import main.Env;
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractForm;
 import main.view.components.CommonComponents.ButtonRounded;
 import main.view.components.CommonComponents.Dropdown;
@@ -82,7 +83,7 @@ public class ProponentType extends AbstractForm {
         int height = 41;
         int width = 41;
         int marginBottom = 20;
-        this.dropdown = new Dropdown("Tipo de persona");
+        this.dropdown = new Dropdown(Main.WINDOW,"Tipo de persona");
         ImageAndComponent container = new ImageAndComponent(Env.PATH_ICON_USER, width, height, dropdown);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));

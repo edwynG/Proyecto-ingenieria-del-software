@@ -1,5 +1,6 @@
 package main.view.components.AbstractComponents;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -13,7 +14,6 @@ import javax.swing.JTextField;
 
 import main.view.components.CommonComponents.InputText;
 import main.view.components.CommonComponents.TransparentPanel;
-import main.view.utils.ColorPalette;
 import main.view.components.CommonComponents.FileChooser;
 import main.view.components.CommonComponents.InputPassword;
 
@@ -41,6 +41,7 @@ public abstract class AbstractForm extends AbstractPanelRounded {
     private void initAbstractForm() {
 
         setPreferredSize(new Dimension(300, 400));
+        setBackground(Color.white);
         this.inputList = new ArrayList<>();
         this.fileChoosersList = new ArrayList<>();
         this.configDefault();
@@ -126,10 +127,8 @@ public abstract class AbstractForm extends AbstractPanelRounded {
     }
 
     protected void configDefault() {
-        setBorderColor(getBackgroundRect());
         this.content = new TransparentPanel();
         this.content.setLayout(new BoxLayout(this.content, BoxLayout.Y_AXIS));
-        setBorderColor(ColorPalette.TRANSPARENT);
         setLayout(new GridBagLayout());
         this.configDefauldLayout();
     }

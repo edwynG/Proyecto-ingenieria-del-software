@@ -3,19 +3,23 @@ package main.view;
 import main.Env;
 import main.controller.abstractControllers.UserControl;
 import main.view.components.InterfaceWithoutAppbar;
+import main.view.components.CommonComponents.ScrollPaneWin11;
 import main.view.components.loginComponents.Login;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
 
 public class Main extends JFrame {
     private int height;
     private int width;
     public static final JPanel WINDOW = new JPanel();
+    public static final JLayeredPane LEVEL = new JLayeredPane();
     private static JPanel content;
     private String windowName;
     private static UserControl userControl;
@@ -36,7 +40,7 @@ public class Main extends JFrame {
     private void initMain() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle(this.windowName);
-        JScrollPane scrollPane = new JScrollPane(WINDOW);
+        ScrollPaneWin11 scrollPane = new ScrollPaneWin11(WINDOW);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         setContentPane(scrollPane);

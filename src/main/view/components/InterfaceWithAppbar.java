@@ -33,7 +33,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
 
     private void configInterfaceWithAppbar() {
         setLayout(new BorderLayout());
-        setBackgroundRect(ColorPalette.COLOR_SENCOD);
+        setBackground(ColorPalette.COLOR_SENCOD);
         content = new TransparentPanel() {
             @Override
             public Insets getInsets() {

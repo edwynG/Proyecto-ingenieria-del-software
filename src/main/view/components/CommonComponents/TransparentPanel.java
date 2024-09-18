@@ -7,7 +7,7 @@ public class TransparentPanel extends AbstractPanelRounded{
     
     public TransparentPanel(){
         super(0);
-        setBackgroundRect(ColorPalette.TRANSPARENT);
-        setBorderColor(ColorPalette.TRANSPARENT);
+        setBackground(ColorPalette.TRANSPARENT);
+  
     }
 }

@@ -64,7 +64,7 @@ public class InterfaceWithoutAppbar extends AbstractPanelRounded {
         containerImage = new TransparentPanel();
         containerForm = new TransparentPanel();
         image = new JLabel();
-        setBackgroundRect(ColorPalette.COLOR_SENCOD);
+        setBackground(ColorPalette.COLOR_SENCOD);
         setPreferredSize(new Dimension(minWidthInterface, minHeightInterface));
     }
 

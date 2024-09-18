@@ -84,4 +84,5 @@ public class AbstractInputText extends AbstractEffectFields {
         return getText().equals(getPlaceholder()) ? "" : getText();
     };
 
+  
 }

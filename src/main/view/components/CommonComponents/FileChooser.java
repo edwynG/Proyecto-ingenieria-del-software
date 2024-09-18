@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import main.view.components.AbstractComponents.AbstractFileChooser;
 import main.view.utils.ColorPalette;
+import main.view.utils.RoundedBorder;
 
 public class FileChooser extends AbstractFileChooser {
     private int roundedFileChooserGlobal = 13;
@@ -26,9 +27,12 @@ public class FileChooser extends AbstractFileChooser {
 
     public void initFileChooser() {
         setPreferredSize(new Dimension(this.width, this.height));
-        setBorderColor(ColorPalette.COLOR_FIELD);
+        setBackground(ColorPalette.TRANSPARENT);
+        RoundedBorder borde = new RoundedBorder(this.roundedFileChooserGlobal);
+        borde.setBorderColor(ColorPalette.COLOR_FIELD);
+        setBorder(borde);
         setColorText(ColorPalette.COLOR_FIELD);
-        setBorderRounded(this.roundedFileChooserGlobal);
+        setRoundedBorder(this.roundedFileChooserGlobal);
         text.setFont(new Font(this.fontFamilyGlobal,Font.PLAIN,this.fontSizeTitle));
     }
 }
