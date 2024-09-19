@@ -5,6 +5,7 @@ import main.controller.abstractControllers.UserControl;
 import main.view.components.InterfaceWithoutAppbar;
 import main.view.components.CommonComponents.ScrollPaneWin11;
 import main.view.components.loginComponents.Login;
+import raven.glasspanepopup.GlassPanePopup;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
@@ -44,6 +45,7 @@ public class Main extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         setContentPane(scrollPane);
+        GlassPanePopup.install(this);
         setSize(this.width, this.height);
         setLocationRelativeTo(null);
 

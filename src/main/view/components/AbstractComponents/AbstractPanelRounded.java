@@ -16,7 +16,8 @@ public abstract class AbstractPanelRounded extends JPanel {
     private int roundTopRight = 0;
     private int roundBottomLeft = 0;
     private int roundBottomRight = 0;
-    private int roundedDefault = 12;
+    protected int roundedDefault = 12;
+
     public AbstractPanelRounded() {
         setRoundedBorder(this.roundedDefault);
         initAbstractPanelRounded();

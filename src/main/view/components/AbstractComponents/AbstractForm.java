@@ -88,7 +88,7 @@ public abstract class AbstractForm extends AbstractPanelRounded {
 
     protected void setRedimentionFields(JTextField input, int columns, int height) {
         input.setColumns(columns);
-        input.setMinimumSize(new Dimension(input.getWidth(), height));
+        input.setPreferredSize(new Dimension(input.getWidth(), height));
         input.revalidate();
         input.repaint();
     }

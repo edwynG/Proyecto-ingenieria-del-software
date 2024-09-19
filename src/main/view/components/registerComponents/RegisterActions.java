@@ -14,8 +14,13 @@ public class RegisterActions {
 
     }
 
-    public void eventButtonContinueRegister() {
-        InterfaceWithoutAppbar.setFormulation(new ProponentType(25));
+    public void eventButtonContinueRegister(String type) {
+        if (type.toLowerCase().contains("proponente")) {
+            InterfaceWithoutAppbar.setFormulation(new ProponentType(25));
+            return;
+        }
+        JOptionPane.showMessageDialog(Main.WINDOW, "Lo sentimos, opción no disponible.", "Administrador",
+                JOptionPane.ERROR_MESSAGE);
     }
 
     public void eventButtonFinishRegister() {
@@ -27,8 +32,17 @@ public class RegisterActions {
         InterfaceWithoutAppbar.setFormulation(new Register(25));
     }
 
-    public void eventButtonNext() {
-        Main.setContent(new InterfaceWithAppbar());
+    public void eventButtonNext(String type) {
+        System.err.println(type);
+        InterfaceWithAppbar UI = new InterfaceWithAppbar();
+        if (type.toLowerCase().contains("natural")) {
+            UI.createFormulationNatural();
+            Main.setContent(UI);
+            return;
+        }
+        UI.createFormulationJuridico();
+        Main.setContent(UI);
+
     }
 
 }

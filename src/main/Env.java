@@ -16,7 +16,8 @@ public class Env {
     public final static String PATH_ICON_HOME = "src/assets/icon_home.png";
     public final static String PATH_ICON_BACK = "src/assets/icon_back.png";
     public final static String PATH_ICON_DROPDOWN = "src/assets/icon_dropdown.png";
-
+    public final static String PATH_ICON_ERROR = "src/assets/Error_icon.png";
+    public final static String PATH_ICON_CHECK = "src/assets/Check_icon.png";
 
 
 

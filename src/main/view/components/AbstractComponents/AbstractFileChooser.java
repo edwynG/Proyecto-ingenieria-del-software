@@ -6,17 +6,29 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
+import java.io.File;
+import java.util.HashMap;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
 import main.Env;
+import main.view.Main;
 
 public class AbstractFileChooser extends AbstractPanelRounded {
     protected String title;
     protected JLabel text;
     protected JLabel imagen;
-    private String icon = Env.PATH_ICON_UPLOAD;
+    protected final int WIDTH_ICON = 25;
+    protected final int HEIGHT_ICON = 25;
+    protected HashMap<String, String> filterExtension;
+    private String path = "";
+    protected final String ICON_DEFAULD = Env.PATH_ICON_UPLOAD;
+    protected String icon = Env.PATH_ICON_UPLOAD;
 
     public AbstractFileChooser(String text) {
         this.title = text;
@@ -34,14 +46,82 @@ public class AbstractFileChooser extends AbstractPanelRounded {
         this.text = new JLabel(this.title);
         this.imagen = new JLabel();
         this.imagen.setIcon(createIcon());
+        this.filterExtension = new HashMap<>();
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         setLayout(new BorderLayout());
         add(this.text, BorderLayout.CENTER);
         add(this.imagen, BorderLayout.EAST);
-
+        this.actionsAbstractFileChooser();
     }
 
-    
+    private ImageIcon createIcon() {
+        ImageIcon src = new ImageIcon(this.getIcon());
+        Image img = src.getImage().getScaledInstance(WIDTH_ICON, HEIGHT_ICON, Image.SCALE_SMOOTH);
+        return new ImageIcon(img);
+    }
+
+    private void actionsAbstractFileChooser() {
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setDialogTitle(title);
+                for (String filter : filterExtension.keySet()) {
+                    fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(filter, filterExtension.get(filter)));
+                }
+                fileChooser.setApproveButtonText("Seleccionar");
+                int value = fileChooser.showOpenDialog(Main.WINDOW);
+
+                if (value == JFileChooser.APPROVE_OPTION) {
+                    File selection = fileChooser.getSelectedFile();
+                    text.setText(selection.getName());
+                    if (isFileExtensionValid(selection)) {
+                        ApprovateFile();
+                        path = selection.getAbsolutePath();
+                        text.revalidate();
+                        text.repaint();
+                        return;
+                    }
+
+                    DisapprovedFile();
+
+                }
+
+            }
+        });
+    }
+
+    private boolean isFileExtensionValid(File selection) {
+        if (this.filterExtension.isEmpty())
+            return true;
+
+        for (String element : filterExtension.values()) {
+            if (selection.getName().contains(element)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected void ApprovateFile() {
+        return;
+    }
+
+    protected void DisapprovedFile() {
+        return;
+    }
+
+    public void setListFilerExtension(HashMap<String,String> filter) {
+        this.filterExtension = filter;
+    }
+
+    public void setIcon(String src) {
+        this.icon = src;
+        this.imagen.setIcon(this.createIcon());
+        this.imagen.revalidate();
+        this.imagen.repaint();
+    }
+
     public void setColorText(Color color) {
         this.text.setForeground(color);
     }
@@ -56,19 +136,21 @@ public class AbstractFileChooser extends AbstractPanelRounded {
         this.text.setFont(new Font(family, font.getStyle(), font.getSize()));
     }
 
-    private ImageIcon createIcon() {
-        ImageIcon src = new ImageIcon(this.getIcon());
-        Image img = src.getImage().getScaledInstance(25, 25, Image.SCALE_SMOOTH);
-        return new ImageIcon(img);
-    }
-
     public String getIcon() {
         return icon;
     }
 
+    public String getIconDefauld() {
+        return ICON_DEFAULD;
+    }
+
+    public String getPath() {
+        return this.path;
+    }
+
     @Override
     public Insets getInsets() {
-        return new Insets(10, 10, 10, 10);
+        return new Insets(0, 10, 0, 10);
     }
 
 }

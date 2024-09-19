@@ -61,7 +61,7 @@ public class LegalProponent extends AbstractForm {
     }
 
     public void configLegalProponent() {
-        defaultWidth = 670;
+        defaultWidth = 700;
         defaultHeigth = 400;
         setPreferredSize(new Dimension(defaultWidth, defaultHeigth));
         this.containerTitle = new TransparentPanel() {
@@ -195,7 +195,7 @@ public class LegalProponent extends AbstractForm {
 
     @Override
     protected void configResizeLarge() {
-        setRedimentionFields(inputID, 33, 50);
+        setRedimentionFields(inputID, 33, 45);
         revalidate();
         repaint();
     }

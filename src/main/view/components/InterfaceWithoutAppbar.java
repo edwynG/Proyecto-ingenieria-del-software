@@ -17,12 +17,12 @@ import java.awt.Insets;
 
 public class InterfaceWithoutAppbar extends AbstractPanelRounded {
     private static TransparentPanel containerImage;
-    private static TransparentPanel containerForm;
-    private static TransparentPanel contentForm;
+    private static TransparentPanel containerFormulation;
+    private static TransparentPanel content;
     public static int maxWidthFormulation = 520;
     public static int maxHeightFormulation = 530;
     public static int minWidthFormulation = 460;
-    public static int minHeightFormulation = 480;
+    public static int minHeightFormulation = 435;
 
     public static int minWidthInterface = 900;
     public static int minHeightInterface = 530;
@@ -57,12 +57,13 @@ public class InterfaceWithoutAppbar extends AbstractPanelRounded {
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.insets = new Insets(0, 0, 0, 0);
-        add(containerForm, gbc);
+        add(containerFormulation, gbc);
+
     }
 
     private void configInterfaceWithoutAppbar() {
         containerImage = new TransparentPanel();
-        containerForm = new TransparentPanel();
+        containerFormulation = new TransparentPanel();
         image = new JLabel();
         setBackground(ColorPalette.COLOR_SENCOD);
         setPreferredSize(new Dimension(minWidthInterface, minHeightInterface));
@@ -78,9 +79,9 @@ public class InterfaceWithoutAppbar extends AbstractPanelRounded {
     }
 
     private static void configContainerForm(TransparentPanel container) {
-        contentForm = new TransparentPanel();
+        content = new TransparentPanel();
         container.setLayout(new GridBagLayout());
-        contentForm.setLayout(new GridBagLayout());
+        content.setLayout(new GridBagLayout());
 
         // configuracion para el container
         GridBagConstraints gbc = new GridBagConstraints();
@@ -91,21 +92,21 @@ public class InterfaceWithoutAppbar extends AbstractPanelRounded {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(50, 55, 50, 55);
-        container.add(contentForm, gbc);
+        container.add(content, gbc);
 
         // Configuracion container
         gbc.insets = new Insets(0, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.BASELINE;
 
-        contentForm.add(formulation, gbc);
-        formulation.setPreferredSize(new Dimension(maxWidthFormulation, maxHeightFormulation));
+        content.add(formulation, gbc);
+        formulation.resize(maxWidthFormulation, maxHeightFormulation);
         formulation.setMinimumSize(new Dimension(minWidthFormulation, minHeightFormulation));
 
     }
 
     public static void clearContainerForm() {
-        Components.removeElement(containerForm, contentForm);
+        Components.removeElement(containerFormulation, content);
 
     }
 
@@ -120,12 +121,12 @@ public class InterfaceWithoutAppbar extends AbstractPanelRounded {
         repaint();
     }
 
-    public static void setFormulation(AbstractForm form) {
+    public static void setFormulation(AbstractForm object) {
         if (formulation != null) {
-            Components.removeElement(contentForm, formulation);
+            Components.removeElement(content, formulation);
         }
-        formulation = form;
-        configContainerForm(containerForm);
+        formulation = object;
+        configContainerForm(containerFormulation);
     }
 
 }

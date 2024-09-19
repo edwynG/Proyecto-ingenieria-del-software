@@ -43,7 +43,8 @@ public class Login extends AbstractForm {
     private int fontSizeOptionRegister = 11;
     private int columnsInputStandard = 20;
     private int gapOptions = 26;
-
+    private int minWidthFormulation = 380;
+    private int minHeightFormulation = 410;
     // Funcionalidad
     LoginActions actions;
 
@@ -67,6 +68,11 @@ public class Login extends AbstractForm {
 
     private void configLogin() {
         this.actions = new LoginActions();
+        defaultWidth = minWidthFormulation;
+        defaultHeigth = minHeightFormulation;
+        resizeRestore();
+        resizeRestore();
+
     }
 
     private void createTitle() {
@@ -183,7 +189,7 @@ public class Login extends AbstractForm {
     @Override
     protected void configResizeLarge() {
         int lgColum = 34;
-        int lgRow = 43;
+        int lgRow = 45;
         for (JTextField input : getInputList()) {
             setRedimentionFields(input, lgColum, lgRow);
         }

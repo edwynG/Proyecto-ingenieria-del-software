@@ -8,16 +8,17 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import main.Env;
-import main.view.Main;
 import main.view.components.AbstractComponents.AbstractForm;
 
 import main.view.components.CommonComponents.ButtonRounded;
+import main.view.components.CommonComponents.CardMessage;
 import main.view.components.CommonComponents.Dropdown;
 import main.view.components.CommonComponents.ImageAndComponent;
 import main.view.components.CommonComponents.InputPassword;
@@ -25,6 +26,7 @@ import main.view.components.CommonComponents.InputText;
 import main.view.components.CommonComponents.TextOption;
 import main.view.components.CommonComponents.TextTitle;
 import main.view.components.CommonComponents.TransparentPanel;
+import raven.glasspanepopup.GlassPanePopup;
 
 public class Register extends AbstractForm {
     // Componentes de la interfaz
@@ -35,7 +37,8 @@ public class Register extends AbstractForm {
     private ButtonRounded button;
     private TextTitle title;
     private TextOption optionLogin;
-
+    private  int minWidthFormulation = 380;
+    private  int minHeightFormulation = 410;
     // Estilos globales
     private int fontSizeTitle = 40;
     private int fontSizeOptionLogin = 11;
@@ -66,6 +69,9 @@ public class Register extends AbstractForm {
 
     public void configRegister() {
         this.actions = new RegisterActions();
+        defaultWidth = minWidthFormulation;
+        defaultHeigth = minHeightFormulation;
+        resizeRestore();
 
     }
 
@@ -120,7 +126,11 @@ public class Register extends AbstractForm {
         int height = 41;
         int width = 41;
         int marginBottom = 20;
-        this.dropdown = new Dropdown(Main.WINDOW,"Tipo de usuario");
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Proponente");
+        options.add("Administrador");
+        this.dropdown = new Dropdown("Tipo de usuario");
+        this.dropdown.setListElements(options);
         ImageAndComponent container = new ImageAndComponent(Env.PATH_ICON_USER, width, height, dropdown);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));
@@ -148,7 +158,11 @@ public class Register extends AbstractForm {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                actions.eventButtonContinueRegister();
+                if (dropdown.getSelectElement() == null) {
+                    GlassPanePopup.showPopup(new CardMessage("Oops..", "Aún faltan datos por completar."));
+                    return;
+                }
+                actions.eventButtonContinueRegister(dropdown.getSelectElement());
             }
         });
 
@@ -179,7 +193,7 @@ public class Register extends AbstractForm {
     @Override
     protected void configResizeLarge() {
         int lgColum = 33;
-        int lgRow = 42;
+        int lgRow = 45;
         for (JTextField input : getInputList()) {
             setRedimentionFields(input, lgColum, lgRow);
         }
@@ -210,5 +224,5 @@ public class Register extends AbstractForm {
         optionLogin.setFontSize(fontSizeOptionLogin);
         title.setFontSize(fontSizeTitle);
     }
-    
+
 }

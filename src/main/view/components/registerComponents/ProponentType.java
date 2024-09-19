@@ -7,19 +7,21 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.SwingConstants;
 
 import main.Env;
-import main.view.Main;
 import main.view.components.AbstractComponents.AbstractForm;
 import main.view.components.CommonComponents.ButtonRounded;
+import main.view.components.CommonComponents.CardMessage;
 import main.view.components.CommonComponents.Dropdown;
 import main.view.components.CommonComponents.ImageAndComponent;
 import main.view.components.CommonComponents.TextSubtitle;
 import main.view.components.CommonComponents.TextTitle;
 import main.view.components.CommonComponents.TransparentPanel;
+import raven.glasspanepopup.GlassPanePopup;
 
 public class ProponentType extends AbstractForm {
 
@@ -37,7 +39,8 @@ public class ProponentType extends AbstractForm {
     private int fontSizeSubtitle = 12;
     private int gapBetweenButtons = 0;
     private int roundedButtonGlobal = 15;
-
+    private  int minWidthFormulation = 380;
+    private  int minHeightFormulation = 410;
     private RegisterActions actions;
 
     public ProponentType() {
@@ -58,6 +61,9 @@ public class ProponentType extends AbstractForm {
 
     private void configProponentType() {
         this.actions = new RegisterActions();
+        defaultWidth = minWidthFormulation;
+        defaultHeigth = minHeightFormulation;
+        resizeRestore();
     }
 
     private void createTitle() {
@@ -83,7 +89,11 @@ public class ProponentType extends AbstractForm {
         int height = 41;
         int width = 41;
         int marginBottom = 20;
-        this.dropdown = new Dropdown(Main.WINDOW,"Tipo de persona");
+        ArrayList<String> options = new ArrayList<>();
+        options.add("Natural");
+        options.add("Juridíco");
+        this.dropdown = new Dropdown("Tipo de persona");
+        this.dropdown.setListElements(options);
         ImageAndComponent container = new ImageAndComponent(Env.PATH_ICON_USER, width, height, dropdown);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));
@@ -133,7 +143,11 @@ public class ProponentType extends AbstractForm {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                actions.eventButtonNext();
+                if (dropdown.getSelectElement() == null) {
+                    GlassPanePopup.showPopup(new CardMessage("Oops..", "Aún faltan datos por completar."));
+                    return;
+                }
+                actions.eventButtonNext(dropdown.getSelectElement());
             }
         });
     }
@@ -158,7 +172,7 @@ public class ProponentType extends AbstractForm {
     @Override
     protected void configResizeLarge() {
         title.setFontSize(55);
-        resizeDropdown(375, heightDropdown);
+        resizeDropdown(375, heightDropdown + 5);
         subTitle.setFontSize(14);
         resizeButtonLg();
 
@@ -168,7 +182,7 @@ public class ProponentType extends AbstractForm {
     protected void configResizeMedium() {
         title.setFontSize(fontSizeTitle);
         subTitle.setFontSize(fontSizeSubtitle);
-        resizeDropdown(265, heightDropdown);
+        resizeDropdown(265, heightDropdown + 3);
         if (getWidth() > this.lowerLimit + 150 && getWidth() <= this.upperLimit) {
             resizeButtonLg();
         } else {

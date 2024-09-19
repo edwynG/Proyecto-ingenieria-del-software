@@ -123,7 +123,7 @@ public class AppBar extends AbstractPanelRounded {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                eventIconBack();
+                eventIconLogOut();
             }
         });
 
@@ -154,9 +154,41 @@ public class AppBar extends AbstractPanelRounded {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                eventIconBack();
+                eventIconLogOut();
             }
         });
+
+    }
+
+    public void createNavRegister(){
+        cleanNavContent();
+        createNav();
+
+        int iconHeight = 40;
+        int iconWidth = 40;
+        TransparentPanel backContent = new TransparentPanel();
+        LabelWithImage back = new LabelWithImage(new ImageIcon(Env.PATH_ICON_BACK), iconWidth, iconHeight);
+
+        backContent.add(back);
+        aplicateCursorHand(back);
+        GridBagConstraints gbc = new GridBagConstraints();
+        navContent.setLayout(new GridBagLayout());
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        navContent.add(backContent, gbc);
+        navContent.setPreferredSize(new Dimension(this.widthRightContent-15, 60));
+
+        back.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                eventIconBackTypeProponent();
+            }
+        });
+
 
     }
 
@@ -178,7 +210,11 @@ public class AppBar extends AbstractPanelRounded {
 
     }
 
-    public void eventIconBack() {
+    public void eventIconLogOut() {
+
+    }
+
+    public void eventIconBackTypeProponent() {
 
     }
 

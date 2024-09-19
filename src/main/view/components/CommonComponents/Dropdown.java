@@ -2,12 +2,14 @@ package main.view.components.CommonComponents;
 
 import java.awt.Dimension;
 import java.awt.Font;
-
-import javax.swing.JComponent;
+import java.awt.Color;
+import javax.swing.DefaultListModel;
 
 import main.view.components.AbstractComponents.AbstractDropdown;
 import main.view.utils.ColorPalette;
 import main.view.utils.RoundedBorder;
+
+
 
 public class Dropdown extends AbstractDropdown {
 
@@ -16,13 +18,18 @@ public class Dropdown extends AbstractDropdown {
     private String fontFamilyGlobal = "Arial";
     private int borderInputGlobal = 13;
 
-    public Dropdown(JComponent context, String text) {
-        super(context, text);
+    public Dropdown(String text) {
+        super(text);
         initDropdown();
     }
 
-    public Dropdown(JComponent context, String text, int width) {
-        super(context,text);
+    public Dropdown(String text, DefaultListModel<String> model) {
+        super(text,model);
+        initDropdown();
+    }
+
+    public Dropdown(String text, int width) {
+        super(text);
         this.widthDropdown = width;
         initDropdown();
     }
@@ -35,6 +42,8 @@ public class Dropdown extends AbstractDropdown {
         setPreferredSize(new Dimension(this.widthDropdown, this.heightDropdown));
         setColorText(ColorPalette.COLOR_FIELD);
         setBackground(ColorPalette.TRANSPARENT);
+        options.setSelectionBackground(Color.LIGHT_GRAY);
+        options.setSelectionForeground(Color.WHITE);
 
     }
 }

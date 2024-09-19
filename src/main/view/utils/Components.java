@@ -6,8 +6,8 @@ import javax.swing.JComponent;
 
 public class Components {
    
-   public static void removeElement(JComponent context, JComponent container){
-        context.remove(container);
+   public static void removeElement(JComponent context, JComponent component){
+        context.remove(component);
         context.revalidate();
         context.repaint();
    }
