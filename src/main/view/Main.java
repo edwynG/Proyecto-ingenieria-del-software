@@ -33,8 +33,8 @@ public class Main extends JFrame {
     private void configMain(String name) {
         userControl = null;
         content = new JPanel();
-        this.height = 580;
-        this.width = 940;
+        this.height = 660;
+        this.width = 960;
         this.windowName = name;
     }
 

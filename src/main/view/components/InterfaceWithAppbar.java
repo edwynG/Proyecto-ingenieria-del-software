@@ -20,6 +20,7 @@ import main.view.utils.ColorPalette;
 
 public class InterfaceWithAppbar extends AbstractPanelRounded {
     private AppBar appBar;
+    public static InterfaceProponent ProponentDesing;
     private static TransparentPanel content;
 
     public InterfaceWithAppbar() {
@@ -29,7 +30,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
 
     private void initInterfaceWithAppbar() {
         this.configInterfaceWithAppbar();
-        createInterfaceProponent();
+        
     }
 
     private void configInterfaceWithAppbar() {
@@ -110,20 +111,20 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
     public void createInterfaceProponent() {
         cleanContent();
         appBar.createNavProponent();
-        InterfaceProponent desing = new InterfaceProponent(25);
-        content.add(desing);
+        ProponentDesing = new InterfaceProponent(25);
+        content.add(ProponentDesing);
 
-        int width = 600;
-        int heigth = 600;
+        int width = 920;
+        int heigth = 800;
 
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 if (getWidth() > width && getHeight() > heigth) {
-                    desing.resize(getWidth() - 400, getHeight() - 260);
+                    ProponentDesing.resize(getWidth() - 400, getHeight() - 260);
 
                 } else {
-                    desing.restoreResize(); 
+                    ProponentDesing.restoreResize(); 
                 }
             }
         });

@@ -20,9 +20,9 @@ public class InterfaceWithoutAppbar extends AbstractPanelRounded {
     private static TransparentPanel containerFormulation;
     private static TransparentPanel content;
     public static int maxWidthFormulation = 520;
-    public static int maxHeightFormulation = 530;
+    public static int maxHeightFormulation = 570;
     public static int minWidthFormulation = 460;
-    public static int minHeightFormulation = 435;
+    public static int minHeightFormulation = 440;
 
     public static int minWidthInterface = 900;
     public static int minHeightInterface = 530;

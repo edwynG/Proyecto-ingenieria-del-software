@@ -24,8 +24,9 @@ public class RegisterActions {
     }
 
     public void eventButtonFinishRegister() {
-        JOptionPane.showMessageDialog(Main.WINDOW, "Lo sentimos, opción no disponible.", "Finalizar registro",
-                JOptionPane.ERROR_MESSAGE);
+        InterfaceWithAppbar home = new InterfaceWithAppbar();
+        home.createInterfaceProponent();
+        Main.setContent(home);
     }
 
     public void eventButtonBefore() {
@@ -33,7 +34,6 @@ public class RegisterActions {
     }
 
     public void eventButtonNext(String type) {
-        System.err.println(type);
         InterfaceWithAppbar UI = new InterfaceWithAppbar();
         if (type.toLowerCase().contains("natural")) {
             UI.createFormulationNatural();
