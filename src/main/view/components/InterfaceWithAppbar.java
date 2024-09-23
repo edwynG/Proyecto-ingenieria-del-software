@@ -30,7 +30,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
 
     private void initInterfaceWithAppbar() {
         this.configInterfaceWithAppbar();
-        
+
     }
 
     private void configInterfaceWithAppbar() {
@@ -45,16 +45,21 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
         content.setLayout(new GridBagLayout());
         this.appBar = new AppBar() {
             @Override
-            public void eventIconLogOut() {
+            public void actionsIconLogOut() {
                 Main.setContent(new InterfaceWithoutAppbar(Env.PATH_IMAGE_MAIN));
                 InterfaceWithoutAppbar.setFormulation(new Login(25));
 
             }
 
             @Override
-            public void eventIconBackTypeProponent() {
+            public void actionsIconBackTypeProponent() {
                 Main.setContent(new InterfaceWithoutAppbar(Env.PATH_IMAGE_MAIN));
                 InterfaceWithoutAppbar.setFormulation(new ProponentType(25));
+            }
+
+            @Override
+            public void actionsIconHome() {
+                ProponentDesing.createMyCourseHome();
             }
         };
 
@@ -98,7 +103,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
             @Override
             public void componentResized(ComponentEvent e) {
                 if (getWidth() > width && getHeight() > heigth) {
-                    legalPerson.resize(900, 530);
+                    legalPerson.resize(1024, 560);
 
                 } else {
                     legalPerson.resizeRestore();
@@ -117,17 +122,30 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
         int width = 920;
         int heigth = 800;
 
+        ProponentDesing.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if (getWidth() > width && getHeight() > heigth) {
+                    ProponentDesing.resize(1024, 560);
+
+                } else {
+                    ProponentDesing.restoreResizeTemp();
+                }
+            }
+        });
+        
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 if (getWidth() > width && getHeight() > heigth) {
-                    ProponentDesing.resize(getWidth() - 400, getHeight() - 260);
+                    ProponentDesing.resize(1024, 560);
 
                 } else {
-                    ProponentDesing.restoreResize(); 
+                    ProponentDesing.restoreResizeTemp();
                 }
             }
         });
+
     }
 
     public static void cleanContent() {

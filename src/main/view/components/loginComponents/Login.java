@@ -135,7 +135,7 @@ public class Login extends AbstractForm {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                actions.eventButtonLogin(inputEmail.getInput(), inputPassword.getPassword());
+                actions.actionsButtonLogin(inputEmail.getInput(), inputPassword.getPassword());
             }
         });
 
@@ -167,7 +167,7 @@ public class Login extends AbstractForm {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                actions.eventOptionPassword();
+                actions.actionsOptionPassword();
             }
         });
 
@@ -175,7 +175,7 @@ public class Login extends AbstractForm {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                actions.eventOptionRegister();
+                actions.actionsOptionRegister();
             }
         });
 
@@ -197,7 +197,7 @@ public class Login extends AbstractForm {
         optionRegister.setFontSize(13);
         title.setFontSize(55);
         subTitle.setFontSize(14);
-        resizeOptionsLg(70);
+        resizeOptionsLg(45);
 
     }
 

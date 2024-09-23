@@ -88,7 +88,7 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
         buttonDetails.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                InterfaceProponent.actions.ButtonViewMore();
+                InterfaceProponent.actions.actionsButtonViewMore();
             }
         });
     }

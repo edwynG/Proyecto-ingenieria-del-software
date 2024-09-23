@@ -39,7 +39,7 @@ public class LegalProponent extends AbstractForm {
     private int heightButton = 43;
     private int roundedButtonGlobal = 15;
 
-    private int columnsInputDefault = 25;
+    private int columnsInputDefault = 26;
 
     public LegalProponent(int rounded) {
         super(rounded);
@@ -187,15 +187,15 @@ public class LegalProponent extends AbstractForm {
 
          this.button.addMouseListener(new MouseAdapter() {
             @Override
-            public void mousePressed(MouseEvent e) {
-                actions.eventButtonFinishRegister();
+            public void mouseClicked(MouseEvent e) {
+                actions.actionsButtonFinishRegister();
             }
         });
     }
 
     @Override
     protected void configResizeLarge() {
-        setRedimentionFields(inputID, 33, 45);
+        setRedimentionFields(inputID, 34, 45);
         revalidate();
         repaint();
     }

@@ -132,7 +132,7 @@ public class NaturalProponent extends AbstractForm {
         this.button.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                actions.eventButtonFinishRegister();
+                actions.actionsButtonFinishRegister();
             }
         });
 

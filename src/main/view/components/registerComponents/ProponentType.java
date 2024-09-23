@@ -135,7 +135,7 @@ public class ProponentType extends AbstractForm {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                actions.eventButtonBefore();
+                actions.actionsButtonBefore();
             }
         });
 
@@ -147,7 +147,7 @@ public class ProponentType extends AbstractForm {
                     GlassPanePopup.showPopup(new CardMessage("Oops..", "Aún faltan datos por completar."));
                     return;
                 }
-                actions.eventButtonNext(dropdown.getSelectElement());
+                actions.actionsButtonNext(dropdown.getSelectElement());
             }
         });
     }

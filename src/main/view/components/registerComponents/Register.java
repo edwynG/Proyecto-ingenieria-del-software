@@ -138,7 +138,7 @@ public class Register extends AbstractForm {
     }
 
     private void createButton() {
-        int marginBottom = 12;
+        int marginBottom = 20;
         this.button = new ButtonRounded("Continuar", this.roundedButtonGlobal);
         TransparentPanel container = new TransparentPanel();
         container.setLayout(new GridBagLayout());
@@ -162,7 +162,7 @@ public class Register extends AbstractForm {
                     GlassPanePopup.showPopup(new CardMessage("Oops..", "Aún faltan datos por completar."));
                     return;
                 }
-                actions.eventButtonContinueRegister(dropdown.getSelectElement());
+                actions.actionsButtonContinueRegister(dropdown.getSelectElement());
             }
         });
 
@@ -178,7 +178,7 @@ public class Register extends AbstractForm {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                actions.eventOptionLogin();
+                actions.actionsOptionLogin();
             }
         });
 

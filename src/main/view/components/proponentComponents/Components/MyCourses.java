@@ -71,7 +71,7 @@ public class MyCourses extends AbstractPanelRounded {
         TransparentPanel header = new TransparentPanel() {
             @Override
             public Insets getInsets() {
-                return new Insets(0, 25, 0, 25);
+                return new Insets(0, 25, 0, 32);
             }
         };
         Table.add(header, BorderLayout.NORTH);
@@ -88,6 +88,11 @@ public class MyCourses extends AbstractPanelRounded {
         TableTextName = new TextSubtitle("Nombre", SwingConstants.LEFT);
         TableTextType = new TextSubtitle("Tipo", SwingConstants.CENTER);
         TableTextStatus = new TextSubtitle("Estado", SwingConstants.RIGHT);
+        int width = 200;
+        int height = 40;
+        TableTextName.setPreferredSize(new Dimension(width,height));
+        TableTextType.setPreferredSize(new Dimension(width,height));
+        TableTextStatus.setPreferredSize(new Dimension(width,height));
 
         TableTextName.setFontSize(fontsizeTableTextHeader);
         TableTextType.setFontSize(fontsizeTableTextHeader);
@@ -117,7 +122,7 @@ public class MyCourses extends AbstractPanelRounded {
         buttonProposeCourse.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                InterfaceProponent.actions.actionsButtonProposeCourse();
+                InterfaceProponent.actions.actionsButtonCourseFormulation();
             }
         });
 
@@ -135,7 +140,7 @@ public class MyCourses extends AbstractPanelRounded {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1;
-        gbc.ipady = 52;
+        gbc.ipady = 45;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
 

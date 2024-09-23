@@ -9,12 +9,12 @@ import main.view.components.loginComponents.Login;
 
 public class RegisterActions {
 
-    public void eventOptionLogin() {
+    public void actionsOptionLogin() {
         InterfaceWithoutAppbar.setFormulation(new Login(25));
 
     }
 
-    public void eventButtonContinueRegister(String type) {
+    public void actionsButtonContinueRegister(String type) {
         if (type.toLowerCase().contains("proponente")) {
             InterfaceWithoutAppbar.setFormulation(new ProponentType(25));
             return;
@@ -23,17 +23,17 @@ public class RegisterActions {
                 JOptionPane.ERROR_MESSAGE);
     }
 
-    public void eventButtonFinishRegister() {
+    public void actionsButtonFinishRegister() {
         InterfaceWithAppbar home = new InterfaceWithAppbar();
         home.createInterfaceProponent();
         Main.setContent(home);
     }
 
-    public void eventButtonBefore() {
+    public void actionsButtonBefore() {
         InterfaceWithoutAppbar.setFormulation(new Register(25));
     }
 
-    public void eventButtonNext(String type) {
+    public void actionsButtonNext(String type) {
         InterfaceWithAppbar UI = new InterfaceWithAppbar();
         if (type.toLowerCase().contains("natural")) {
             UI.createFormulationNatural();

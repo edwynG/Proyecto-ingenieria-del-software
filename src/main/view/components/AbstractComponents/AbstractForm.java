@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import main.view.components.CommonComponents.InputText;
 import main.view.components.CommonComponents.TransparentPanel;
+import main.view.components.CommonComponents.Dropdown;
 import main.view.components.CommonComponents.FileChooser;
 import main.view.components.CommonComponents.InputPassword;
 
@@ -23,6 +24,7 @@ public abstract class AbstractForm extends AbstractPanelRounded {
 
     private ArrayList<JTextField> inputList;
     private ArrayList<FileChooser> fileChoosersList;
+    private ArrayList<Dropdown> dropdownList;
 
     protected TransparentPanel content;
     protected int upperLimit = 470;
@@ -44,6 +46,8 @@ public abstract class AbstractForm extends AbstractPanelRounded {
         setBackground(Color.white);
         this.inputList = new ArrayList<>();
         this.fileChoosersList = new ArrayList<>();
+        this.dropdownList = new ArrayList<>();
+
         this.configDefault();
         this.settingResize();
 
@@ -70,9 +74,22 @@ public abstract class AbstractForm extends AbstractPanelRounded {
         return fileChooser;
     }
 
+    protected Dropdown createDropdown(String str, ArrayList<String> elements) {
+        Dropdown dropdown = new Dropdown(str);
+        dropdown.setListElements(elements);
+        this.dropdownList.add(dropdown);
+        return dropdown;
+    }
+
     protected void setRedimentionFileChoosers(int width, int height) {
         for (FileChooser fileChooser : fileChoosersList) {
             setRedimentionPane(fileChooser, width, height);
+        }
+    }
+
+    protected void setRedimentionDropdown(int width, int height) {
+        for (Dropdown drop : dropdownList) {
+            setRedimentionPane(drop, width, height);
         }
     }
 
@@ -94,7 +111,8 @@ public abstract class AbstractForm extends AbstractPanelRounded {
     }
 
     protected void setRedimentionPane(Component component, int width, int height) {
-        if(component == null) return;
+        if (component == null)
+            return;
         component.setPreferredSize(new Dimension(width, height));
         component.revalidate();
         component.repaint();
@@ -135,11 +153,6 @@ public abstract class AbstractForm extends AbstractPanelRounded {
 
     protected void configDefauldLayout() {
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.anchor = GridBagConstraints.CENTER;
         this.add(content, gbc);
     }
 

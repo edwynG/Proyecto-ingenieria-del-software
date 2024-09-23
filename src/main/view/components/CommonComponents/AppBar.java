@@ -107,7 +107,7 @@ public class AppBar extends AbstractPanelRounded {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                eventIconHome();
+                actionsIconHome();
             }
         });
 
@@ -115,7 +115,7 @@ public class AppBar extends AbstractPanelRounded {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                eventIconUser();
+                actionsIconUser();
             }
         });
 
@@ -123,7 +123,7 @@ public class AppBar extends AbstractPanelRounded {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                eventIconLogOut();
+                actionsIconLogOut();
             }
         });
 
@@ -154,7 +154,7 @@ public class AppBar extends AbstractPanelRounded {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                eventIconLogOut();
+                actionsIconLogOut();
             }
         });
 
@@ -185,7 +185,7 @@ public class AppBar extends AbstractPanelRounded {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                eventIconBackTypeProponent();
+                actionsIconBackTypeProponent();
             }
         });
 
@@ -202,19 +202,19 @@ public class AppBar extends AbstractPanelRounded {
         navContent.repaint();
     }
 
-    public void eventIconHome() {
+    public void actionsIconHome() {
 
     }
 
-    public void eventIconUser() {
+    public void actionsIconUser() {
 
     }
 
-    public void eventIconLogOut() {
+    public void actionsIconLogOut() {
 
     }
 
-    public void eventIconBackTypeProponent() {
+    public void actionsIconBackTypeProponent() {
 
     }
 

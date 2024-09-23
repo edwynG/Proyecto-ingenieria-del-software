@@ -9,18 +9,18 @@ import main.view.components.registerComponents.Register;
 
 public class LoginActions {
 
-    public void eventOptionPassword() {
+    public void actionsOptionPassword() {
         JOptionPane.showMessageDialog(Main.WINDOW, "Lo sentimos, sistema en mantenimiento.",
                 "¿Olvidates tu contraseña?", JOptionPane.ERROR_MESSAGE);
 
     }
 
-    public void eventOptionRegister() {
+    public void actionsOptionRegister() {
         InterfaceWithoutAppbar.setFormulation(new Register(25));
 
     }
 
-    public void eventButtonLogin(String email, String passwonrd) {
+    public void actionsButtonLogin(String email, String passwonrd) {
         InterfaceWithAppbar home = new InterfaceWithAppbar();
         home.createInterfaceProponent();
         Main.setContent(home);

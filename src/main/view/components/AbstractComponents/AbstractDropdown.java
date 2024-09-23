@@ -29,7 +29,7 @@ import raven.glasspanepopup.GlassPanePopup;
 
 public abstract class AbstractDropdown extends AbstractPanelRounded {
     protected JList<String> options;
-    private AbstractPanelRounded panel;
+    protected AbstractPanelRounded panel;
     protected DefaultListModel<String> elements;
     protected String title;
     protected JLabel text;
@@ -77,7 +77,7 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
     private void createPopupPanel() {
         int radius = 15;
         int height = 120;
-        int weight = 320;
+        int width = 320;
         this.panel = new AbstractPanelRounded(radius) {
             @Override
             public Insets insets() {
@@ -85,7 +85,7 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
             }
         };
         panel.setLayout(new BorderLayout());
-        panel.setPreferredSize(new Dimension(weight, height));
+        setPreferentPanel(width, height);
         AbstractPanelRounded content = new AbstractPanelRounded(radius) {
         };
         content.setBackground(ColorPalette.TRANSPARENT);
@@ -184,6 +184,11 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
     public void setFontWeightText(int weight) {
         Font font = this.text.getFont();
         this.text.setFont(new Font(font.getName(), weight, font.getSize()));
+    }
+
+    public void setPreferentPanel(int width, int height) {
+        panel.setPreferredSize(new Dimension(width, height));
+
     }
 
     @Override
