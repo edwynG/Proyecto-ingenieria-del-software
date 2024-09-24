@@ -1,5 +1,5 @@
 
-package main.view.components.CommonComponents;
+package main.view.components.commonComponents;
 
 
 import main.view.components.AbstractComponents.AbstractInputPassword;

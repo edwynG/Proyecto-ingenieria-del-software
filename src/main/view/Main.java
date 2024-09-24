@@ -3,8 +3,10 @@ package main.view;
 import main.Env;
 import main.controller.abstractControllers.UserControl;
 import main.view.components.InterfaceWithoutAppbar;
-import main.view.components.CommonComponents.ScrollPaneWin11;
+import main.view.components.commonComponents.ScrollPaneWin11;
 import main.view.components.loginComponents.Login;
+import main.view.utils.Components;
+import main.view.utils.CustomVariables;
 import raven.glasspanepopup.GlassPanePopup;
 
 import java.awt.BorderLayout;
@@ -14,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 
 public class Main extends JFrame {
     private int height;
@@ -34,7 +35,7 @@ public class Main extends JFrame {
         userControl = null;
         content = new JPanel();
         this.height = 660;
-        this.width = 960;
+        this.width = 980;
         this.windowName = name;
     }
 
@@ -52,19 +53,19 @@ public class Main extends JFrame {
         // Configuración de los paneles principales
         this.configContentWindow(WINDOW); // Contenedor de la App
         this.configContent(content); // Contenido de la ventana
-        
+
     }
 
     private void configContentWindow(JPanel main) {
         main.setLayout(new BorderLayout());
-        main.add(content,BorderLayout.CENTER);
+        main.add(content, BorderLayout.CENTER);
         setIconImage(Toolkit.getDefaultToolkit().getImage(Env.PATH_ICON_WINDOW));
     }
 
     private void configContent(JPanel panel) {
         panel.setLayout(new BorderLayout());
         InterfaceWithoutAppbar desing = new InterfaceWithoutAppbar(Env.PATH_IMAGE_MAIN);
-        InterfaceWithoutAppbar.setFormulation(new Login(25));
+        InterfaceWithoutAppbar.setFormulation(new Login(CustomVariables.RADIO_DEFAULT_PANEL));
         panel.add(desing, BorderLayout.CENTER);
     }
 
@@ -79,9 +80,8 @@ public class Main extends JFrame {
     }
 
     public static void cleanContent() {
-        content.removeAll(); // Elimina todos los componentes
-        content.revalidate(); // Vuelve a validar el panel
-        content.repaint(); // Redibuja el pane
+        Components.removeElementAll(content);
+
     }
 
     public static void setUserControl(UserControl control) {
@@ -92,5 +92,4 @@ public class Main extends JFrame {
         return userControl;
     }
 
-    
 }

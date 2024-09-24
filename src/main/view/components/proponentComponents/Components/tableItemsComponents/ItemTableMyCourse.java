@@ -1,13 +1,13 @@
-package main.view.components.proponentComponents.Components;
+package main.view.components.proponentComponents.Components.tableItemsComponents;
 
 import main.view.components.AbstractComponents.AbstractPanelRounded;
-import main.view.components.CommonComponents.ButtonRounded;
-import main.view.components.CommonComponents.TextSubtitle;
-import main.view.components.CommonComponents.TransparentPanel;
+import main.view.components.commonComponents.ButtonRounded;
+import main.view.components.commonComponents.TextSubtitle;
+import main.view.components.commonComponents.TransparentPanel;
 import main.view.components.proponentComponents.InterfaceProponent;
 import main.view.utils.ColorPalette;
-
-import java.awt.Dimension;
+import main.view.utils.Components;
+import main.view.utils.CustomVariables;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.BorderLayout;
@@ -28,7 +28,7 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
     public ItemTableMyCourse(String name, String type, int id) {
         super(0);
         this.name = new TextSubtitle(name);
-        this.type = new TextSubtitle(type,SwingConstants.CENTER);
+        this.type = new TextSubtitle(type, SwingConstants.CENTER);
         this.id = id;
         initItemTableMyCourse();
     }
@@ -47,40 +47,42 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.insets = new Insets(0, 5, 0, 5);
-        gbc.fill = GridBagConstraints.BOTH;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
     }
 
     private void configText() {
-        TransparentPanel centerType = new TransparentPanel(){
-            @Override
-            public Insets getInsets() {
-                return new Insets(0, 0, 0, 30);
-            }
-        };
+        TransparentPanel centerType = new TransparentPanel();
+
+        TransparentPanel containerName = new TransparentPanel();
+        containerName.setLayout(new BorderLayout());
+        containerName.add(name, BorderLayout.WEST);
+        Components.setRedimentionComponent(name, 170, 40);
+        Components.setRedimentionComponent(containerName, 100, 40);
         name.setFont(new Font("Arial", Font.BOLD, 15));
         name.setForeground(ColorPalette.COLOR_HOVER);
         type.setFont(new Font("Arial", Font.BOLD, 15));
         type.setForeground(ColorPalette.COLOR_HOVER);
-        centerType.add(type);
-        centerType.setLayout(new GridBagLayout());
+        centerType.setLayout(new BorderLayout());
+
+        centerType.add(type,BorderLayout.CENTER);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        add(name, gbc);
+        add(containerName, gbc);
         gbc.gridx = 1;
         gbc.gridy = 0;
         add(centerType, gbc);
     }
 
     private void createButton() {
-        buttonDetails = new ButtonRounded("Ver más " + id, 15);
-        buttonDetails.setPreferredSize(new Dimension(100, 40));
+        buttonDetails = new ButtonRounded("Ver más " + id, CustomVariables.RADIO_DEFAULT_BUTTON);
+        Components.setRedimentionComponent(buttonDetails, 100, 40);
         TransparentPanel center = new TransparentPanel();
         TransparentPanel east = new TransparentPanel();
         center.setLayout(new GridBagLayout());
         center.add(buttonDetails);
         east.setLayout(new BorderLayout());
-        east.add(center,BorderLayout.EAST);
+        east.add(center, BorderLayout.EAST);
         gbc.gridx = 3;
         gbc.gridy = 0;
         add(east, gbc);

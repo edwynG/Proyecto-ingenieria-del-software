@@ -1,18 +1,20 @@
 package main.view.components.proponentComponents.Components;
 
 import main.view.components.AbstractComponents.AbstractPanelRounded;
-import main.view.components.commonComponents.ButtonRounded;
+import main.view.components.commonComponents.FileChooser;
 import main.view.components.commonComponents.ScrollPaneWin11;
 import main.view.components.commonComponents.TextSubtitle;
 import main.view.components.commonComponents.TextTitle;
 import main.view.components.commonComponents.TransparentPanel;
 import main.view.components.proponentComponents.InterfaceProponent;
-import main.view.components.proponentComponents.Components.tableItemsComponents.ItemTableMyCourse;
+import main.view.components.proponentComponents.Components.tableItemsComponents.ItemTableCourseWithAval;
 import main.view.utils.ColorPalette;
 import main.view.utils.Components;
-import main.view.utils.CustomVariables;
+
 import java.awt.Insets;
 import java.awt.BorderLayout;
+import java.awt.Cursor;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.SwingConstants;
@@ -20,39 +22,33 @@ import javax.swing.BorderFactory;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MyCourses extends AbstractPanelRounded {
+public class CourseWithAval extends AbstractPanelRounded {
     private int width = 700;
     private int heigth = 500;
-
     private TextTitle Title;
-    private ButtonRounded buttonCourseWithAval;
-    private ButtonRounded buttonProposeCourse;
-
     private TransparentPanel Table;
     private TransparentPanel TableContent;
-
     private TextSubtitle TableTextName;
-    private TextSubtitle TableTextType;
-    private TextSubtitle TableTextStatus;
+    private TextSubtitle TableTextSchedule;
+    private TextSubtitle TableTextCostos;
 
-    private int roundedButtonGlobal = CustomVariables.RADIO_DEFAULT_BUTTON;
     private int fontsizeTableTextHeader = 20;
 
-    public MyCourses() {
-        initMyCourse();
+    public CourseWithAval() {
+        initMyCourseWithAval();
     }
 
-    public void initMyCourse() {
+    public void initMyCourseWithAval() {
         setBackground(ColorPalette.TRANSPARENT);
         Components.setRedimentionComponent(this, width, heigth);
         setLayout(new BorderLayout(10, 10));
         createTitle();
         createTable();
-        createButtons();
+        createButton();
     }
 
     private void createTitle() {
-        Title = new TextTitle("Mis cursos", SwingConstants.LEFT);
+        Title = new TextTitle("Cursos con aval", SwingConstants.LEFT);
         Components.setRedimentionComponent(Title, 300, 40);
         TransparentPanel container = new TransparentPanel() {
             @Override
@@ -72,7 +68,7 @@ public class MyCourses extends AbstractPanelRounded {
         TransparentPanel header = new TransparentPanel() {
             @Override
             public Insets getInsets() {
-                return new Insets(0, 25, 0, 50);
+                return new Insets(0, 25, 0, 32);
             }
         };
         Table.add(header, BorderLayout.NORTH);
@@ -87,53 +83,60 @@ public class MyCourses extends AbstractPanelRounded {
         Table.add(scrollTable, BorderLayout.CENTER);
 
         TableTextName = new TextSubtitle("Nombre", SwingConstants.LEFT);
-        TableTextType = new TextSubtitle("Tipo", SwingConstants.CENTER);
-        TableTextStatus = new TextSubtitle("Estado", SwingConstants.RIGHT);
-        int width = 250;
+        TableTextSchedule = new TextSubtitle("Cronograma de ejecución", SwingConstants.CENTER);
+        TableTextCostos = new TextSubtitle("Costos/Ingreso", SwingConstants.RIGHT);
+        int width = 200;
         int height = 40;
         Components.setRedimentionComponent(TableTextName, width, height);
-        Components.setRedimentionComponent(TableTextType, width, height);
-        Components.setRedimentionComponent(TableTextStatus, width, height);
+        Components.setRedimentionComponent(TableTextSchedule, width, height);
+        Components.setRedimentionComponent(TableTextCostos, width, height);
 
         TableTextName.setFontSize(fontsizeTableTextHeader);
-        TableTextType.setFontSize(fontsizeTableTextHeader);
-        TableTextStatus.setFontSize(fontsizeTableTextHeader);
+        TableTextSchedule.setFontSize(fontsizeTableTextHeader);
+        TableTextCostos.setFontSize(fontsizeTableTextHeader);
 
         header.setLayout(new BorderLayout(10, 10));
         header.add(TableTextName, BorderLayout.WEST);
-        header.add(TableTextType, BorderLayout.CENTER);
-        header.add(TableTextStatus, BorderLayout.EAST);
+        header.add(TableTextSchedule, BorderLayout.CENTER);
+        header.add(TableTextCostos, BorderLayout.EAST);
         createItemsTable();
     }
 
-    private void createButtons() {
-        buttonProposeCourse = new ButtonRounded("Proponer cursos", roundedButtonGlobal);
-        buttonCourseWithAval = new ButtonRounded("Cursos con aval", roundedButtonGlobal);
+    private void createButton() {
         TransparentPanel container = new TransparentPanel() {
             @Override
             public Insets getInsets() {
-                return new Insets(10, 0, 2, 0);
+                return new Insets(18, 0, 5, 0);
             }
         };
-        container.setLayout(new BorderLayout(20, 20));
-        container.add(buttonProposeCourse, BorderLayout.WEST);
-        container.add(buttonCourseWithAval, BorderLayout.EAST);
+        FileChooser ButtonLetterOfCommitment = new FileChooser("Carta de compromiso");
+        Components.setRedimentionComponent(ButtonLetterOfCommitment, 210, 30);
+        ButtonLetterOfCommitment.setBorder(Components.customrBorder(0, ColorPalette.TRANSPARENT));
+        ButtonLetterOfCommitment.setFontSizeText(15);
+        ButtonLetterOfCommitment.setFontWeight(Font.BOLD);
+        ButtonLetterOfCommitment.configMethodDownload();
+        container.setLayout(new BorderLayout());
+        container.add(ButtonLetterOfCommitment, BorderLayout.WEST);
         add(container, BorderLayout.SOUTH);
+     
 
-        buttonProposeCourse.addMouseListener(new MouseAdapter() {
+        ButtonLetterOfCommitment.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                InterfaceProponent.actions.actionsButtonCourseFormulation();
+                InterfaceProponent.actions.actionsDownload();
             }
-        });
 
-        buttonCourseWithAval.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                InterfaceProponent.actions.actionsButtonCourseWithAval();
+            public void mouseEntered(MouseEvent e) {
+                setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
             }
         });
-        Components.setRedimentionComponent(container, container.getWidth(), 53);
 
     }
 
@@ -149,9 +152,10 @@ public class MyCourses extends AbstractPanelRounded {
         for (int i = 0; i < 4; i++) {
             gbc.gridx = 0;
             gbc.gridy = i;
-            ItemTableMyCourse item = new ItemTableMyCourse("<html>Fundamentos</html>", "Diplomado", i);
+            ItemTableCourseWithAval item = new ItemTableCourseWithAval("<html>Fundamentos de Java</html>", i);
             TableContent.add(item, gbc);
 
         }
     }
+
 }

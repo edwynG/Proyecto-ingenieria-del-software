@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 
-import main.view.components.CommonComponents.InputText;
-import main.view.components.CommonComponents.TransparentPanel;
-import main.view.components.CommonComponents.Dropdown;
-import main.view.components.CommonComponents.FileChooser;
-import main.view.components.CommonComponents.InputPassword;
+import main.view.components.commonComponents.Dropdown;
+import main.view.components.commonComponents.FileChooser;
+import main.view.components.commonComponents.InputPassword;
+import main.view.components.commonComponents.InputText;
+import main.view.components.commonComponents.TransparentPanel;
 
 public abstract class AbstractForm extends AbstractPanelRounded {
     protected int defaultWidth = 0;
@@ -87,20 +87,20 @@ public abstract class AbstractForm extends AbstractPanelRounded {
         }
     }
 
-    protected void setRedimentionDropdown(int width, int height) {
+    protected void setRedimentionDropdowns(int width, int height) {
         for (Dropdown drop : dropdownList) {
             setRedimentionPane(drop, width, height);
         }
     }
 
-    public void resize(int width, int height) {
+    public void setRedimention(int width, int height) {
         setPreferredSize(new Dimension(width, height));
         revalidate();
         repaint();
     }
 
-    public void resizeRestore() {
-        resize(this.defaultWidth, this.defaultHeigth);
+    public void redimentionRestore() {
+        setRedimention(this.defaultWidth, this.defaultHeigth);
     }
 
     protected void setRedimentionFields(JTextField input, int columns, int height) {

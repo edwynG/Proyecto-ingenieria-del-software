@@ -12,11 +12,12 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 
 import main.view.components.AbstractComponents.AbstractForm;
-import main.view.components.CommonComponents.ButtonRounded;
-import main.view.components.CommonComponents.FileChooser;
-import main.view.components.CommonComponents.InputText;
-import main.view.components.CommonComponents.TextTitle;
-import main.view.components.CommonComponents.TransparentPanel;
+import main.view.components.commonComponents.ButtonRounded;
+import main.view.components.commonComponents.FileChooser;
+import main.view.components.commonComponents.InputText;
+import main.view.components.commonComponents.TextTitle;
+import main.view.components.commonComponents.TransparentPanel;
+import main.view.utils.CustomVariables;
 
 public class LegalProponent extends AbstractForm {
 
@@ -37,7 +38,7 @@ public class LegalProponent extends AbstractForm {
     private RegisterActions actions;
 
     private int heightButton = 43;
-    private int roundedButtonGlobal = 15;
+    private int roundedButtonGlobal = CustomVariables.RADIO_DEFAULT_BUTTON;
 
     private int columnsInputDefault = 26;
 

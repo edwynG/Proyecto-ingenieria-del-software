@@ -1,6 +1,5 @@
 package main.view.components.registerComponents;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -14,13 +13,15 @@ import javax.swing.SwingConstants;
 
 import main.Env;
 import main.view.components.AbstractComponents.AbstractForm;
-import main.view.components.CommonComponents.ButtonRounded;
-import main.view.components.CommonComponents.CardMessage;
-import main.view.components.CommonComponents.Dropdown;
-import main.view.components.CommonComponents.ImageAndComponent;
-import main.view.components.CommonComponents.TextSubtitle;
-import main.view.components.CommonComponents.TextTitle;
-import main.view.components.CommonComponents.TransparentPanel;
+import main.view.components.commonComponents.ButtonRounded;
+import main.view.components.commonComponents.CardMessage;
+import main.view.components.commonComponents.Dropdown;
+import main.view.components.commonComponents.ImageAndComponent;
+import main.view.components.commonComponents.TextSubtitle;
+import main.view.components.commonComponents.TextTitle;
+import main.view.components.commonComponents.TransparentPanel;
+import main.view.utils.Components;
+import main.view.utils.CustomVariables;
 import raven.glasspanepopup.GlassPanePopup;
 
 public class ProponentType extends AbstractForm {
@@ -38,9 +39,9 @@ public class ProponentType extends AbstractForm {
     private int fontSizeTitle = 40;
     private int fontSizeSubtitle = 12;
     private int gapBetweenButtons = 0;
-    private int roundedButtonGlobal = 15;
-    private  int minWidthFormulation = 380;
-    private  int minHeightFormulation = 410;
+    private int roundedButtonGlobal = CustomVariables.RADIO_DEFAULT_BUTTON;
+    private int minWidthFormulation = 380;
+    private int minHeightFormulation = 410;
     private RegisterActions actions;
 
     public ProponentType() {
@@ -63,7 +64,7 @@ public class ProponentType extends AbstractForm {
         this.actions = new RegisterActions();
         defaultWidth = minWidthFormulation;
         defaultHeigth = minHeightFormulation;
-        resizeRestore();
+        redimentionRestore();
     }
 
     private void createTitle() {
@@ -92,7 +93,7 @@ public class ProponentType extends AbstractForm {
         ArrayList<String> options = new ArrayList<>();
         options.add("Natural");
         options.add("Juridíco");
-        this.dropdown = new Dropdown("Tipo de persona");
+        this.dropdown = createDropdown("Tipo de persona", options);
         this.dropdown.setListElements(options);
         ImageAndComponent container = new ImageAndComponent(Env.PATH_ICON_USER, width, height, dropdown);
         addContent(container);
@@ -152,27 +153,23 @@ public class ProponentType extends AbstractForm {
         });
     }
 
-    private void resizeDropdown(int width, int height) {
-        this.dropdown.setPreferredSize(new Dimension(width, height));
-        this.dropdown.revalidate();
-        this.dropdown.repaint();
-    }
 
     private void resizeButtonLg() {
-        buttonBefore.setPreferredSize(new Dimension(150, 40));
-        buttonNext.setPreferredSize(new Dimension(150, 40));
+        Components.setRedimentionComponent(buttonBefore, 150, 40);
+        Components.setRedimentionComponent(buttonNext, 150, 40);
+
     }
 
     private void resizeButtonSm() {
-        buttonBefore.setPreferredSize(new Dimension(100, 40));
-        buttonNext.setPreferredSize(new Dimension(100, 40));
+        Components.setRedimentionComponent(buttonBefore, 100, 40);
+        Components.setRedimentionComponent(buttonNext, 100, 40);
 
     }
 
     @Override
     protected void configResizeLarge() {
         title.setFontSize(55);
-        resizeDropdown(375, heightDropdown + 5);
+        setRedimentionDropdowns(375, heightDropdown + 5);
         subTitle.setFontSize(14);
         resizeButtonLg();
 
@@ -182,7 +179,7 @@ public class ProponentType extends AbstractForm {
     protected void configResizeMedium() {
         title.setFontSize(fontSizeTitle);
         subTitle.setFontSize(fontSizeSubtitle);
-        resizeDropdown(265, heightDropdown + 3);
+        setRedimentionDropdowns(265, heightDropdown + 3);
         if (getWidth() > this.lowerLimit + 150 && getWidth() <= this.upperLimit) {
             resizeButtonLg();
         } else {
@@ -194,7 +191,7 @@ public class ProponentType extends AbstractForm {
     @Override
     protected void configResizeSmall() {
         title.setFontSize(fontSizeTitle);
-        resizeDropdown(widthDropdown, heightDropdown);
+        setRedimentionDropdowns(widthDropdown, heightDropdown);
         resizeButtonSm();
         subTitle.setFontSize(fontSizeSubtitle);
     }

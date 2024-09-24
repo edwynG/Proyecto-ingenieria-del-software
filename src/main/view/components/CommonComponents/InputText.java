@@ -1,4 +1,4 @@
-package main.view.components.CommonComponents;
+package main.view.components.commonComponents;
 
 import main.view.components.AbstractComponents.AbstractInputText;
 import main.view.utils.ColorPalette;

@@ -22,7 +22,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import main.Env;
-import main.view.components.CommonComponents.ScrollPaneWin11;
+import main.view.components.commonComponents.ScrollPaneWin11;
 import main.view.utils.ColorPalette;
 import main.view.utils.RoundedBorder;
 import raven.glasspanepopup.GlassPanePopup;

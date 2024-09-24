@@ -6,17 +6,18 @@ import main.view.Main;
 import main.view.components.InterfaceWithAppbar;
 import main.view.components.InterfaceWithoutAppbar;
 import main.view.components.loginComponents.Login;
+import main.view.utils.CustomVariables;
 
 public class RegisterActions {
 
     public void actionsOptionLogin() {
-        InterfaceWithoutAppbar.setFormulation(new Login(25));
+        InterfaceWithoutAppbar.setFormulation(new Login(CustomVariables.RADIO_DEFAULT_PANEL));
 
     }
 
     public void actionsButtonContinueRegister(String type) {
         if (type.toLowerCase().contains("proponente")) {
-            InterfaceWithoutAppbar.setFormulation(new ProponentType(25));
+            InterfaceWithoutAppbar.setFormulation(new ProponentType(CustomVariables.RADIO_DEFAULT_PANEL));
             return;
         }
         JOptionPane.showMessageDialog(Main.WINDOW, "Lo sentimos, opción no disponible.", "Administrador",
@@ -30,7 +31,7 @@ public class RegisterActions {
     }
 
     public void actionsButtonBefore() {
-        InterfaceWithoutAppbar.setFormulation(new Register(25));
+        InterfaceWithoutAppbar.setFormulation(new Register(CustomVariables.RADIO_DEFAULT_PANEL));
     }
 
     public void actionsButtonNext(String type) {

@@ -1,11 +1,13 @@
 package main.view.components.proponentComponents.Components;
 
 import main.view.components.AbstractComponents.AbstractForm;
-import main.view.components.CommonComponents.ButtonRounded;
-import main.view.components.CommonComponents.Dropdown;
-import main.view.components.CommonComponents.FileChooser;
-import main.view.components.CommonComponents.TextTitle;
-import main.view.components.CommonComponents.TransparentPanel;
+import main.view.components.commonComponents.ButtonRounded;
+import main.view.components.commonComponents.Dropdown;
+import main.view.components.commonComponents.FileChooser;
+import main.view.components.commonComponents.TextTitle;
+import main.view.components.commonComponents.TransparentPanel;
+import main.view.components.proponentComponents.InterfaceProponent;
+import main.view.utils.CustomVariables;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -36,8 +38,7 @@ public class CourseFormulation extends AbstractForm {
     private FileChooser fileChooserExecutionSchedule;
     private Dropdown ResponsibleUnit;
     private ButtonRounded button;
-    private ActionsProponent actions;
-    private int roundedButtonGlobal = 15;
+    private int roundedButtonGlobal = CustomVariables.RADIO_DEFAULT_BUTTON;
     private int inputwidthMid = 300;
     private int inputheigthMid = 40;
     private int inputwidthLarge = 360;
@@ -60,7 +61,6 @@ public class CourseFormulation extends AbstractForm {
     public void configCourseFormulation() {
         defaultWidth = 700;
         defaultHeigth = 600;
-        actions = new ActionsProponent();
         setPreferredSize(new Dimension(defaultWidth, defaultHeigth));
         containerTitle = new TransparentPanel() {
             @Override
@@ -199,7 +199,7 @@ public class CourseFormulation extends AbstractForm {
         formulationContentRight.add(container_9, gbc);
 
         setRedimentionFileChoosers(inputwidthMid, inputheigthMid);
-        setRedimentionDropdown(inputwidthMid, inputheigthMid);
+        setRedimentionDropdowns(inputwidthMid, inputheigthMid);
 
     }
 
@@ -219,7 +219,7 @@ public class CourseFormulation extends AbstractForm {
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                actions.actionsSubmitProposal();
+                InterfaceProponent.actions.actionsSubmitProposal();
             }
         });
     }
@@ -227,7 +227,7 @@ public class CourseFormulation extends AbstractForm {
     @Override
     protected void configResizeLarge() {
         setRedimentionFileChoosers(inputwidthLarge, inputheigthLarge);
-        setRedimentionDropdown(inputwidthLarge, inputheigthLarge);
+        setRedimentionDropdowns(inputwidthLarge, inputheigthLarge);
         setRedimentionPane(button, inputwidthLarge, inputheigthLarge);
         revalidate();
         repaint();
@@ -236,7 +236,7 @@ public class CourseFormulation extends AbstractForm {
     @Override
     protected void configResizeMedium() {
         setRedimentionFileChoosers(inputwidthMid, inputheigthMid);
-        setRedimentionDropdown(inputwidthMid, inputheigthMid);
+        setRedimentionDropdowns(inputwidthMid, inputheigthMid);
         setRedimentionPane(button, inputwidthMid, inputheigthMid);
 
         revalidate();

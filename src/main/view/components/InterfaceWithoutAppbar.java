@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 
 import main.view.components.AbstractComponents.AbstractForm;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
-import main.view.components.CommonComponents.TransparentPanel;
+import main.view.components.commonComponents.TransparentPanel;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -100,7 +100,7 @@ public class InterfaceWithoutAppbar extends AbstractPanelRounded {
         gbc.fill = GridBagConstraints.BASELINE;
 
         content.add(formulation, gbc);
-        formulation.resize(maxWidthFormulation, maxHeightFormulation);
+        formulation.setRedimention(maxWidthFormulation, maxHeightFormulation);
         formulation.setMinimumSize(new Dimension(minWidthFormulation, minHeightFormulation));
 
     }

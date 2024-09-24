@@ -4,7 +4,6 @@ import java.awt.Font;
 
 public abstract class AbstractText extends AbstractEffectText {
 
-
     public AbstractText(String string) {
         super(string);
         initAbtractText();
@@ -16,19 +15,22 @@ public abstract class AbstractText extends AbstractEffectText {
     }
 
     private void initAbtractText() {
-       
+
     }
 
     public void setFontSize(int size) {
-        setFont(new Font(config.getName(), config.getStyle(), size));
+        config = new Font(config.getName(), config.getStyle(), size);
+        setFont(config);
     }
 
     public void setFontWeight(int weight) {
-        setFont(new Font(config.getName(), weight, config.getSize()));
+        config = new Font(config.getName(), weight, config.getSize());
+        setFont(config);
     }
 
     public void setFontFamlily(String family) {
-        setFont(new Font(family, config.getStyle(), config.getSize()));
+        config = new Font(family, config.getStyle(), config.getSize());
+        setFont(config);
     }
 
     public String getText() {
@@ -39,7 +41,5 @@ public abstract class AbstractText extends AbstractEffectText {
         this.config = style;
         setFont(style);
     }
-
-
 
 }

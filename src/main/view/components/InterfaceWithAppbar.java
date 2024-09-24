@@ -9,14 +9,16 @@ import java.awt.event.ComponentEvent;
 import main.Env;
 import main.view.Main;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
-import main.view.components.CommonComponents.AppBar;
-import main.view.components.CommonComponents.TransparentPanel;
+import main.view.components.commonComponents.AppBar;
+import main.view.components.commonComponents.TransparentPanel;
 import main.view.components.loginComponents.Login;
 import main.view.components.proponentComponents.InterfaceProponent;
 import main.view.components.registerComponents.LegalProponent;
 import main.view.components.registerComponents.NaturalProponent;
 import main.view.components.registerComponents.ProponentType;
 import main.view.utils.ColorPalette;
+import main.view.utils.Components;
+import main.view.utils.CustomVariables;
 
 public class InterfaceWithAppbar extends AbstractPanelRounded {
     private AppBar appBar;
@@ -47,19 +49,24 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
             @Override
             public void actionsIconLogOut() {
                 Main.setContent(new InterfaceWithoutAppbar(Env.PATH_IMAGE_MAIN));
-                InterfaceWithoutAppbar.setFormulation(new Login(25));
+                InterfaceWithoutAppbar.setFormulation(new Login(CustomVariables.RADIO_DEFAULT_PANEL));
 
             }
 
             @Override
             public void actionsIconBackTypeProponent() {
                 Main.setContent(new InterfaceWithoutAppbar(Env.PATH_IMAGE_MAIN));
-                InterfaceWithoutAppbar.setFormulation(new ProponentType(25));
+                InterfaceWithoutAppbar.setFormulation(new ProponentType(CustomVariables.RADIO_DEFAULT_PANEL));
             }
 
             @Override
             public void actionsIconHome() {
                 ProponentDesing.createMyCourseHome();
+            }
+
+            @Override
+            public void actionsIconUser() {
+                ProponentDesing.createProposingFile();
             }
         };
 
@@ -71,7 +78,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
     public void createFormulationNatural() {
         cleanContent();
         appBar.createNavRegister();
-        NaturalProponent naturalPerson = new NaturalProponent(25);
+        NaturalProponent naturalPerson = new NaturalProponent(CustomVariables.RADIO_DEFAULT_PANEL);
         content.add(naturalPerson);
 
         int width = 1100;
@@ -80,10 +87,10 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
             @Override
             public void componentResized(ComponentEvent e) {
                 if (getWidth() > width && getHeight() > heigth) {
-                    naturalPerson.resize(500, 600);
+                    naturalPerson.setRedimention(500, 600);
 
                 } else {
-                    naturalPerson.resizeRestore();
+                    naturalPerson.redimentionRestore();
 
                 }
             }
@@ -94,7 +101,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
     public void createFormulationJuridico() {
         cleanContent();
         appBar.createNavRegister();
-        LegalProponent legalPerson = new LegalProponent(25);
+        LegalProponent legalPerson = new LegalProponent(CustomVariables.RADIO_DEFAULT_PANEL);
         content.add(legalPerson);
 
         int width = 1100;
@@ -103,10 +110,10 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
             @Override
             public void componentResized(ComponentEvent e) {
                 if (getWidth() > width && getHeight() > heigth) {
-                    legalPerson.resize(1024, 560);
+                    legalPerson.setRedimention(1024, 560);
 
                 } else {
-                    legalPerson.resizeRestore();
+                    legalPerson.redimentionRestore();
 
                 }
             }
@@ -116,7 +123,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
     public void createInterfaceProponent() {
         cleanContent();
         appBar.createNavProponent();
-        ProponentDesing = new InterfaceProponent(25);
+        ProponentDesing = new InterfaceProponent(CustomVariables.RADIO_DEFAULT_PANEL);
         content.add(ProponentDesing);
 
         int width = 920;
@@ -126,22 +133,22 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
             @Override
             public void componentResized(ComponentEvent e) {
                 if (getWidth() > width && getHeight() > heigth) {
-                    ProponentDesing.resize(1024, 560);
+                    ProponentDesing.setRedimention(1024, 560);
 
                 } else {
-                    ProponentDesing.restoreResizeTemp();
+                    ProponentDesing.redimentionRestoreTemp();
                 }
             }
         });
-        
+
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 if (getWidth() > width && getHeight() > heigth) {
-                    ProponentDesing.resize(1024, 560);
+                    ProponentDesing.setRedimention(1024, 560);
 
                 } else {
-                    ProponentDesing.restoreResizeTemp();
+                    ProponentDesing.redimentionRestoreTemp();
                 }
             }
         });
@@ -149,9 +156,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
     }
 
     public static void cleanContent() {
-        content.removeAll();
-        content.revalidate();
-        content.repaint();
+        Components.removeElementAll(content);
     }
 
     @Override

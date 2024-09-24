@@ -14,15 +14,16 @@ import javax.swing.SwingConstants;
 
 import main.Env;
 import main.view.components.AbstractComponents.AbstractForm;
+import main.view.components.commonComponents.ButtonRounded;
+import main.view.components.commonComponents.ImageAndComponent;
+import main.view.components.commonComponents.InputPassword;
+import main.view.components.commonComponents.InputText;
+import main.view.components.commonComponents.TextOption;
+import main.view.components.commonComponents.TextSubtitle;
+import main.view.components.commonComponents.TextTitle;
+import main.view.components.commonComponents.TransparentPanel;
 import main.view.components.AbstractComponents.AbstractButtonRounded;
-import main.view.components.CommonComponents.ButtonRounded;
-import main.view.components.CommonComponents.ImageAndComponent;
-import main.view.components.CommonComponents.InputPassword;
-import main.view.components.CommonComponents.InputText;
-import main.view.components.CommonComponents.TextOption;
-import main.view.components.CommonComponents.TextSubtitle;
-import main.view.components.CommonComponents.TextTitle;
-import main.view.components.CommonComponents.TransparentPanel;
+import main.view.utils.CustomVariables;
 
 public class Login extends AbstractForm {
     // Componentes
@@ -36,7 +37,7 @@ public class Login extends AbstractForm {
     private TextOption optionRegister;
 
     // Estilos globales
-    private int roundedButtonGlobal = 15;
+    private int roundedButtonGlobal = CustomVariables.RADIO_DEFAULT_BUTTON;
     private int fontSizeTitle = 40;
     private int fontSizeSubTitle = 12;
     private int fontSizeOptionPassword = 11;
@@ -70,9 +71,7 @@ public class Login extends AbstractForm {
         this.actions = new LoginActions();
         defaultWidth = minWidthFormulation;
         defaultHeigth = minHeightFormulation;
-        resizeRestore();
-        resizeRestore();
-
+        redimentionRestore();
     }
 
     private void createTitle() {

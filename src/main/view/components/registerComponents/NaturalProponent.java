@@ -9,11 +9,12 @@ import javax.swing.Box;
 import javax.swing.SwingConstants;
 
 import main.view.components.AbstractComponents.AbstractForm;
-import main.view.components.CommonComponents.ButtonRounded;
-import main.view.components.CommonComponents.FileChooser;
-import main.view.components.CommonComponents.InputText;
-import main.view.components.CommonComponents.TextTitle;
-import main.view.components.CommonComponents.TransparentPanel;
+import main.view.components.commonComponents.ButtonRounded;
+import main.view.components.commonComponents.FileChooser;
+import main.view.components.commonComponents.InputText;
+import main.view.components.commonComponents.TextTitle;
+import main.view.components.commonComponents.TransparentPanel;
+import main.view.utils.CustomVariables;
 
 public class NaturalProponent extends AbstractForm {
 
@@ -25,7 +26,7 @@ public class NaturalProponent extends AbstractForm {
     private FileChooser fileChooserDegree;
     private ButtonRounded button;
 
-    private int roundedButtonGlobal = 15;
+    private int roundedButtonGlobal = CustomVariables.RADIO_DEFAULT_BUTTON;
     private int heightButton = 43;
     private int columnsInputDefault = 28;
     private RegisterActions actions;

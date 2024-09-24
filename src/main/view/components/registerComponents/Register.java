@@ -1,6 +1,5 @@
 package main.view.components.registerComponents;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -16,16 +15,17 @@ import javax.swing.SwingConstants;
 
 import main.Env;
 import main.view.components.AbstractComponents.AbstractForm;
-
-import main.view.components.CommonComponents.ButtonRounded;
-import main.view.components.CommonComponents.CardMessage;
-import main.view.components.CommonComponents.Dropdown;
-import main.view.components.CommonComponents.ImageAndComponent;
-import main.view.components.CommonComponents.InputPassword;
-import main.view.components.CommonComponents.InputText;
-import main.view.components.CommonComponents.TextOption;
-import main.view.components.CommonComponents.TextTitle;
-import main.view.components.CommonComponents.TransparentPanel;
+import main.view.components.commonComponents.ButtonRounded;
+import main.view.components.commonComponents.CardMessage;
+import main.view.components.commonComponents.Dropdown;
+import main.view.components.commonComponents.ImageAndComponent;
+import main.view.components.commonComponents.InputPassword;
+import main.view.components.commonComponents.InputText;
+import main.view.components.commonComponents.TextOption;
+import main.view.components.commonComponents.TextTitle;
+import main.view.components.commonComponents.TransparentPanel;
+import main.view.utils.Components;
+import main.view.utils.CustomVariables;
 import raven.glasspanepopup.GlassPanePopup;
 
 public class Register extends AbstractForm {
@@ -37,12 +37,12 @@ public class Register extends AbstractForm {
     private ButtonRounded button;
     private TextTitle title;
     private TextOption optionLogin;
-    private  int minWidthFormulation = 380;
-    private  int minHeightFormulation = 410;
+    private int minWidthFormulation = 380;
+    private int minHeightFormulation = 410;
     // Estilos globales
     private int fontSizeTitle = 40;
     private int fontSizeOptionLogin = 11;
-    private int roundedButtonGlobal = 15;
+    private int roundedButtonGlobal = CustomVariables.RADIO_DEFAULT_BUTTON;
     private int columnsInputStandard = 20;
     private int widthDropdown = 218;
     private int heightDropdown = 40;
@@ -71,7 +71,7 @@ public class Register extends AbstractForm {
         this.actions = new RegisterActions();
         defaultWidth = minWidthFormulation;
         defaultHeigth = minHeightFormulation;
-        resizeRestore();
+        redimentionRestore();
 
     }
 
@@ -185,9 +185,8 @@ public class Register extends AbstractForm {
     };
 
     private void resizeDropdown(int width, int height) {
-        this.dropdown.setPreferredSize(new Dimension(width, height));
-        this.dropdown.revalidate();
-        this.dropdown.repaint();
+        Components.setRedimentionComponent(dropdown, width, height);
+
     }
 
     @Override

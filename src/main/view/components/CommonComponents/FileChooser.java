@@ -1,4 +1,4 @@
-package main.view.components.CommonComponents;
+package main.view.components.commonComponents;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -7,6 +7,7 @@ import java.awt.Color;
 import main.Env;
 import main.view.components.AbstractComponents.AbstractFileChooser;
 import main.view.utils.ColorPalette;
+import main.view.utils.Components;
 import main.view.utils.RoundedBorder;
 
 public class FileChooser extends AbstractFileChooser {
@@ -31,8 +32,7 @@ public class FileChooser extends AbstractFileChooser {
     public void initFileChooser() {
         setPreferredSize(new Dimension(this.width, this.height));
         setBackground(ColorPalette.TRANSPARENT);
-        borde = new RoundedBorder(this.roundedFileChooserGlobal);
-        borde.setBorderColor(ColorPalette.COLOR_FIELD);
+        borde = Components.customrBorder(roundedFileChooserGlobal, ColorPalette.COLOR_FIELD);
         setBorder(borde);
         this.textColor = ColorPalette.COLOR_FIELD;
         setColorText(textColor);
@@ -50,7 +50,7 @@ public class FileChooser extends AbstractFileChooser {
 
     @Override
     protected void DisapprovedFile() {
-        setBorder(new RoundedBorder(this.roundedDefault, ColorPalette.TRANSPARENT, Color.red));
+        setBorder(Components.customrBorder(roundedDefault,Color.red));
         text.setForeground(Color.red);
         setIcon(Env.PATH_ICON_ERROR);
     }
