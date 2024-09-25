@@ -191,7 +191,7 @@ public class Register extends AbstractForm {
 
     @Override
     protected void configResizeLarge() {
-        int lgColum = 33;
+        int lgColum = 34;
         int lgRow = 45;
         for (JTextField input : getInputList()) {
             setRedimentionFields(input, lgColum, lgRow);
@@ -202,7 +202,7 @@ public class Register extends AbstractForm {
 
     @Override
     protected void configResizeMedium() {
-        int smRow = 36;
+        int smRow = 37;
         int midColum = 24;
 
         for (JTextField input : getInputList()) {
@@ -215,7 +215,7 @@ public class Register extends AbstractForm {
     @Override
     protected void configResizeSmall() {
         int smColum = columnsInputStandard;
-        int smRow = 36;
+        int smRow = 37;
 
         for (JTextField input : getInputList()) {
             setRedimentionFields(input, smColum, smRow);

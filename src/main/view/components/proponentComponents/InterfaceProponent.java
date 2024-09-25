@@ -19,7 +19,7 @@ import java.awt.GridBagConstraints;
 public class InterfaceProponent extends AbstractPanelRounded {
     private static TransparentPanel content;
     public static ActionsProponent actions;
-    private int width = 800;
+    private int width = 870;
     private int height = 470;
     int widthTemp;
     int heigthTemp;
@@ -62,7 +62,8 @@ public class InterfaceProponent extends AbstractPanelRounded {
 
     public void createCourseFormulation() {
         restoreContent();
-        widthTemp = 800;
+        redimentionRestore();
+        widthTemp = width;
         heigthTemp = 520;
         setRedimention(widthTemp, heigthTemp);
         content.setLayout(new GridBagLayout());
@@ -95,7 +96,7 @@ public class InterfaceProponent extends AbstractPanelRounded {
 
     public void createProposingFile() {
         restoreContent();
-        widthTemp = 900;
+        widthTemp = 870;
         heigthTemp = height;
         setRedimention(widthTemp, heigthTemp);
         content.setLayout(new GridBagLayout());

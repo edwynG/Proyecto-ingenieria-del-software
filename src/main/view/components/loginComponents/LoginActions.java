@@ -24,6 +24,6 @@ public class LoginActions {
         InterfaceWithAppbar home = new InterfaceWithAppbar();
         home.createInterfaceProponent();
         Main.setContent(home);
-        
+
     }
 }

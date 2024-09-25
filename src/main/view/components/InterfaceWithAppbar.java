@@ -9,6 +9,7 @@ import java.awt.event.ComponentEvent;
 import main.Env;
 import main.view.Main;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
+import main.view.components.administratorComponents.InterfaceAdministrator;
 import main.view.components.commonComponents.AppBar;
 import main.view.components.commonComponents.TransparentPanel;
 import main.view.components.loginComponents.Login;
@@ -23,6 +24,7 @@ import main.view.utils.CustomVariables;
 public class InterfaceWithAppbar extends AbstractPanelRounded {
     private AppBar appBar;
     public static InterfaceProponent ProponentDesing;
+    public static InterfaceAdministrator AdministratorDesing;
     private static TransparentPanel content;
 
     public InterfaceWithAppbar() {
@@ -110,7 +112,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
             @Override
             public void componentResized(ComponentEvent e) {
                 if (getWidth() > width && getHeight() > heigth) {
-                    legalPerson.setRedimention(1024, 560);
+                    legalPerson.setRedimention(900, 500);
 
                 } else {
                     legalPerson.redimentionRestore();
@@ -118,6 +120,41 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
                 }
             }
         });
+    }
+
+    public void createInterfaceAdministrator() {
+        cleanContent();
+        appBar.createNavAdministrator();
+        AdministratorDesing = new InterfaceAdministrator(CustomVariables.RADIO_DEFAULT_PANEL);
+        content.add(AdministratorDesing);
+
+        int width = 920;
+        int heigth = 800;
+
+        AdministratorDesing.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if (getWidth() > width && getHeight() > heigth) {
+                    AdministratorDesing.setRedimention(1024, 560);
+
+                } else {
+                    AdministratorDesing.redimentionRestoreTemp();
+                }
+            }
+        });
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if (getWidth() > width && getHeight() > heigth) {
+                    AdministratorDesing.setRedimention(1024, 560);
+
+                } else {
+                    AdministratorDesing.redimentionRestoreTemp();
+                }
+            }
+        });
+
     }
 
     public void createInterfaceProponent() {
@@ -152,7 +189,6 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
                 }
             }
         });
-
     }
 
     public static void cleanContent() {

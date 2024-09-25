@@ -197,9 +197,8 @@ public class AppBar extends AbstractPanelRounded {
     }
 
     private void cleanNavContent() {
-        navContent.removeAll();
-        navContent.revalidate();
-        navContent.repaint();
+        Components.removeElementAll(navContent);
+
     }
 
     public void actionsIconHome() {
