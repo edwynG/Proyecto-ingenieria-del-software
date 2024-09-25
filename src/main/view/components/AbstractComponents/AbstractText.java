@@ -33,10 +33,7 @@ public abstract class AbstractText extends AbstractEffectText {
         setFont(config);
     }
 
-    public String getText() {
-        return this.text;
-    }
-
+    
     public void setConfig(Font style) {
         this.config = style;
         setFont(style);

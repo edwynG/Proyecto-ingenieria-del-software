@@ -34,7 +34,7 @@ public class ItemTableCourseWithAval extends AbstractPanelRounded {
     private void initItemTableCourseWithAval() {
         configItemTableCourseWithAval();
         configText();
-        createButton();
+        createComponents();
     }
 
     private void configItemTableCourseWithAval() {
@@ -63,7 +63,7 @@ public class ItemTableCourseWithAval extends AbstractPanelRounded {
 
     }
 
-    private void createButton() {
+    private void createComponents() {
         int width = 40;
         int height = 40;
         Schedule = new FileChooser("Cronograma de ejecución") {
@@ -114,7 +114,11 @@ public class ItemTableCourseWithAval extends AbstractPanelRounded {
         gbc.gridx = 2;
         gbc.gridy = 0;
         add(costosContainer, gbc);
+        actionsComponents();
 
+    }
+
+    private void actionsComponents() {
         Schedule.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -130,8 +134,9 @@ public class ItemTableCourseWithAval extends AbstractPanelRounded {
 
             }
         });
-
     }
+
+    
 
     @Override
     public Insets getInsets() {

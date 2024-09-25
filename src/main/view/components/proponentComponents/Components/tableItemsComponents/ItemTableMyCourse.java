@@ -36,7 +36,7 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
     private void initItemTableMyCourse() {
         configItemTableMyCourse();
         configText();
-        createButton();
+        createComponents();
     }
 
     private void configItemTableMyCourse() {
@@ -53,7 +53,6 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
 
     private void configText() {
         TransparentPanel centerType = new TransparentPanel();
-
         TransparentPanel containerName = new TransparentPanel();
         containerName.setLayout(new BorderLayout());
         containerName.add(name, BorderLayout.WEST);
@@ -65,7 +64,7 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
         type.setForeground(ColorPalette.COLOR_HOVER);
         centerType.setLayout(new BorderLayout());
 
-        centerType.add(type,BorderLayout.CENTER);
+        centerType.add(type, BorderLayout.CENTER);
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(containerName, gbc);
@@ -74,7 +73,7 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
         add(centerType, gbc);
     }
 
-    private void createButton() {
+    private void createComponents() {
         buttonDetails = new ButtonRounded("Ver más " + id, CustomVariables.RADIO_DEFAULT_BUTTON);
         Components.setRedimentionComponent(buttonDetails, 100, 40);
         TransparentPanel center = new TransparentPanel();
@@ -86,6 +85,11 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
         gbc.gridx = 3;
         gbc.gridy = 0;
         add(east, gbc);
+        actionsComponents();
+
+    }
+
+    private void actionsComponents() {
 
         buttonDetails.addMouseListener(new MouseAdapter() {
             @Override
@@ -93,6 +97,7 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
                 InterfaceProponent.actions.actionsButtonViewMore();
             }
         });
+
     }
 
     @Override

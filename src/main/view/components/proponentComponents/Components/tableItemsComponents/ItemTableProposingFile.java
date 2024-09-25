@@ -11,7 +11,6 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.BorderLayout;
-import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -24,7 +23,6 @@ public class ItemTableProposingFile extends AbstractPanelRounded {
     private FileChooser LetterOfCommitment;
     private TextSubtitle Status;
     private int id;
-    GridBagConstraints gbc;
 
     public ItemTableProposingFile(String name, int id) {
         super(0);
@@ -36,7 +34,7 @@ public class ItemTableProposingFile extends AbstractPanelRounded {
     private void initItemTableProposingFile() {
         configItemTableCourseWithAval();
         configText();
-        createButton();
+        createComponents();
     }
 
     private void configItemTableCourseWithAval() {
@@ -47,19 +45,17 @@ public class ItemTableProposingFile extends AbstractPanelRounded {
     }
 
     private void configText() {
-
         TransparentPanel containerName = new TransparentPanel();
         containerName.setLayout(new GridBagLayout());
         containerName.add(name);
         Components.setRedimentionComponent(name, 159, 40);
-
         name.setFont(new Font("Arial", Font.BOLD, 15));
         name.setForeground(ColorPalette.COLOR_HOVER);
         add(containerName, BorderLayout.WEST);
 
     }
 
-    private void createButton() {
+    private void createComponents() {
         int width = 40;
         int height = 40;
         LetterOfIntent = new FileChooser("Carta de inteción") {
@@ -114,6 +110,10 @@ public class ItemTableProposingFile extends AbstractPanelRounded {
         containerCenter.add(containerLetterOfCommitment);
         add(containerCenter, BorderLayout.CENTER);
 
+        actionsComponents();
+    }
+
+    private void actionsComponents() {
         LetterOfIntent.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

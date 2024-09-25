@@ -11,21 +11,20 @@ import javax.swing.JLabel;
 
 
 public class AbstractEffectText extends JLabel {
-    protected String text;
+
     protected Font config;
 
     public AbstractEffectText(String string) {
         super(string);
-        initAbstractEffectText(string);
+        initAbstractEffectText();
     }
 
     public AbstractEffectText(String string, int position){
         super(string,position);
-        initAbstractEffectText(string);
+        initAbstractEffectText();
     }
 
-    private void initAbstractEffectText(String string) {
-        this.text=string;
+    private void initAbstractEffectText() {
         this.config = new Font("Arial", Font.PLAIN, 15);
         setFont(config);
     }

@@ -51,8 +51,9 @@ public class Main extends JFrame {
         setLocationRelativeTo(null);
 
         // Configuración de los paneles principales
-        this.configContentWindow(WINDOW); // Contenedor de la App
-        this.configContent(content); // Contenido de la ventana
+        this.configContentWindow(WINDOW);
+        this.configContentInitial(content); 
+        System.out.println("Bienvenido a course stack!!");
 
     }
 
@@ -62,7 +63,7 @@ public class Main extends JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(Env.PATH_ICON_WINDOW));
     }
 
-    private void configContent(JPanel panel) {
+    private void configContentInitial(JPanel panel) {
         panel.setLayout(new BorderLayout());
         InterfaceWithoutAppbar desing = new InterfaceWithoutAppbar(Env.PATH_IMAGE_MAIN);
         InterfaceWithoutAppbar.setFormulation(new Login(CustomVariables.RADIO_DEFAULT_PANEL));

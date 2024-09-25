@@ -191,6 +191,10 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
 
     }
 
+    public JList<String> getOptionList() {
+        return options;
+    }
+
     @Override
     public Insets getInsets() {
         return new Insets(10, 10, 10, 10);

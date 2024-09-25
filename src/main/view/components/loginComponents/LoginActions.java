@@ -22,7 +22,7 @@ public class LoginActions {
 
     public void actionsButtonLogin(String email, String passwonrd) {
         InterfaceWithAppbar home = new InterfaceWithAppbar();
-        home.createInterfaceProponent();
+        home.createInterfaceAdministrator();
         Main.setContent(home);
 
     }
