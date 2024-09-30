@@ -91,8 +91,8 @@ public class ProponentType extends AbstractForm {
         int width = 41;
         int marginBottom = 20;
         ArrayList<String> options = new ArrayList<>();
-        options.add("Natural");
-        options.add("Juridíco");
+        options.add(Env.TYPE_USER_PROPONENT_NATURAL);
+        options.add(Env.TYPE_USER_PROPONENT_LEGAL);
         this.dropdown = createDropdown("Tipo de persona", options);
         this.dropdown.setListElements(options);
         ImageAndComponent container = new ImageAndComponent(Env.PATH_ICON_USER, width, height, dropdown);

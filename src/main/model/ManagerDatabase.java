@@ -38,8 +38,8 @@ public class ManagerDatabase {
       return false;
    }
 
-   public List<List<String>> getData(String query) {
-      List<List<String>> arrayRegister = new ArrayList<>();
+   public ArrayList<ArrayList<String>> getData(String query) {
+      ArrayList<ArrayList<String>> arrayRegister = new ArrayList<>();
 
       if (!this.queryStartWith(query, Arrays.asList("SELECT"))) {
          return arrayRegister;
@@ -55,7 +55,7 @@ public class ManagerDatabase {
          int columnCount = result.getMetaData().getColumnCount();
 
          while (result.next()) {
-            List<String> register = new ArrayList<>();
+            ArrayList<String> register = new ArrayList<>();
             for (int i = 1; i <= columnCount; i++) {
                register.add(result.getString(i));
             }
@@ -173,15 +173,15 @@ public class ManagerDatabase {
    }
 
    public boolean isThereDataInTheQuery(String query) {
-      List<List<String>> arrayRegister = new ArrayList<>();
+      ArrayList<ArrayList<String>> arrayRegister = new ArrayList<>();
       arrayRegister = this.getData(query);
       if (arrayRegister.isEmpty())
          return false;
       return true;
    }
 
-   public List<String> getNameFields(String table){
-      List<String> nameFields = new ArrayList<>();
+   public ArrayList<String> getNameFields(String table) {
+      ArrayList<String> nameFields = new ArrayList<>();
 
       Connection conn = this.db.openConnection();
       Statement statement = null;

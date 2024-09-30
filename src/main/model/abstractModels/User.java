@@ -7,44 +7,85 @@ import main.model.Proposal;
 
 public abstract class User {
     private String user;
-    private int id; 
+    private Integer id;
     protected String typeUser;
     protected String type;
     private String password;
     private List<Proposal> proposals;
-    
-    public User(int id, String user,String password, String typeUser){
-        this.user=user;
-        this.id=id;
-        this.typeUser=typeUser;
-        this.password=password;
-        this.proposals = new ArrayList<>();
-    }
-    
-    public String getUser(){
-        return this.user;
+
+    public User() {
+        initUser();
     }
 
-    public int getId(){
-        return this.id;
+    public User(int id, String user, String password, String typeUser) {
+        this.user = user;
+        this.id = id;
+        this.typeUser = typeUser;
+        this.password = password;
+        initUser();
     }
 
-    public String getTypeUser(){
-        return this.typeUser;
+    private void initUser() {
+        proposals = new ArrayList<>();
+
     }
 
-    public String getPassword(){
-        return this.password;
+    @Override
+    public String toString() {
+        return (String.format("User(id=%s,user=%s,password=%s,type=%s,typeUser=%s)", Integer.toString(id), user,
+                password, type, typeUser));
     }
 
-    public List<Proposal> getProposals(){
-        return this.proposals;
+    public String getUser() {
+        return user;
     }
 
-    public String getType(){
-        return this.type;
+    public int getId() {
+        return id;
     }
 
-    public abstract void refreshListOfProposals();
-    
+    public String getTypeUser() {
+        return typeUser;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public List<Proposal> getProposals() {
+        return proposals;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public void setTypeUser(String typeUser) {
+        this.typeUser = typeUser;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setProposals(List<Proposal> proposals) {
+        this.proposals = proposals;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void refreshListOfProposals() {
+        return;
+    };
+
 }

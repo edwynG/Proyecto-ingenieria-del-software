@@ -1,5 +1,6 @@
 package main.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,8 +10,12 @@ import main.model.abstractModels.User;
 
 public class Administrator extends User {
     
+    public Administrator(){
+
+    }
+
     public Administrator(int id, String user,String password, String type){
-        super(id, user, password, "Administrador");
+        super(id, user, password, Env.TYPE_USER_ADMINISTRADOR);
         this.type= type;
         this.refreshListOfProposals();
 
@@ -21,7 +26,7 @@ public class Administrator extends User {
     public void refreshListOfProposals() {
         this.getProposals().clear();
         ManagerDatabase db = ManagerDatabase.getManagerDatabase();
-        List<List<String>> proposals = db.getData(String.format(Env.QUERY_PROPOSAL_ADMINISTRADOR,this.getType()));
+        ArrayList<ArrayList<String>> proposals = db.getData(String.format(Env.QUERY_PROPOSAL_ADMINISTRADOR,this.getType()));
         List<String> namefields = db.getNameFields("Propuestas");
         Map<String, String> proposal = new HashMap<>();
 

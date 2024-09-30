@@ -2,6 +2,8 @@ package main.view.components.registerComponents;
 
 import javax.swing.JOptionPane;
 
+import main.Env;
+import main.controller.RegisterControl;
 import main.view.Main;
 import main.view.components.InterfaceWithAppbar;
 import main.view.components.InterfaceWithoutAppbar;
@@ -9,6 +11,7 @@ import main.view.components.loginComponents.Login;
 import main.view.utils.CustomVariables;
 
 public class RegisterActions {
+    RegisterControl control = new RegisterControl();
 
     public void actionsOptionLogin() {
         InterfaceWithoutAppbar.setFormulation(new Login(CustomVariables.RADIO_DEFAULT_PANEL));
@@ -36,11 +39,13 @@ public class RegisterActions {
 
     public void actionsButtonNext(String type) {
         InterfaceWithAppbar UI = new InterfaceWithAppbar();
-        if (type.toLowerCase().contains("natural")) {
+        if (type.equals(Env.TYPE_USER_PROPONENT_NATURAL)) {
+            control.getUser().setType(Env.TYPE_USER_PROPONENT_NATURAL);
             UI.createFormulationNatural();
             Main.setContent(UI);
             return;
         }
+        control.getUser().setType(Env.TYPE_USER_PROPONENT_LEGAL);
         UI.createFormulationJuridico();
         Main.setContent(UI);
 
