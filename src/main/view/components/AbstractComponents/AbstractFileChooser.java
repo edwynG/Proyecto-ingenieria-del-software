@@ -27,8 +27,8 @@ public class AbstractFileChooser extends AbstractPanelRounded {
     protected JLabel imagen;
     protected final int WIDTH_ICON = 25;
     protected final int HEIGHT_ICON = 25;
-    protected  int width_icon = 25;    
-    protected  int height_icon = 25;
+    protected int width_icon = 25;
+    protected int height_icon = 25;
     protected HashMap<String, String> filterExtension;
     private String path = "";
     protected final String ICON_DEFAULD = Env.PATH_ICON_UPLOAD;
@@ -38,31 +38,31 @@ public class AbstractFileChooser extends AbstractPanelRounded {
     private String optionUpload = "Upload";
 
     public AbstractFileChooser(String text) {
-        this.title = text;
+        title = text;
         initAbstractFileChooser();
     }
 
     public AbstractFileChooser(String text, int rounded) {
         super(rounded);
-        this.title = text;
+        title = text;
         initAbstractFileChooser();
 
     }
 
     private void initAbstractFileChooser() {
-        this.text = new JLabel(this.title);
-        this.imagen = new JLabel();
-        this.imagen.setIcon(createIcon(WIDTH_ICON,HEIGHT_ICON));
-        this.filterExtension = new HashMap<>();
+        text = new JLabel(title);
+        imagen = new JLabel();
+        imagen.setIcon(createIcon(WIDTH_ICON, HEIGHT_ICON));
+        filterExtension = new HashMap<>();
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         setLayout(new BorderLayout());
-        add(this.text, BorderLayout.CENTER);
-        add(this.imagen, BorderLayout.EAST);
-        this.actionsAbstractFileChooser();
+        add(text, BorderLayout.CENTER);
+        add(imagen, BorderLayout.EAST);
+        actionsAbstractFileChooser();
     }
 
-    private ImageIcon createIcon(int width,int height) {
-        ImageIcon src = new ImageIcon(this.getIcon());
+    private ImageIcon createIcon(int width, int height) {
+        ImageIcon src = new ImageIcon(getIcon());
         Image img = src.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(img);
     }
@@ -99,6 +99,7 @@ public class AbstractFileChooser extends AbstractPanelRounded {
 
     private void methodUpload() {
         JFileChooser fileChooser = new JFileChooser();
+        path = null;
         fileChooser.setDialogTitle(title);
         for (String filter : filterExtension.keySet()) {
             fileChooser
@@ -124,7 +125,7 @@ public class AbstractFileChooser extends AbstractPanelRounded {
     }
 
     private boolean isFileExtensionValid(File selection) {
-        if (this.filterExtension.isEmpty())
+        if (filterExtension.isEmpty())
             return true;
 
         for (String element : filterExtension.values()) {
@@ -144,39 +145,39 @@ public class AbstractFileChooser extends AbstractPanelRounded {
     }
 
     public void setListFilerExtension(HashMap<String, String> filter) {
-        this.filterExtension = filter;
+        filterExtension = filter;
     }
 
     public void setIcon(String src) {
-        this.icon = src;
-        this.imagen.setIcon(this.createIcon(width_icon,height_icon));
-        this.imagen.revalidate();
-        this.imagen.repaint();
+        icon = src;
+        imagen.setIcon(createIcon(width_icon, height_icon));
+        imagen.revalidate();
+        imagen.repaint();
     }
 
-    public void setRedimentionIcon(int width, int height){
+    public void setRedimentionIcon(int width, int height) {
         width_icon = width;
         height_icon = height;
         setIcon(icon);
     }
 
     public void setColorText(Color color) {
-        this.text.setForeground(color);
+        text.setForeground(color);
     }
 
     public void setFontSizeText(int size) {
-        Font font = this.text.getFont();
-        this.text.setFont(new Font(font.getName(), font.getStyle(), size));
+        Font font = text.getFont();
+        text.setFont(new Font(font.getName(), font.getStyle(), size));
     }
 
     public void setFontFamilyText(String family) {
-        Font font = this.text.getFont();
-        this.text.setFont(new Font(family, font.getStyle(), font.getSize()));
+        Font font = text.getFont();
+        text.setFont(new Font(family, font.getStyle(), font.getSize()));
     }
 
     public void setFontWeight(int weight) {
-        Font font = this.text.getFont();
-        this.text.setFont(new Font(font.getName(), weight, font.getSize()));
+        Font font = text.getFont();
+        text.setFont(new Font(font.getName(), weight, font.getSize()));
     }
 
     public String getIcon() {
@@ -188,7 +189,7 @@ public class AbstractFileChooser extends AbstractPanelRounded {
     }
 
     public String getPath() {
-        return this.path;
+        return path;
     }
 
     public String getOptionFilechooser() {
@@ -208,21 +209,21 @@ public class AbstractFileChooser extends AbstractPanelRounded {
     public void NotVisibleText() {
         Components.removeElementAll(this);
         setLayout(new GridBagLayout());
-        add(this.imagen);
+        add(imagen);
 
     };
 
     public void NotVisibleIcon() {
         Components.removeElementAll(this);
         setLayout(new GridBagLayout());
-        add(this.text);
+        add(text);
     };
 
     public void visibleComponents() {
         Components.removeElementAll(this);
         setLayout(new BorderLayout());
-        add(this.text, BorderLayout.CENTER);
-        add(this.imagen, BorderLayout.EAST);
+        add(text, BorderLayout.CENTER);
+        add(imagen, BorderLayout.EAST);
     };
 
     @Override

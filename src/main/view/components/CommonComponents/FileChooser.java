@@ -38,7 +38,8 @@ public class FileChooser extends AbstractFileChooser {
         setColorText(textColor);
         setRoundedBorder(this.roundedFileChooserGlobal);
         text.setFont(new Font(this.fontFamilyGlobal, Font.PLAIN, this.fontSizeTitle));
-        filterExtension.put("Archivo PDF", ".pdf");
+        filterExtension.put("Archivo TXT", ".txt");
+
     }
 
     @Override

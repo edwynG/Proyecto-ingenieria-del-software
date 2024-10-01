@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import main.view.utils.ColorPalette;
+import main.view.utils.Components;
 
 public abstract class AbstractButtonRounded extends AbstractPanelRounded {
     private JLabel text;
@@ -62,5 +63,9 @@ public abstract class AbstractButtonRounded extends AbstractPanelRounded {
         this.text.setFont(new Font(font.getName(), weight, font.getSize()));
     }
 
+    public void setText(String str){
+        text.setText(str);
+        Components.repaintComponent(text);
+    }
     
 }

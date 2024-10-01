@@ -16,7 +16,7 @@ public class TransformFileBinary {
             byte[] filebytes = readFileAsBytes(path);
             // Convierte el arreglo de bytes en a base64
             base64 = convertBytesToBase64(filebytes);
-            return base64;
+            return base64.trim().replaceAll("\\s+", "");
         } catch (IOException e) {
             System.out.println("Error al convertir el archivo a Base64: ");
             return null;
@@ -29,7 +29,7 @@ public class TransformFileBinary {
             // Convertir la cadena Base64 a un arreglo de bytes
             fileBytes = convertBase64ABytes(base64);
             // Guardar los bytes en un archivo en la ubicación de destino
-            return this.saveBytesAsFile(fileBytes,route);
+            return this.saveBytesAsFile(fileBytes, route);
         } catch (Exception e) {
             System.out.println("Error al convertir la cadena Base64 a un archivo");
             return false;
@@ -37,7 +37,7 @@ public class TransformFileBinary {
         }
     }
 
-    private boolean saveBytesAsFile(byte[] bytes, String route){
+    private boolean saveBytesAsFile(byte[] bytes, String route) {
         try {
             Path destinationPath = Path.of(route);
             Files.write(destinationPath, bytes);

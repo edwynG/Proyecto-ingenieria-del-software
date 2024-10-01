@@ -11,6 +11,15 @@ public class LoginControl extends AbstractSesionControl {
     private String email = null;
     private String password = null;
 
+    public LoginControl() {
+
+    }
+
+    public LoginControl(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public User initLoginUser() {
         if (!isValidLogin()) {
             return null;
@@ -24,7 +33,7 @@ public class LoginControl extends AbstractSesionControl {
         }
 
         return new Administrator(getUser().getId(), getUser().getUser(), getUser().getPassword(),
-                getUser().getTypeUser());
+                getUser().getType());
 
     }
 
@@ -43,6 +52,7 @@ public class LoginControl extends AbstractSesionControl {
     }
 
     private void configData(User user, String typeUser, ArrayList<String> data) {
+        System.out.println(data);
         user.setId(Integer.parseInt(data.get(0)));
         user.setUser(data.get(1));
         user.setPassword(data.get(2));
@@ -50,12 +60,16 @@ public class LoginControl extends AbstractSesionControl {
         user.setTypeUser(typeUser);
     }
 
-    private boolean isValidLogin(){
+    private boolean isValidLogin() {
         boolean argValid = email != null && password != null;
-        if (!argValid) return false;
+        if (!argValid)
+            return false;
 
-        boolean existProponent = getManagerDatabase().isThereDataInTheQuery(String.format(Env.QUERY_LOGIN_PROPONENT, email, password)) ;
-        boolean existAdministrator = existProponent? false: getManagerDatabase().isThereDataInTheQuery(String.format(Env.QUERY_LOGIN_ADMISTRATOR, email, password));
+        boolean existProponent = getManagerDatabase()
+                .isThereDataInTheQuery(String.format(Env.QUERY_LOGIN_PROPONENT, email, password));
+        boolean existAdministrator = existProponent ? false
+                : getManagerDatabase()
+                        .isThereDataInTheQuery(String.format(Env.QUERY_LOGIN_ADMISTRATOR, email, password));
 
         return existProponent || existAdministrator;
     }

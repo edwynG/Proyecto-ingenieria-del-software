@@ -32,7 +32,7 @@ public abstract class User {
 
     @Override
     public String toString() {
-        return (String.format("User(id=%s,user=%s,password=%s,type=%s,typeUser=%s)", Integer.toString(id), user,
+        return (String.format("User(id=%s,user=%s,password=%s,type=%s,typeUser=%s)", id + "", user,
                 password, type, typeUser));
     }
 

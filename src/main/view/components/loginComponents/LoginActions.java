@@ -1,7 +1,5 @@
 package main.view.components.loginComponents;
 
-import javax.swing.JOptionPane;
-
 import main.Env;
 import main.controller.AdministratorControl;
 import main.controller.LoginControl;
@@ -18,8 +16,10 @@ public class LoginActions {
     private LoginControl control = new LoginControl();
 
     public void actionsOptionPassword() {
-        JOptionPane.showMessageDialog(Main.WINDOW, "Lo sentimos, sistema en mantenimiento.",
-                "¿Olvidates tu contraseña?", JOptionPane.ERROR_MESSAGE);
+        CardMessage pane = new CardMessage("No disponible", "Lo sentimos, sistema en mantenimiento.");
+        pane.settWidthCard(350);
+        pane.setHeightCard(250);
+        GlassPanePopup.showPopup(pane);
 
     }
 
@@ -29,19 +29,19 @@ public class LoginActions {
     }
 
     public void actionsButtonLogin(String email, String passwonrd) {
-        if (!isValidInput()) {
-            GlassPanePopup.showPopup(new CardMessage("Oops..", "Aún faltan datos por completar."));
-            return;
-        }
-
         control.setEmail(email);
         control.setPassword(passwonrd);
-        User user = control.initLoginUser();
-        if (user == null) {
-            GlassPanePopup.showPopup(new CardMessage("Lo sentimos..", "El usuario proposionado no existe."));
+
+        if (!isValid()) {
+            control.setEmail(null);
+            control.setPassword(null);
             return;
         }
 
+        User user = control.initLoginUser();
+        if (!isValidUser(user)) {
+            return;
+        }
         InterfaceWithAppbar home = new InterfaceWithAppbar();
         Main.setContent(home);
         user.refreshListOfProposals();
@@ -52,7 +52,27 @@ public class LoginActions {
         }
         Main.setUserControl(new AdministratorControl(user));
         home.createInterfaceAdministrator();
+        InterfaceWithAppbar.AdministratorDesing.openAdminWidown(user.getType());
 
+
+    }
+
+    private boolean isValidUser(User user) {
+        if (user == null) {
+            GlassPanePopup.showPopup(new CardMessage("Lo sentimos..", "El usuario proposionado no existe."));
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isValid() {
+        if (!isValidInput()) {
+            GlassPanePopup.showPopup(new CardMessage("Oops..", "Aún faltan datos por completar."));
+            return false;
+        }
+
+        return true;
     }
 
     private boolean isValidInput() {

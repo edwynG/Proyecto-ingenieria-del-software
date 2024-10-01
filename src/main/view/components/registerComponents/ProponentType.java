@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import main.Env;
 import main.view.components.AbstractComponents.AbstractForm;
 import main.view.components.commonComponents.ButtonRounded;
-import main.view.components.commonComponents.CardMessage;
+
 import main.view.components.commonComponents.Dropdown;
 import main.view.components.commonComponents.ImageAndComponent;
 import main.view.components.commonComponents.TextSubtitle;
@@ -22,7 +22,6 @@ import main.view.components.commonComponents.TextTitle;
 import main.view.components.commonComponents.TransparentPanel;
 import main.view.utils.Components;
 import main.view.utils.CustomVariables;
-import raven.glasspanepopup.GlassPanePopup;
 
 public class ProponentType extends AbstractForm {
 
@@ -144,10 +143,6 @@ public class ProponentType extends AbstractForm {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                if (dropdown.getSelectElement() == null) {
-                    GlassPanePopup.showPopup(new CardMessage("Oops..", "Aún faltan datos por completar."));
-                    return;
-                }
                 actions.actionsButtonNext(dropdown.getSelectElement());
             }
         });

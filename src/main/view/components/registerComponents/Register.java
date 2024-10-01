@@ -12,11 +12,12 @@ import java.util.ArrayList;
 import javax.swing.Box;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import main.Env;
 import main.view.components.AbstractComponents.AbstractForm;
 import main.view.components.commonComponents.ButtonRounded;
-import main.view.components.commonComponents.CardMessage;
 import main.view.components.commonComponents.Dropdown;
 import main.view.components.commonComponents.ImageAndComponent;
 import main.view.components.commonComponents.InputPassword;
@@ -26,7 +27,6 @@ import main.view.components.commonComponents.TextTitle;
 import main.view.components.commonComponents.TransparentPanel;
 import main.view.utils.Components;
 import main.view.utils.CustomVariables;
-import raven.glasspanepopup.GlassPanePopup;
 
 public class Register extends AbstractForm {
     // Componentes de la interfaz
@@ -127,13 +127,25 @@ public class Register extends AbstractForm {
         int width = 41;
         int marginBottom = 20;
         ArrayList<String> options = new ArrayList<>();
-        options.add("Proponente");
-        options.add("Administrador");
+        options.add(Env.TYPE_USER_PROPONENT);
+        options.add(Env.TYPE_USER_ADMINISTRADOR);
         this.dropdown = new Dropdown("Tipo de usuario");
         this.dropdown.setListElements(options);
         ImageAndComponent container = new ImageAndComponent(Env.PATH_ICON_USER, width, height, dropdown);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));
+
+        dropdown.getOptionList().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (dropdown.getSelectElement().equals(Env.TYPE_USER_PROPONENT)) {
+                    button.setText("Continuar");
+                    return;
+                }
+                button.setText("Registrarse");
+
+            }
+        });
 
     }
 
@@ -158,11 +170,16 @@ public class Register extends AbstractForm {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                if (dropdown.getSelectElement() == null) {
-                    GlassPanePopup.showPopup(new CardMessage("Oops..", "Aún faltan datos por completar."));
+                ArrayList<String> data = new ArrayList<>();
+                data.add(inputEmail.getText().toLowerCase());
+                data.add(inputPassword.getPassword());
+                data.add(inputPasswordConfirm.getPassword());
+                data.add(dropdown.getSelectElement());
+                if (dropdown.getSelectElement().equals(Env.TYPE_USER_PROPONENT)) {
+                    actions.actionsButtonContinueRegisterProponent(data);
                     return;
                 }
-                actions.actionsButtonContinueRegister(dropdown.getSelectElement());
+                actions.actionsTerminateRegistrationAdmin(data);
             }
         });
 

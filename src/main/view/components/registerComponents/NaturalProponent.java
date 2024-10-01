@@ -5,6 +5,8 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.Box;
 import javax.swing.SwingConstants;
 
@@ -133,7 +135,13 @@ public class NaturalProponent extends AbstractForm {
         this.button.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                actions.actionsButtonFinishRegister();
+                ArrayList<String> data=new ArrayList<>();
+                data.add(inputID.getText());
+                data.add(fileChooserRIF.getPath());
+                data.add(fileChooserRIF.getPath());
+                data.add(fileChooserCurriculum.getPath());
+                data.add(fileChooserDegree.getPath());
+                actions.actionsTerminateRegistrationProponent(data);
             }
         });
 

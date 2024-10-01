@@ -37,7 +37,6 @@ public class InterfaceAdministrator extends AbstractPanelRounded {
         widthTemp = width;
         heigthTemp = height;
         System.out.println("Bienvenido administrador!!");
-        createFacultyCouncil();
 
     }
 
@@ -101,6 +100,25 @@ public class InterfaceAdministrator extends AbstractPanelRounded {
         FacultyCouncil desing = new FacultyCouncil();
         content.add(desing, gbc);
         System.out.println("Consejo de facultad");
+    }
+
+    public void openAdminWidown(String option) {
+        switch (option) {
+            case "Consejo de facultad":
+                createFacultyCouncil();
+                break;
+            case "Coordinación de extensión":
+                createOutreachCoordination();
+                break;
+            case "Dirección de extensión":
+                createExtensionAddress();
+                break;
+            case "Comisión de extensión":
+                createExtensionCommission();
+                break;
+            default:
+                break;
+        }
     }
 
     public void setRedimention(int width, int height) {
