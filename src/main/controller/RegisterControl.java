@@ -5,24 +5,21 @@ import java.util.ArrayList;
 import main.Env;
 import main.controller.abstractControllers.AbstractSesionControl;
 import main.model.Proponent;
-import main.model.TransformFileBinary;
 import main.model.abstractModels.User;
+import main.view.components.commonComponents.CardMessage;
+import raven.glasspanepopup.GlassPanePopup;
 
 public class RegisterControl extends AbstractSesionControl {
     private ArrayList<String> documents;
-    private Validator validator = new Validator();
-    private TransformFileBinary transformfile = new TransformFileBinary();
 
     public User initRegisterProponent() {
-        documents.remove(getUser().getId() + "");
-        ArrayList<String> documentsRegister = transformDocuments(documents);
+        getUser().setId(Integer.parseInt(documents.getFirst()));
+        ArrayList<String> preparedListToQuery = getTransformfile().tranformToBaseOnlyWidthExt(documents, "'");
         String queryUser = String.format(Env.QUERY_REGISTER_USER, getUser().getId() + "", getUser().getUser(),
                 getUser().getPassword(), getUser().getType());
         String queryDocuments = getUser().getType().equals(Env.TYPE_USER_PROPONENT_NATURAL)
-                ? String.format(Env.QUERY_REGISTER_DOCUMENT_NATURAL, getUser().getId() + "",
-                        String.join(",", documentsRegister))
-                : String.format(Env.QUERY_REGISTER_DOCUMENT_LEGAL, getUser().getId() + "",
-                        String.join(",", documentsRegister));
+                ? String.format(Env.QUERY_REGISTER_DOCUMENT_NATURAL, String.join(",", preparedListToQuery))
+                : String.format(Env.QUERY_REGISTER_DOCUMENT_LEGAL, String.join(",", preparedListToQuery));
 
         Boolean resultRegisterUserBool = getManagerDatabase().updateOrInsertData(queryUser + "\n" + queryDocuments);
 
@@ -34,8 +31,7 @@ public class RegisterControl extends AbstractSesionControl {
     }
 
     public User initRegisterAdministrator() {
-        String query = String.format(Env.QUERY_REGISTER_ADMIN,getUser().getPassword(),getUser().getUser());
-        System.out.println(query);
+        String query = String.format(Env.QUERY_REGISTER_ADMIN, getUser().getPassword(), getUser().getUser());
         if (!getManagerDatabase().updateOrInsertData(query)) {
             return null;
 
@@ -43,18 +39,6 @@ public class RegisterControl extends AbstractSesionControl {
         LoginControl login = new LoginControl(getUser().getUser(), getUser().getPassword());
         return login.initLoginUser();
 
-    }
-
-    private ArrayList<String> transformDocuments(ArrayList<String> arr) {
-        ArrayList<String> newList = new ArrayList<>();
-        for (String string : arr) {
-            newList.add(formate(transformfile.transformToBase(string)));
-        }
-        return newList;
-    }
-
-    private String formate(String str) {
-        return '"' + str + '"';
     }
 
     public ArrayList<String> getDocuments() {
@@ -65,55 +49,40 @@ public class RegisterControl extends AbstractSesionControl {
         this.documents = documents;
     }
 
-    public Validator getValidator() {
-        return validator;
+    public boolean isThereAnEmailToRegisterAdmin() {
+        if (getValidator().isThereAnEmailRegister(getUser().getUser())) {
+            return true;
+        }
+        CardMessage pane = new CardMessage("No eres administrador", "El usuario no se encuantra registrado.");
+        pane.settWidthCard(500);
+        pane.setHeightCard(280);
+        GlassPanePopup.showPopup(pane);
+        return false;
     }
-    /*
-     * public User registerProponent(Map<String, String> data, Map<String, String>
-     * documents) {
-     * List<String> fieldsUser = new ArrayList<>(data.keySet());
-     * List<String> dataUser = new ArrayList<>(data.values());
-     * List<String> fieldsDocument = new ArrayList<>(documents.keySet());
-     * List<String> dataDocument = new ArrayList<>(documents.values());
-     * 
-     * String user = String.format(Env.QUERY_REGISTER_USER, String.join(",",
-     * fieldsUser), String.join(",", dataUser));
-     * 
-     * String document = String.format(Env.QUERY_REGISTER_DOCUMENT,
-     * "ProponenteID" + "," + String.join(",", fieldsDocument),
-     * data.get("ProponenteID") + "," + String.join(",", dataDocument));
-     * 
-     * String query = user + document;
-     * boolean singIn = managerDatabase.updateOrInsertData(query);
-     * 
-     * if (singIn) {
-     * this.user = new Proponent(Integer.parseInt(data.get("ProponenteID")),
-     * data.get("Correo").replace("'", ""), data.get("Contraseña").replace("'",""),
-     * data.get("TipoDePersona").replace("'", ""));
-     * 
-     * }
-     * 
-     * return this.user;
-     * };
-     * 
-     * public User registerAdmin(Map<String, String> data) {
-     * List<String> fieldsUser = new ArrayList<>(data.keySet());
-     * List<String> dataUser = new ArrayList<>(data.values());
-     * 
-     * String admin = String.format(Env.QUERY_REGISTER_ADMIN, String.join(",",
-     * fieldsUser),
-     * String.join(",", dataUser));
-     * 
-     * boolean singIn = managerDatabase.updateOrInsertData(admin);
-     * if (singIn) {
-     * this.user = new
-     * Administrator(Integer.parseInt(data.get("AdministradorID")),data.get("Correo"
-     * ).replace("'", ""), data.get("Contraseña").replace("'", ""),
-     * data.get("TipoDeAdministrador").replace("'", ""));
-     * }
-     * 
-     * return this.user;
-     * 
-     * }
-     */
+
+    public boolean isThereAnEmailToRegister() {
+        if (getValidator().isThereAnEmailRegister(getUser().getUser())) {
+            GlassPanePopup.showPopup(new CardMessage("Lo sentimos..", "El correo pertenece a otro usuario."));
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isThereAnIdToRegisterProponent() {
+        if (getValidator().isThereAnIdRegister(getUser().getId())) {
+            GlassPanePopup.showPopup(new CardMessage("Lo sentimos..", "La cedula pertenece a otro usuario."));
+            return true;
+        }
+        return false;
+    }
+
+    public boolean IsThereAnPasswordToRegister(String password, String confirmPassword) {
+        if (!password.equals(confirmPassword)) {
+            GlassPanePopup.showPopup(new CardMessage("Contraseña", "La contraseña no coincide."));
+            return false;
+        }
+
+        return true;
+    }
+
 }

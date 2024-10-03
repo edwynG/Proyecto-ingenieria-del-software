@@ -13,7 +13,6 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -21,7 +20,6 @@ public class Main extends JFrame {
     private int height;
     private int width;
     public static final JPanel WINDOW = new JPanel();
-    public static final JLayeredPane LEVEL = new JLayeredPane();
     private static JPanel content;
     private String windowName;
     private static UserControl userControl;

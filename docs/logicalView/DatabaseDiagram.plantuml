@@ -11,7 +11,7 @@ object Administradores{
     AdministradorID: int (PK)
     Correo: string
     Contraseña: int
-    TipoDeAdministrador: string
+    Unidad: string
 }
 
 object DocumentosDeRegistros{
@@ -29,10 +29,9 @@ object DocumentosDeRegistros{
 object Propuestas{
     PropuestaID:int (PK)
     ProponenteID: int (FK)
-    TipoDeAdministrador: String
     Denominacion: string
     ObjetivosYFundamentacion: string
-    PerfilDeIngresoYEgreso: string
+    ObjetivosYFundamentacion: string
     PerfilDocente: string
     EstructuraCurricularPorCompetencias: string
     EstrategiasDeEvaluacionYDuracion: string
@@ -43,7 +42,8 @@ object Propuestas{
 }
 
 object ResultadosPropuestas{
-    PropuestaID: int (PK)-(FK)
+    ResultadosPropuestasID: int (PK)
+    PropuestaID: int (FK)
     AdministradorID: int (FK)
     Observaciones: string
     Resultado: string

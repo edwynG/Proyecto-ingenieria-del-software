@@ -1,5 +1,8 @@
 package main.view.components.loginComponents;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import main.Env;
 import main.controller.AdministratorControl;
 import main.controller.LoginControl;
@@ -8,11 +11,12 @@ import main.model.abstractModels.User;
 import main.view.Main;
 import main.view.components.InterfaceWithAppbar;
 import main.view.components.InterfaceWithoutAppbar;
+import main.view.components.commonComponents.ActionsInterface;
 import main.view.components.commonComponents.CardMessage;
 import main.view.components.registerComponents.Register;
 import raven.glasspanepopup.GlassPanePopup;
 
-public class LoginActions {
+public class LoginActions extends ActionsInterface{
     private LoginControl control = new LoginControl();
 
     public void actionsOptionPassword() {
@@ -28,18 +32,15 @@ public class LoginActions {
 
     }
 
-    public void actionsButtonLogin(String email, String passwonrd) {
-        control.setEmail(email);
-        control.setPassword(passwonrd);
-
-        if (!isValid()) {
-            control.setEmail(null);
-            control.setPassword(null);
+    public void actionsButtonLogin(String email, String password) {
+        if (!isValidData(new ArrayList<>(Arrays.asList(email,password)))) {
             return;
         }
 
+        control.setEmail(email);
+        control.setPassword(password);
         User user = control.initLoginUser();
-        if (!isValidUser(user)) {
+        if (!isValidUser(user,"Lo sentimos..","El usuario proposionado no existe.")) {
             return;
         }
         InterfaceWithAppbar home = new InterfaceWithAppbar();
@@ -57,33 +58,6 @@ public class LoginActions {
 
     }
 
-    private boolean isValidUser(User user) {
-        if (user == null) {
-            GlassPanePopup.showPopup(new CardMessage("Lo sentimos..", "El usuario proposionado no existe."));
-            return false;
-        }
 
-        return true;
-    }
-
-    private boolean isValid() {
-        if (!isValidInput()) {
-            GlassPanePopup.showPopup(new CardMessage("Oops..", "Aún faltan datos por completar."));
-            return false;
-        }
-
-        return true;
-    }
-
-    private boolean isValidInput() {
-        if (control.getEmail() == null || control.getPassword() == null) {
-            return false;
-        }
-
-        if (control.getEmail().isEmpty() || control.getPassword().isEmpty()) {
-            return false;
-        }
-
-        return true;
-    }
+ 
 }

@@ -5,7 +5,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Base64;
+
+import main.Env;
 
 public class TransformFileBinary {
 
@@ -62,6 +65,40 @@ public class TransformFileBinary {
 
     private String convertBytesToBase64(byte[] bytes) {
         return Base64.getEncoder().encodeToString(bytes);
+    }
+
+    public ArrayList<String> tranformToBaseOnlyWidthExt(ArrayList<String> data, String serialization) {
+        ArrayList<String> newList = new ArrayList<>();
+        boolean state = true;
+        for (String item : data) {
+            for (String ext : Env.EXTESIONS_EXT) {
+                if (item.contains(ext)) {
+                    state = false;
+                    newList.add(serialization + transformToBase(item) + serialization);
+                    break;
+                }
+            }
+
+            if (state) {
+                if (isNumber(item))
+                    newList.add(item);
+                else
+                    newList.add(serialization + item + serialization);
+
+            }
+            state = true;
+        }
+        return newList;
+    }
+
+    private boolean isNumber(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (Exception e) {
+
+        }
+        return false;
     }
 
 }

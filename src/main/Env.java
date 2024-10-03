@@ -19,7 +19,9 @@ public class Env {
         public final static String PATH_ICON_ERROR = "src/assets/Error_icon.png";
         public final static String PATH_ICON_CHECK = "src/assets/Check_icon.png";
         public final static String PATH_ICON_DOWNLOAD = "src/assets/download_imagen.png";
-
+        // Archivos permitidos
+        public final static String[] EXTESIONS_NAMES = { "Archivos PDF", "Archivos TXT" };
+        public final static String[] EXTESIONS_EXT = { ".pdf", ".txt" };
         // Consultas de SQL
         public final static String TYPE_USER_PROPONENT = "Proponente";
         public final static String TYPE_USER_PROPONENT_NATURAL = "Natural";
@@ -37,14 +39,14 @@ public class Env {
         public final static String QUERY_EVALUATE_COURSE_UPDATE = "UPDATE ResultadosPropuestas \r\n"
                         + "SET Observaciones = '%s',Resultado = '%s'\r\n" + "WHERE PropuestaID = %s";
         public final static String QUERY_PROPOSAL_PROPONENT = "SELECT * FROM Propuestas WHERE ProponenteID = %s";
-        public final static String QUERY_PROPOSAL_ADMINISTRADOR = "SELECT * FROM Propuestas WHERE TipoDeAdministrador = '%s'";
-        public final static String QUERY_REGISTER_DOCUMENT_NATURAL = "INSERT INTO DocumentosDeRegistros(ProponenteID,RIF,ISLR,Curriculum,TituloUniversitario)\nVALUES(%s,%s);\n";
-        public final static String QUERY_REGISTER_DOCUMENT_LEGAL = "INSERT INTO DocumentosDeRegistros(ProponenteID,RegistroMercantil,RIF,ISLR,Curriculum,TituloUniversitario)\nVALUES(%s,%s);\n";
+        public final static String QUERY_PROPOSAL_ADMINISTRADOR = "SELECT * FROM Propuestas WHERE UnidadResponsable = '%s'";
+        public final static String QUERY_REGISTER_DOCUMENT_NATURAL = "INSERT INTO DocumentosDeRegistros(ProponenteID,RIF,ISLR,Curriculum,TituloUniversitario)\nVALUES(%s);\n";
+        public final static String QUERY_REGISTER_DOCUMENT_LEGAL = "INSERT INTO DocumentosDeRegistros(ProponenteID,RIF,ISLR,Curriculum,TituloUniversitario,RegistroMercantil)\nVALUES(%s);\n";
         public final static String QUERY_REGISTER_USER = "INSERT INTO Proponentes(ProponenteID,Correo,Contraseña,TipoDePersona)\nVALUES(%s, '%s', '%s','%s');\n";
         public final static String QUERY_REGISTER_ADMIN = "UPDATE Administradores SET Contraseña = %s\nWHERE Correo = '%s' ";
         public final static String QUERY_LOGIN_PROPONENT = "SELECT * FROM Proponentes WHERE Correo = '%s' and Contraseña = '%s';\n";
         public final static String QUERY_LOGIN_ADMISTRATOR = "SELECT * FROM Administradores WHERE Correo = '%s' and Contraseña = '%s';\n";
-        public final static String QUERY_REGISTER_PROPOSAL = "INSERT INTO Propuestas(%s)\nVALUES(%s);";
+        public final static String QUERY_REGISTER_PROPOSAL = "INSERT INTO Propuestas(ProponenteID, Denominacion, ObjetivosYFundamentacion, PerfilDeIngresoYEgreso,PerfilDocente, EstructuraCurricularPorCompetencias, EstrategiasDeEvaluacionYDuracion, ExigenciasEnMaterialesYservicios, EstructuraDeCostos, CronogramaDeEjecucionAnual, UnidadResponsable)\nVALUES(%s);";
         public final static String QUERY_VALIDATE_DATA = "SELECT * FROM %s WHERE %s = '%s';\n";
         public final static String CREATE_DATABASE = "DROP TABLE IF EXISTS Proponentes;\r\n" + //
                         "\r\n" + //
@@ -71,7 +73,7 @@ public class Env {
                         "        AdministradorID INTEGER PRIMARY KEY,\r\n" + //
                         "        Correo TEXT UNIQUE,\r\n" + //
                         "        'Contraseña' TEXT,\r\n" + //
-                        "        TipoDeAdministrador TEXT\r\n" + //
+                        "        Unidad TEXT\r\n" + //
                         "    );\r\n" + //
                         "\r\n" + //
                         "CREATE TABLE\r\n" + //
@@ -90,7 +92,6 @@ public class Env {
                         "    Propuestas (\r\n" + //
                         "        PropuestaID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
                         "        ProponenteID INTEGER,\r\n" + //
-                        "        TipoDeAdministrador TEXT,\r\n" + //
                         "        Denominacion TEXT,\r\n" + //
                         "        ObjetivosYFundamentacion TEXT,\r\n" + //
                         "        PerfilDeIngresoYEgreso TEXT,\r\n" + //
@@ -106,7 +107,8 @@ public class Env {
                         "\r\n" + //
                         "CREATE TABLE\r\n" + //
                         "    ResultadosPropuestas (\r\n" + //
-                        "        PropuestaID INTEGER PRIMARY KEY,\r\n" + //
+                        "        ResultadosPropuestasID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
+                        "        PropuestaID INTEGER,\r\n" + //
                         "        AdministradorID INTEGER,\r\n" + //
                         "        Observaciones TEXT,\r\n" + //
                         "        Resultado TEXT,\r\n" + //
@@ -128,7 +130,7 @@ public class Env {
                         "    );\r\n" + //
                         "\r\n" + //
                         "INSERT INTO\r\n" + //
-                        "    Administradores (AdministradorID, Correo, TipoDeAdministrador)\r\n" + //
+                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
                         "VALUES\r\n" + //
                         "    (\r\n" + //
                         "        30326271,\r\n" + //
@@ -137,7 +139,7 @@ public class Env {
                         "    );\r\n" + //
                         "\r\n" + //
                         "INSERT INTO\r\n" + //
-                        "    Administradores (AdministradorID, Correo, TipoDeAdministrador)\r\n" + //
+                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
                         "VALUES\r\n" + //
                         "    (\r\n" + //
                         "        30326272,\r\n" + //
@@ -146,7 +148,7 @@ public class Env {
                         "    );\r\n" + //
                         "\r\n" + //
                         "INSERT INTO\r\n" + //
-                        "    Administradores (AdministradorID, Correo, TipoDeAdministrador)\r\n" + //
+                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
                         "VALUES\r\n" + //
                         "    (\r\n" + //
                         "        30326273,\r\n" + //
@@ -155,10 +157,9 @@ public class Env {
                         "    );\r\n" + //
                         "\r\n" + //
                         "INSERT INTO\r\n" + //
-                        "    Administradores (AdministradorID, Correo, TipoDeAdministrador)\r\n" + //
+                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
                         "VALUES\r\n" + //
                         "    (\r\n" + //
-                        "\r\n" + //
                         "        30326274,\r\n" + //
                         "        'guzman@gmail.com',\r\n" + //
                         "        'Comisión de extensión'\r\n" + //

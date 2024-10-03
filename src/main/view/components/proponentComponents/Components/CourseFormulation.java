@@ -1,5 +1,6 @@
 package main.view.components.proponentComponents.Components;
 
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractForm;
 import main.view.components.commonComponents.ButtonRounded;
 import main.view.components.commonComponents.Dropdown;
@@ -219,7 +220,20 @@ public class CourseFormulation extends AbstractForm {
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                InterfaceProponent.actions.actionsSubmitProposal();
+                // La lista tiene que tener por la estructura de la consulta
+                ArrayList<String> data = new ArrayList<>();
+                data.add(Integer.toString(Main.getUserControl().getUser().getId()));
+                data.add(denomination.getSelectElement());
+                data.add(fileChooserObjectivesandFoundations.getPath());
+                data.add(fileChooserAdmissionAndGraduationProfile.getPath());
+                data.add(fileChooserTeachingProfile.getPath());
+                data.add(fileChooserCurriculumStructureByCompetencies.getPath());
+                data.add(fileChooserStrategiesAndEvaluation.getPath());
+                data.add(fileChooserRequirementsInSubjects.getPath());
+                data.add(fileChooserCostStructure.getPath());
+                data.add(fileChooserExecutionSchedule.getPath());
+                data.add(ResponsibleUnit.getSelectElement());
+                InterfaceProponent.actions.actionsSubmitProposal(data);
             }
         });
     }

@@ -28,12 +28,10 @@ public class LoginControl extends AbstractSesionControl {
         boolean option = getUser().getTypeUser().equalsIgnoreCase(Env.TYPE_USER_PROPONENT);
         if (option) {
 
-            return new Proponent(getUser().getId(), getUser().getUser(), getUser().getPassword(),
-                    getUser().getType());
+            return new Proponent(getUser().getId(), getUser().getUser(), getUser().getPassword(), getUser().getType());
         }
 
-        return new Administrator(getUser().getId(), getUser().getUser(), getUser().getPassword(),
-                getUser().getType());
+        return new Administrator(getUser().getId(), getUser().getUser(), getUser().getPassword(), getUser().getType());
 
     }
 
@@ -52,7 +50,6 @@ public class LoginControl extends AbstractSesionControl {
     }
 
     private void configData(User user, String typeUser, ArrayList<String> data) {
-        System.out.println(data);
         user.setId(Integer.parseInt(data.get(0)));
         user.setUser(data.get(1));
         user.setPassword(data.get(2));
@@ -89,78 +86,5 @@ public class LoginControl extends AbstractSesionControl {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    // public AbstractUser loginUser(String email, String password, String type) {
-    // String query = Env.QUERY_LOGIN;
-    // boolean option = type.equalsIgnoreCase("Proponente");
-
-    // String table = option ? "Proponentes" : "Administradores";
-    // query = String.format(query, table, email, password);
-
-    // List<List<String>> registro = getManagerDatabase().getData(query);
-    // if (!registro.isEmpty()) {
-    // List<String> fields = registro.get(0);
-
-    // if (option) {
-    // this.user = new Proponent(Integer.parseInt(fields.get(0)), fields.get(1),
-    // fields.get(2), fields.get(3));
-
-    // } else {
-    // this.user = new Administrator(Integer.parseInt(fields.get(0)), fields.get(1),
-    // fields.get(2),
-    // fields.get(3));
-
-    // }
-    // }
-
-    // return this.user;
-    // }
-
-    // public AbstractUser registerProponent(Map<String, String> data, Map<String,
-    // String> documents) {
-    // List<String> fieldsUser = new ArrayList<>(data.keySet());
-    // List<String> dataUser = new ArrayList<>(data.values());
-    // List<String> fieldsDocument = new ArrayList<>(documents.keySet());
-    // List<String> dataDocument = new ArrayList<>(documents.values());
-
-    // String user = String.format(Env.QUERY_REGISTER_USER, String.join(",",
-    // fieldsUser), String.join(",", dataUser));
-
-    // String document = String.format(Env.QUERY_REGISTER_DOCUMENT,
-    // "ProponenteID" + "," + String.join(",", fieldsDocument),
-    // data.get("ProponenteID") + "," + String.join(",", dataDocument));
-
-    // String query = user + document;
-    // boolean singIn = managerDatabase.updateOrInsertData(query);
-
-    // if (singIn) {
-    // this.user = new Proponent(Integer.parseInt(data.get("ProponenteID")),
-    // data.get("Correo").replace("'", ""), data.get("Contraseña").replace("'",""),
-    // data.get("TipoDePersona").replace("'", ""));
-
-    // }
-
-    // return this.user;
-    // };
-
-    // public AbstractUser registerAdmin(Map<String, String> data) {
-    // List<String> fieldsUser = new ArrayList<>(data.keySet());
-    // List<String> dataUser = new ArrayList<>(data.values());
-
-    // String admin = String.format(Env.QUERY_REGISTER_ADMIN, String.join(",",
-    // fieldsUser),
-    // String.join(",", dataUser));
-
-    // boolean singIn = managerDatabase.updateOrInsertData(admin);
-    // if (singIn) {
-    // this.user = new
-    // Administrator(Integer.parseInt(data.get("AdministradorID")),data.get("Correo").replace("'",
-    // ""), data.get("Contraseña").replace("'", ""),
-    // data.get("TipoDeAdministrador").replace("'", ""));
-    // }
-
-    // return this.user;
-
-    // }
 
 }

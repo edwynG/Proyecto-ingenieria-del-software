@@ -190,13 +190,14 @@ public class LegalProponent extends AbstractForm {
          this.button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                // La lista tiene que tener por la estructura de la consulta
                 ArrayList<String> data = new ArrayList<>();
-                data.add(fileChooserCommercialRegister.getPath());
                 data.add(inputID.getText());
                 data.add(fileChooserRIF.getPath());
                 data.add(fileChooserISLR.getPath());
-                data.add(fileChooserISLR.getPath());
+                data.add(fileChooserCurriculum.getPath());
                 data.add(fileChooserDegree.getPath());
+                data.add(fileChooserCommercialRegister.getPath());
                 actions.actionsTerminateRegistrationProponent(data);
             }
         });
