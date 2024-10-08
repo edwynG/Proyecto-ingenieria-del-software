@@ -45,6 +45,7 @@ public class Env {
         public final static String TABLE_FIELD_PROPOENENT_ID = "ProponenteID";
         public final static String TABLE_NAME_ADMINISTRATORS = "Administradores";
         public final static String TABLE_NAME_PROPONENTS = "Proponentes";
+        public final static String TABLE_NAME_PROPOSALS = "Propuestas";
         public final static String TABLE_NAME_ALIADO = "Aliados";
         public final static String QUERY_DATA_TABLE = "PRAGMA table_info(%s)";
         public final static String QUERY_FOREING_KEY_ON = "PRAGMA foreign_keys = ON";

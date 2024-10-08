@@ -23,7 +23,7 @@ public class Validator {
     }
 
     public boolean  isAcceptedProposal(Integer id){
-        return controlValidator.doesTheDataExist(Env.TABLE_FIELD_PROPOSAL_ID, Env.TABLE_FIELD_PROPOSAL_ID, id+"");
+        return controlValidator.doesTheDataExist(Env.TABLE_NAME_ALIADO, Env.TABLE_FIELD_PROPOSAL_ID, id+"");
     }
     
 }
