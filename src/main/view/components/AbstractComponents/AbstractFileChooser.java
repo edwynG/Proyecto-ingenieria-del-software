@@ -82,29 +82,28 @@ public class AbstractFileChooser extends AbstractPanelRounded {
 
     private void methodDownload() {
         JFileChooser fileChooser = new JFileChooser();
+        path = null;
         fileChooser.setDialogTitle(title);
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        fileChooser.setApproveButtonText("Seleccionar");
-        int value = fileChooser.showOpenDialog(Main.WINDOW);
+        addFilterToChooser(fileChooser);
+        int value = fileChooser.showSaveDialog(Main.WINDOW);
 
         if (value == JFileChooser.APPROVE_OPTION) {
             File selection = fileChooser.getSelectedFile();
-            path = selection.getAbsolutePath();
-            text.revalidate();
-            text.repaint();
-            return;
+            if (fileEndWith(selection.getName())) {
+                path = selection.getAbsolutePath();
+                Components.repaintComponent(text);
+                downloadApprovateFile();
+                return;
+            }
+            downloadDisapprovedFile();
         }
 
     }
 
     private void methodUpload() {
         JFileChooser fileChooser = new JFileChooser();
-        path = null;
         fileChooser.setDialogTitle(title);
-        for (String filter : filterExtension.keySet()) {
-            fileChooser
-                    .addChoosableFileFilter(new FileNameExtensionFilter(filter, filterExtension.get(filter)));
-        }
+        addFilterToChooser(fileChooser);
         fileChooser.setApproveButtonText("Seleccionar");
         int value = fileChooser.showOpenDialog(Main.WINDOW);
 
@@ -112,15 +111,13 @@ public class AbstractFileChooser extends AbstractPanelRounded {
             File selection = fileChooser.getSelectedFile();
             text.setText(selection.getName());
             if (isFileExtensionValid(selection)) {
-                ApprovateFile();
+                uploadApprovateFile();
                 path = selection.getAbsolutePath();
-                text.revalidate();
-                text.repaint();
+                Components.repaintComponent(text);
                 return;
             }
-
-            DisapprovedFile();
-
+            path = null;
+            uploadDisapprovedFile();
         }
     }
 
@@ -136,11 +133,34 @@ public class AbstractFileChooser extends AbstractPanelRounded {
         return false;
     }
 
-    protected void ApprovateFile() {
+    private void addFilterToChooser(JFileChooser chooser) {
+        for (String filter : filterExtension.keySet()) {
+            chooser.addChoosableFileFilter(new FileNameExtensionFilter(filter, filterExtension.get(filter)));
+        }
+    }
+
+    private boolean fileEndWith(String name) {
+        for (String filter : filterExtension.values()) {
+            if (name.endsWith(filter)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected void uploadApprovateFile() {
         return;
     }
 
-    protected void DisapprovedFile() {
+    protected void uploadDisapprovedFile() {
+        return;
+    }
+
+    protected void downloadApprovateFile() {
+        return;
+    }
+
+    protected void downloadDisapprovedFile() {
         return;
     }
 

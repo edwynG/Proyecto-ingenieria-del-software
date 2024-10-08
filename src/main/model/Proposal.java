@@ -1,11 +1,12 @@
 package main.model;
 
-import java.util.Map;
+import java.util.ArrayList;
 
 public class Proposal {
-    private int proposalId;
-    private int proponentId;
+    private Integer proposalId;
+    private Integer proponentId;
     private String denom;
+    private String title;
     private String objFund;
     private String admGradProfile;
     private String teachStaffProfile;
@@ -15,22 +16,37 @@ public class Proposal {
     private String costStruct;
     private String annualExecSchedule;
     private String respUnit;
-    private String typeAdmin;
 
-    public Proposal(Map<String,String> proposal){
-        this.denom = proposal.get("Denominacion");
-        this.objFund = proposal.get("ObjetivosYFundamentacion");
-        this.admGradProfile = proposal.get("PerfilDeIngresoYEgreso");
-        this.teachStaffProfile = proposal.get("PerfilDocente");
-        this.compCurriculum = proposal.get("EstructuraCurricularPorCompetencias");
-        this.evalStratDuration = proposal.get("EstrategiasDeEvaluacionYDuracion");
-        this.matServRequirements= proposal.get("ExigenciasEnMaterialesYservicios");
-        this.costStruct = proposal.get("EstructuraDeCostos");
-        this.annualExecSchedule = proposal.get("CronogramaDeEjecucionAnual");
-        this.respUnit = proposal.get("UnidadResponsable");
-        this.proponentId = Integer.parseInt(proposal.get("ProponenteID"));
-        this.proposalId = Integer.parseInt(proposal.get("PropuestaID"));
-        this.typeAdmin = proposal.get("TipoDeAdministrador");
+    public Proposal() {
+
+    }
+
+    public Proposal(ArrayList<String> proposal) {
+        try {
+            // La lista tiene que tener la estructura de la consulta
+            proposalId = Integer.parseInt(proposal.get(0));
+            proponentId = Integer.parseInt(proposal.get(1));
+            title = proposal.get(2);
+            denom = proposal.get(3);
+            objFund = proposal.get(4);
+            admGradProfile = proposal.get(5);
+            teachStaffProfile = proposal.get(6);
+            compCurriculum = proposal.get(7);
+            evalStratDuration = proposal.get(8);
+            matServRequirements = proposal.get(9);
+            costStruct = proposal.get(10);
+            annualExecSchedule = proposal.get(11);
+            respUnit = proposal.get(12);
+
+        } catch (Exception e) {
+            System.err.println("Error al crear objeto propuesta.");
+        }
+
+    }
+
+    @Override
+    public String toString() {
+        return "Proposal(id=" + getProposalId() + ", " + "proponente=" + getProponentId() +", " +"denominación=" + getDenom() + ", "+ "unidad=" + getRespUnit() +")";
     }
 
     public String getDenom() {
@@ -39,6 +55,14 @@ public class Proposal {
 
     public void setDenom(String denom) {
         this.denom = denom;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getObjFund() {
@@ -113,14 +137,20 @@ public class Proposal {
         this.respUnit = respUnit;
     }
 
-    public int getProposalId(){
-        return this.proposalId;
+    public Integer getProposalId() {
+        return proposalId;
     }
 
-    public int getProponentId(){
-        return this.proponentId;
+    public void setProposalId(Integer proposalId) {
+        this.proposalId = proposalId;
     }
-    public String getTypeAdmin(){
-        return this.typeAdmin;
+
+    public void setProponentId(Integer proponentId) {
+        this.proponentId = proponentId;
     }
+
+    public Integer getProponentId() {
+        return proponentId;
+    }
+
 }

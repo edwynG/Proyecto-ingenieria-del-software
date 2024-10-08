@@ -68,7 +68,7 @@ public class RegisterActions extends ActionsInterface {
             return;
         }
         control.getUser().setId(Integer.parseInt(documents.getFirst()));
-        if (control.isThereAnIdToRegisterProponent()) {
+        if (control.isThereAnProponentIDToRegister()) {
             return;
         }
         control.setDocuments(documents);

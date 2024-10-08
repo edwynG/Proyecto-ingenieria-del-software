@@ -13,7 +13,7 @@ public class AbstractEffectFields extends JTextField {
 
     public AbstractEffectFields(int comluns) {
         super(comluns);
-        this.placeholder = "";
+        placeholder = "";
         initAbstractEffectFields();
     }
 
@@ -24,12 +24,12 @@ public class AbstractEffectFields extends JTextField {
     }
 
     public void initAbstractEffectFields() {
-        setText(this.placeholder);
+        setText(placeholder);
         setPreferredSize(new Dimension(100, 36));
         setOpaque(false);
         setFocusable(false);
         
-        this.addMouseListener(new MouseAdapter() {
+        addMouseListener(new MouseAdapter() {
           @Override
           public void mouseEntered(MouseEvent e) {
               setFocusable(true);
@@ -38,23 +38,23 @@ public class AbstractEffectFields extends JTextField {
     }
 
     private void effectPlaceHolderFocusGained() {
-        if (getText().equals(this.placeholder)) {
+        if (getText().equals(placeholder)) {
             setText("");
         }
     }
 
     private void effectPlaceHolderfocusLost() {
         if (getText().isEmpty()) {
-            setText(this.placeholder);
+            setText(placeholder);
         }
     }
 
     public void addEffectPlaceHolder() {
-        if (this.placeholder.isEmpty()) {
+        if (placeholder.isEmpty()) {
             return;
         }
 
-        this.addFocusListener(new FocusListener() {
+        addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 effectPlaceHolderFocusGained();
@@ -68,11 +68,11 @@ public class AbstractEffectFields extends JTextField {
     }
 
     public String getPlaceholder() {
-        return this.placeholder;
+        return placeholder;
     }
 
     public void setPlaceholder(String string) {
-        this.placeholder = string;
+        placeholder = string;
     }
 
 }

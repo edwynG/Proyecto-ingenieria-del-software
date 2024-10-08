@@ -25,13 +25,13 @@ public class AbstractEffectText extends JLabel {
     }
 
     private void initAbstractEffectText() {
-        this.config = new Font("Arial", Font.PLAIN, 15);
+        config = new Font("Arial", Font.PLAIN, 15);
         setFont(config);
     }
 
 
     public void addEffectHover(Color hover){
-        this.addMouseListener(new MouseAdapter() {
+        addMouseListener(new MouseAdapter() {
             private Color before = getForeground();
             private Cursor point = getCursor();
             @Override

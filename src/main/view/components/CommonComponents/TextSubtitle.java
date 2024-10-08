@@ -22,7 +22,7 @@ public class TextSubtitle extends AbstractText {
 
     private void initTextSubtitle() {
 
-        setConfig(new Font(this.fontFamilyGlobal, Font.PLAIN, this.fontSizeSubTitle));
+        setConfig(new Font(fontFamilyGlobal, Font.PLAIN, fontSizeSubTitle));
 
     }
 }

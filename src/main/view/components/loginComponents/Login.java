@@ -9,7 +9,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import main.Env;
@@ -59,16 +58,16 @@ public class Login extends AbstractForm {
     }
 
     public void initForm() {
-        this.configLogin();
-        this.createTitle();
-        this.createInputs();
-        this.createBoton();
-        this.createAside();
+        configLogin();
+        createTitle();
+        createInputs();
+        createBoton();
+        createAside();
 
     };
 
     private void configLogin() {
-        this.actions = new LoginActions();
+        actions = new LoginActions();
         defaultWidth = minWidthFormulation;
         defaultHeigth = minHeightFormulation;
         redimentionRestore();
@@ -78,15 +77,15 @@ public class Login extends AbstractForm {
         int marginBottom = 7;
         int gap = 6;
         // Titula
-        this.title = new TextTitle("Bienvenido", SwingConstants.CENTER);
+        title = new TextTitle("Bienvenido", SwingConstants.CENTER);
         // sub-Titulo
-        this.subTitle = new TextSubtitle("Iniciar sesión", SwingConstants.CENTER);
+        subTitle = new TextSubtitle("Iniciar sesión", SwingConstants.CENTER);
 
         // contenedor
         TransparentPanel container = new TransparentPanel();
         container.setLayout(new GridLayout(2, 1, gap, gap));
-        container.add(this.title);
-        container.add(this.subTitle);
+        container.add(title);
+        container.add(subTitle);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));// margin vertical
 
@@ -98,15 +97,15 @@ public class Login extends AbstractForm {
         int gap = 17;
         int marginBottom = 15;
         // input Correo
-        this.inputEmail = createInputText("Correo electrónico", this.columnsInputStandard);
+        inputEmail = createInputText("Correo electrónico", columnsInputStandard);
         ImageAndComponent labelEmail = new ImageAndComponent(Env.PATH_ICON_EMAIL, widthImage, heightImage, inputEmail);
         addContent(labelEmail);
         addContent(Box.createVerticalStrut(gap));
 
         // input password
-        this.inputPassword = createInputPassword("Contraseña", this.columnsInputStandard);
+        inputPassword = createInputPassword("Contraseña", columnsInputStandard);
         ImageAndComponent labelPassword = new ImageAndComponent(Env.PATH_ICON_PADLOCK, widthImage, heightImage,
-                this.inputPassword);
+                inputPassword);
         addContent(labelPassword);
         addContent(Box.createVerticalStrut(marginBottom));
 
@@ -114,7 +113,7 @@ public class Login extends AbstractForm {
 
     private void createBoton() {
         int marginBottom = 8;
-        this.button = new ButtonRounded("Iniciar sesión", this.roundedButtonGlobal);
+        button = new ButtonRounded("Iniciar sesión", roundedButtonGlobal);
         TransparentPanel container = new TransparentPanel();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -124,13 +123,13 @@ public class Login extends AbstractForm {
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(0, 10, 0, 0);
-        container.add(this.button, gbc);
+        container.add(button, gbc);
 
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));// margin vertical
 
         // Accion del boton
-        this.button.addMouseListener(new MouseAdapter() {
+        button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -142,27 +141,27 @@ public class Login extends AbstractForm {
 
     private void createAside() {
         // primer titulo
-        this.optionPassword = new TextOption("¿Olvidaste tu Contraseña?", SwingConstants.CENTER);
+        optionPassword = new TextOption("¿Olvidaste tu Contraseña?", SwingConstants.CENTER);
 
         TransparentPanel opPass = new TransparentPanel();
         opPass.setLayout(new FlowLayout());
 
         // segundo titulo
-        this.optionRegister = new TextOption("¿Aún no tiene cuenta? Registrate", SwingConstants.RIGHT);
+        optionRegister = new TextOption("¿Aún no tiene cuenta? Registrate", SwingConstants.RIGHT);
         TransparentPanel opRegis = new TransparentPanel();
         opRegis.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         // contenedor
-        this.containerOptions = new TransparentPanel();
-        this.containerOptions.setLayout(new GridLayout(2, 1, this.gapOptions, this.gapOptions));
-        opPass.add(this.optionPassword);
-        opRegis.add(this.optionRegister);
-        this.containerOptions.add(opPass);
-        this.containerOptions.add(opRegis);
+        containerOptions = new TransparentPanel();
+        containerOptions.setLayout(new GridLayout(2, 1, gapOptions, gapOptions));
+        opPass.add(optionPassword);
+        opRegis.add(optionRegister);
+        containerOptions.add(opPass);
+        containerOptions.add(opRegis);
         // se añade al contenido del formulario
-        addContent(this.containerOptions);
+        addContent(containerOptions);
 
-        this.optionPassword.addMouseListener(new MouseAdapter() {
+        optionPassword.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -170,7 +169,7 @@ public class Login extends AbstractForm {
             }
         });
 
-        this.optionRegister.addMouseListener(new MouseAdapter() {
+        optionRegister.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
@@ -181,7 +180,7 @@ public class Login extends AbstractForm {
     }
 
     private void resizeOptionsLg(int gap) {
-        this.containerOptions.setLayout(new GridLayout(2, 1, gap, gap));
+        containerOptions.setLayout(new GridLayout(2, 1, gap, gap));
 
     }
 
@@ -189,9 +188,7 @@ public class Login extends AbstractForm {
     protected void configResizeLarge() {
         int lgColum = 34;
         int lgRow = 45;
-        for (JTextField input : getInputList()) {
-            setRedimentionFields(input, lgColum, lgRow);
-        }
+        setRedimentionFields(lgColum, lgRow);
         optionPassword.setFontSize(13);
         optionRegister.setFontSize(13);
         title.setFontSize(55);
@@ -202,13 +199,9 @@ public class Login extends AbstractForm {
 
     @Override
     protected void configResizeMedium() {
-
         int smRow = 37;
         int midColum = 24;
-
-        for (JTextField input : getInputList()) {
-            setRedimentionFields(input, midColum, smRow);
-        }
+        setRedimentionFields(midColum, smRow);
         optionPassword.setFontSize(fontSizeOptionPassword);
         optionRegister.setFontSize(fontSizeOptionRegister);
         title.setFontSize(fontSizeTitle);
@@ -218,12 +211,9 @@ public class Login extends AbstractForm {
 
     @Override
     protected void configResizeSmall() {
-        int smColum = this.columnsInputStandard;
+        int smColum = columnsInputStandard;
         int smRow = 37;
-
-        for (JTextField input : getInputList()) {
-            setRedimentionFields(input, smColum, smRow);
-        }
+        setRedimentionFields(smColum, smRow);
         optionPassword.setFontSize(fontSizeOptionPassword);
         optionRegister.setFontSize(fontSizeOptionRegister);
         title.setFontSize(fontSizeTitle);

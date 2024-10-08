@@ -15,7 +15,7 @@ public class AccessDatabase {
     private static AccessDatabase singletonDb = null;
 
     private AccessDatabase(String path, String name) {
-        this.sorucePath = path + name;
+        sorucePath = path + name;
         File file = new File(path + name);
 
         if (!file.exists()) {
@@ -41,7 +41,7 @@ public class AccessDatabase {
         File file = new File(path + name);
         try {
             if (file.createNewFile()) {
-                if (!this.createTablesDatabase(Env.CREATE_DATABASE)) {
+                if (!createTablesDatabase(Env.CREATE_DATABASE)) {
                     throw new IOException();
                 }
                 System.out.println("base de datos creada.");
@@ -57,7 +57,7 @@ public class AccessDatabase {
 
     private boolean createTablesDatabase(String query) {
         boolean isSuccess = true;
-        Connection conn = this.openConnection();
+        Connection conn = openConnection();
         Statement statement = null;
 
         try {
@@ -91,14 +91,14 @@ public class AccessDatabase {
 
         }
 
-        this.closeConnection();
+        closeConnection();
         return isSuccess;
     }
 
     public Connection openConnection() {
         try {
             if (db == null || db.isClosed()) {
-                db = DriverManager.getConnection("jdbc:sqlite:" + this.sorucePath);
+                db = DriverManager.getConnection("jdbc:sqlite:" + sorucePath);
             }
         } catch (SQLException e) {
             db = null;

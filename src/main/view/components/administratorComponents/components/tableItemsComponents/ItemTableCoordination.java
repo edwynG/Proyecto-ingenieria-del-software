@@ -67,34 +67,34 @@ public class ItemTableCoordination extends AbstractPanelRounded {
         int height = 40;
         proposal = new FileChooser("Propuesta") {
             @Override
-            protected void DisapprovedFile() {
+            protected void uploadDisapprovedFile() {
 
             }
 
             @Override
-            protected void ApprovateFile() {
+            protected void uploadApprovateFile() {
 
             }
         };
         credentials = new FileChooser("Credenciales") {
             @Override
-            protected void DisapprovedFile() {
+            protected void uploadDisapprovedFile() {
 
             }
 
             @Override
-            protected void ApprovateFile() {
+            protected void uploadApprovateFile() {
 
             }
         };
         observation = new FileChooser("Observaciones") {
             @Override
-            protected void DisapprovedFile() {
+            protected void uploadDisapprovedFile() {
 
             }
 
             @Override
-            protected void ApprovateFile() {
+            protected void uploadApprovateFile() {
 
             }
         };

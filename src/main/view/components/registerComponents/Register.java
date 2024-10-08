@@ -10,7 +10,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.Box;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -59,16 +58,16 @@ public class Register extends AbstractForm {
     }
 
     private void initRegister() {
-        this.configRegister();
-        this.createTitle();
-        this.createInputs();
-        this.createDropdown();
-        this.createButton();
-        this.createAside();
+        configRegister();
+        createTitle();
+        createInputs();
+        createDropdown();
+        createButton();
+        createAside();
     }
 
     public void configRegister() {
-        this.actions = new RegisterActions();
+        actions = new RegisterActions();
         defaultWidth = minWidthFormulation;
         defaultHeigth = minHeightFormulation;
         redimentionRestore();
@@ -78,9 +77,9 @@ public class Register extends AbstractForm {
     private void createTitle() {
         int marginBottom = 14;
         // titulo
-        this.title = new TextTitle("Registro", SwingConstants.CENTER);
+        title = new TextTitle("Registro", SwingConstants.CENTER);
         TransparentPanel container = new TransparentPanel();
-        container.add(this.title);
+        container.add(title);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));
     };
@@ -91,22 +90,22 @@ public class Register extends AbstractForm {
         int gap = 17;
 
         // input correo
-        this.inputEmail = createInputText("Correo electrónico", this.columnsInputStandard);
-        ImageAndComponent labelEmail = new ImageAndComponent(Env.PATH_ICON_EMAIL, width, height, this.inputEmail);
+        inputEmail = createInputText("Correo electrónico", columnsInputStandard);
+        ImageAndComponent labelEmail = new ImageAndComponent(Env.PATH_ICON_EMAIL, width, height, inputEmail);
         addContent(labelEmail);
         addContent(Box.createVerticalStrut(gap));
 
         // input contraseña
-        this.inputPassword = createInputPassword("Contraseña", this.columnsInputStandard);
+        inputPassword = createInputPassword("Contraseña", columnsInputStandard);
         ImageAndComponent labelPassword = new ImageAndComponent(Env.PATH_ICON_PADLOCK, width, height,
-                this.inputPassword);
+                inputPassword);
         addContent(labelPassword);
         addContent(Box.createVerticalStrut(gap));
 
         // input confirmar contraseña
-        this.inputPasswordConfirm = createInputPassword("Confirmar contraseña", this.columnsInputStandard);
+        inputPasswordConfirm = createInputPassword("Confirmar contraseña", columnsInputStandard);
         ImageAndComponent labelPasswordConfirm = new ImageAndComponent(Env.PATH_ICON_PADLOCK, width, height,
-                this.inputPasswordConfirm);
+                inputPasswordConfirm);
         addContent(labelPasswordConfirm);
         addContent(Box.createVerticalStrut(gap));
 
@@ -129,8 +128,8 @@ public class Register extends AbstractForm {
         ArrayList<String> options = new ArrayList<>();
         options.add(Env.TYPE_USER_PROPONENT);
         options.add(Env.TYPE_USER_ADMINISTRADOR);
-        this.dropdown = new Dropdown("Tipo de usuario");
-        this.dropdown.setListElements(options);
+        dropdown = new Dropdown("Tipo de usuario");
+        dropdown.setListElements(options);
         ImageAndComponent container = new ImageAndComponent(Env.PATH_ICON_USER, width, height, dropdown);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));
@@ -151,7 +150,7 @@ public class Register extends AbstractForm {
 
     private void createButton() {
         int marginBottom = 20;
-        this.button = new ButtonRounded("Continuar", this.roundedButtonGlobal);
+        button = new ButtonRounded("Continuar", roundedButtonGlobal);
         TransparentPanel container = new TransparentPanel();
         container.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -161,12 +160,12 @@ public class Register extends AbstractForm {
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(0, 10, 0, 0);
-        container.add(this.button, gbc);
+        container.add(button, gbc);
 
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));
 
-        this.button.addMouseListener(new MouseAdapter() {
+        button.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
@@ -188,9 +187,9 @@ public class Register extends AbstractForm {
     };
 
     private void createAside() {
-        this.optionLogin = new TextOption("¿Tiene usted una cuenta? Iniciar sesión", SwingConstants.CENTER);
+        optionLogin = new TextOption("¿Tiene usted una cuenta? Iniciar sesión", SwingConstants.CENTER);
         TransparentPanel container = new TransparentPanel();
-        container.add(this.optionLogin);
+        container.add(optionLogin);
         addContent(container);
 
         optionLogin.addMouseListener(new MouseAdapter() {
@@ -212,9 +211,7 @@ public class Register extends AbstractForm {
     protected void configResizeLarge() {
         int lgColum = 34;
         int lgRow = 45;
-        for (JTextField input : getInputList()) {
-            setRedimentionFields(input, lgColum, lgRow);
-        }
+        setRedimentionFields(lgColum, lgRow);
         optionLogin.setFontSize(13);
         title.setFontSize(55);
     }
@@ -223,10 +220,7 @@ public class Register extends AbstractForm {
     protected void configResizeMedium() {
         int smRow = 37;
         int midColum = 24;
-
-        for (JTextField input : getInputList()) {
-            setRedimentionFields(input, midColum, smRow);
-        }
+        setRedimentionFields(midColum, smRow);
         optionLogin.setFontSize(fontSizeOptionLogin);
         title.setFontSize(fontSizeTitle);
     }
@@ -235,10 +229,7 @@ public class Register extends AbstractForm {
     protected void configResizeSmall() {
         int smColum = columnsInputStandard;
         int smRow = 37;
-
-        for (JTextField input : getInputList()) {
-            setRedimentionFields(input, smColum, smRow);
-        }
+        setRedimentionFields(smColum, smRow);
         optionLogin.setFontSize(fontSizeOptionLogin);
         title.setFontSize(fontSizeTitle);
     }

@@ -24,6 +24,6 @@ public class ButtonRounded extends AbstractButtonRounded {
         setFontWeightText(Font.BOLD);
         setFontSizeText(fontsizetext);
         setColorText(Color.WHITE);
-        setFontFamilyText(this.fontFamilyGlobal);
+        setFontFamilyText(fontFamilyGlobal);
     }
 }

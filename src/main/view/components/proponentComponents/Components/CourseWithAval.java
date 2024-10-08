@@ -1,5 +1,8 @@
 package main.view.components.proponentComponents.Components;
 
+import main.Env;
+import main.model.Proposal;
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
 import main.view.components.commonComponents.FileChooser;
 import main.view.components.commonComponents.ScrollPaneWin11;
@@ -21,6 +24,7 @@ import javax.swing.SwingConstants;
 import javax.swing.BorderFactory;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 public class CourseWithAval extends AbstractPanelRounded {
     private int width = 700;
@@ -118,12 +122,12 @@ public class CourseWithAval extends AbstractPanelRounded {
         container.setLayout(new BorderLayout());
         container.add(ButtonLetterOfCommitment, BorderLayout.WEST);
         add(container, BorderLayout.SOUTH);
-     
 
         ButtonLetterOfCommitment.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                InterfaceProponent.actions.actionsDownload();
+                InterfaceProponent.actions.actionsDownload(ButtonLetterOfCommitment.getPath(),
+                        Env.DOCUMENT_LETTER_OF_COMMITMENT);
             }
 
             @Override
@@ -148,11 +152,13 @@ public class CourseWithAval extends AbstractPanelRounded {
         gbc.ipady = 45;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-
-        for (int i = 0; i < 4; i++) {
+        List<Proposal> porposalWithAval = Main.getProponentControl().getCourseWithAval().reversed();
+        for (int i = 0; i < porposalWithAval.size(); i++) {
             gbc.gridx = 0;
             gbc.gridy = i;
-            ItemTableCourseWithAval item = new ItemTableCourseWithAval("<html>Fundamentos de Java</html>", i);
+
+            ItemTableCourseWithAval item = new ItemTableCourseWithAval(porposalWithAval.get(i).getTitle(),
+                    porposalWithAval.get(i).getProposalId());
             TableContent.add(item, gbc);
 
         }

@@ -1,8 +1,7 @@
 package main.model.abstractModels;
 
 import java.util.ArrayList;
-import java.util.List;
-
+import main.model.ManagerDatabase;
 import main.model.Proposal;
 
 public abstract class User {
@@ -11,8 +10,8 @@ public abstract class User {
     protected String typeUser;
     protected String type;
     private String password;
-    private List<Proposal> proposals;
-
+    private ArrayList<Proposal> proposals;
+    private ManagerDatabase managerDatabase;
     public User() {
         initUser();
     }
@@ -26,6 +25,7 @@ public abstract class User {
     }
 
     private void initUser() {
+        managerDatabase = ManagerDatabase.getManagerDatabase();
         proposals = new ArrayList<>();
 
     }
@@ -40,7 +40,7 @@ public abstract class User {
         return user;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -52,7 +52,7 @@ public abstract class User {
         return password;
     }
 
-    public List<Proposal> getProposals() {
+    public ArrayList<Proposal> getProposals() {
         return proposals;
     }
 
@@ -76,7 +76,7 @@ public abstract class User {
         this.password = password;
     }
 
-    public void setProposals(List<Proposal> proposals) {
+    public void setProposals(ArrayList<Proposal> proposals) {
         this.proposals = proposals;
     }
 
@@ -84,7 +84,11 @@ public abstract class User {
         this.type = type;
     }
 
-    public void refreshListOfProposals() {
+    public ManagerDatabase getManagerDatabase() {
+        return managerDatabase;
+    }
+
+    public void updateProposalsUser() {
         return;
     };
 

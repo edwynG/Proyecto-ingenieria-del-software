@@ -70,34 +70,34 @@ public class ItemTableAddress extends AbstractPanelRounded {
         int height = 40;
         probity = new FileChooser("Probidad") {
             @Override
-            protected void DisapprovedFile() {
+            protected void uploadDisapprovedFile() {
 
             }
 
             @Override
-            protected void ApprovateFile() {
+            protected void uploadApprovateFile() {
 
             }
         };
         information = new FileChooser("Información") {
             @Override
-            protected void DisapprovedFile() {
+            protected void uploadDisapprovedFile() {
 
             }
 
             @Override
-            protected void ApprovateFile() {
+            protected void uploadApprovateFile() {
 
             }
         };
         observation = new FileChooser("Observaciones") {
             @Override
-            protected void DisapprovedFile() {
+            protected void uploadDisapprovedFile() {
 
             }
 
             @Override
-            protected void ApprovateFile() {
+            protected void uploadApprovateFile() {
 
             }
         };

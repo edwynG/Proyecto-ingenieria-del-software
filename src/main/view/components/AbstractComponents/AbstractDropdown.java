@@ -36,35 +36,35 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
     protected JLabel imagen;
 
     public AbstractDropdown(String text) {
-        this.options = new JList<>();
-        this.elements = new DefaultListModel<>();
-        this.title = text;
+        options = new JList<>();
+        elements = new DefaultListModel<>();
+        title = text;
 
         initAbstractDropdown();
     }
 
     public AbstractDropdown(String text, DefaultListModel<String> elements) {
-        this.options = new JList<>(elements);
+        options = new JList<>(elements);
         this.elements = elements;
-        this.title = text;
+        title = text;
         initAbstractDropdown();
 
     }
 
     private void initAbstractDropdown() {
-        this.text = new JLabel(this.title);
-        this.imagen = new JLabel();
-        this.imagen.setIcon(createIcon());
+        text = new JLabel(title);
+        imagen = new JLabel();
+        imagen.setIcon(createIcon());
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         setLayout(new BorderLayout());
         RoundedBorder borde = new RoundedBorder(10);
         borde.setBorderColor(Color.black);
         setBorder(borde);
-        add(this.text, BorderLayout.CENTER);
-        add(this.imagen, BorderLayout.EAST);
+        add(text, BorderLayout.CENTER);
+        add(imagen, BorderLayout.EAST);
         createPopupPanel();
 
-        this.addMouseListener(new MouseAdapter() {
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 GlassPanePopup.showPopup(panel);
@@ -78,7 +78,7 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
         int radius = 15;
         int height = 120;
         int width = 320;
-        this.panel = new AbstractPanelRounded(radius) {
+        panel = new AbstractPanelRounded(radius) {
             @Override
             public Insets insets() {
                 return new Insets(2, 2, 2, 2);
@@ -132,30 +132,30 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
     }
 
     public void setListElements(ArrayList<String> arr) {
-        this.elements.removeAllElements();
+        elements.removeAllElements();
         for (String element : arr) {
-            this.elements.addElement(element);
+            elements.addElement(element);
         }
-        this.options.setModel(this.elements);
+        options.setModel(elements);
         options.revalidate();
         options.repaint();
     }
 
     public void addElement(String element) {
-        this.elements.addElement(element);
-        this.options.setModel(elements);
-        this.reload(this.options);
+        elements.addElement(element);
+        options.setModel(elements);
+        reload(options);
 
     }
 
     public String getSelectElement() {
-        return this.options.getSelectedValue();
+        return options.getSelectedValue();
     }
 
     public void removeElement(String element) {
-        this.elements.removeElement(element);
-        this.options.setModel(elements);
-        this.reload(this.options);
+        elements.removeElement(element);
+        options.setModel(elements);
+        reload(options);
     }
 
     protected void reload(Component component) {
@@ -164,26 +164,26 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
     }
 
     public void setStyleTitle(Font font) {
-        this.text.setFont(font);
+        text.setFont(font);
     }
 
     public void setColorText(Color color) {
-        this.text.setForeground(color);
+        text.setForeground(color);
     }
 
     public void setFontSizeText(int size) {
-        Font font = this.text.getFont();
-        this.text.setFont(new Font(font.getName(), font.getStyle(), size));
+        Font font = text.getFont();
+        text.setFont(new Font(font.getName(), font.getStyle(), size));
     }
 
     public void setFontFamilyText(String family) {
-        Font font = this.text.getFont();
-        this.text.setFont(new Font(family, font.getStyle(), font.getSize()));
+        Font font = text.getFont();
+        text.setFont(new Font(family, font.getStyle(), font.getSize()));
     }
 
     public void setFontWeightText(int weight) {
-        Font font = this.text.getFont();
-        this.text.setFont(new Font(font.getName(), weight, font.getSize()));
+        Font font = text.getFont();
+        text.setFont(new Font(font.getName(), weight, font.getSize()));
     }
 
     public void setPreferentPanel(int width, int height) {

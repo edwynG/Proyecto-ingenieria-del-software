@@ -16,6 +16,7 @@ import main.view.components.commonComponents.FileChooser;
 import main.view.components.commonComponents.InputText;
 import main.view.components.commonComponents.TextTitle;
 import main.view.components.commonComponents.TransparentPanel;
+import main.view.utils.Components;
 import main.view.utils.CustomVariables;
 
 public class NaturalProponent extends AbstractForm {
@@ -36,25 +37,25 @@ public class NaturalProponent extends AbstractForm {
 
     public NaturalProponent(int rounded) {
         super(rounded);
-        this.initNaturalProponent();
+        initNaturalProponent();
     }
 
     public NaturalProponent() {
-        this.initNaturalProponent();
+        initNaturalProponent();
     }
 
     public void initNaturalProponent() {
-        this.configNaturalProponent();
-        this.createTitle();
-        this.createinput();
-        this.createFileChooser();
-        this.createButton();
+        configNaturalProponent();
+        createTitle();
+        createinput();
+        createFileChooser();
+        createButton();
 
     }
 
     private void configNaturalProponent() {
-        setPreferredSize(new Dimension(this.defaultWidth, this.defaultHeigth));
-        this.actions = new RegisterActions();
+        setPreferredSize(new Dimension(defaultWidth, defaultHeigth));
+        actions = new RegisterActions();
         defaultWidth = 380;
         defaultHeigth = 450;
     }
@@ -62,10 +63,10 @@ public class NaturalProponent extends AbstractForm {
     private void createTitle() {
         int marginBottom = 15;
         // titulo
-        this.title = new TextTitle("Persona natural", SwingConstants.CENTER);
-        this.title.setPreferredSize(new Dimension(310, 55));
+        title = new TextTitle("Persona natural", SwingConstants.CENTER);
+        title.setPreferredSize(new Dimension(310, 55));
         TransparentPanel container = new TransparentPanel();
-        container.add(this.title);
+        container.add(title);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));
 
@@ -74,13 +75,13 @@ public class NaturalProponent extends AbstractForm {
     private void createinput() {
         int marginBottom = 5;
 
-        this.inputID = createInputText("Cédula de identidad", this.columnsInputDefault);
+        inputID = createInputText("Cédula de identidad", columnsInputDefault);
         TransparentPanel container = new TransparentPanel();
-        container.add(this.inputID);
+        container.add(inputID);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));
 
-        this.inputID.addComponentListener(new ComponentAdapter() {
+        inputID.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 int width = inputID.getWidth();
@@ -96,21 +97,21 @@ public class NaturalProponent extends AbstractForm {
     private void createFileChooser() {
         int marginBottom = 5;
 
-        this.fileChooserRIF = createFileChoosers("Registro de información (RIF)");
+        fileChooserRIF = createFileChoosers("Registro de información (RIF)");
         TransparentPanel container_1 = new TransparentPanel();
-        container_1.add(this.fileChooserRIF);
+        container_1.add(fileChooserRIF);
 
-        this.fileChooserISLR = createFileChoosers("Certificado de declaración ISLR");
+        fileChooserISLR = createFileChoosers("Certificado de declaración ISLR");
         TransparentPanel container_2 = new TransparentPanel();
-        container_2.add(this.fileChooserISLR);
+        container_2.add(fileChooserISLR);
 
-        this.fileChooserCurriculum = createFileChoosers("Resumen curricular");
+        fileChooserCurriculum = createFileChoosers("Resumen curricular");
         TransparentPanel container_3 = new TransparentPanel();
-        container_3.add(this.fileChooserCurriculum);
+        container_3.add(fileChooserCurriculum);
 
-        this.fileChooserDegree = createFileChoosers("Copia del título universitario");
+        fileChooserDegree = createFileChoosers("Copia del título universitario");
         TransparentPanel container_4 = new TransparentPanel();
-        container_4.add(this.fileChooserDegree);
+        container_4.add(fileChooserDegree);
 
         addContent(container_1);
         addContent(Box.createVerticalStrut(marginBottom));
@@ -126,17 +127,17 @@ public class NaturalProponent extends AbstractForm {
     }
 
     private void createButton() {
-        this.button = new ButtonRounded("Registrarse", this.roundedButtonGlobal);
-        setRedimentionPane(button, inputID.getWidth(), this.heightButton);
+        button = new ButtonRounded("Registrarse", roundedButtonGlobal);
+        setRedimentionPane(button, inputID.getWidth(), heightButton);
         TransparentPanel container = new TransparentPanel();
         container.add(button);
         addContent(container);
 
-        this.button.addMouseListener(new MouseAdapter() {
+        button.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                // La lista tiene que tener por la estructura de la consulta
-                ArrayList<String> data=new ArrayList<>();
+                // La lista tiene que tener la estructura de la consulta
+                ArrayList<String> data = new ArrayList<>();
                 data.add(inputID.getText());
                 data.add(fileChooserRIF.getPath());
                 data.add(fileChooserISLR.getPath());
@@ -150,10 +151,10 @@ public class NaturalProponent extends AbstractForm {
 
     @Override
     protected void configResizeLarge() {
-        setRedimentionFields(inputID, columnsInputDefault + 7, 45);
-        this.title.setFontSize(this.fontSizeTitle + 1);
-        revalidate();
-        repaint();
+        setRedimentionFields(columnsInputDefault + 7, 45);
+        title.setFontSize(fontSizeTitle + 1);
+        Components.repaintComponent(this);
+
 
     }
 
@@ -164,10 +165,10 @@ public class NaturalProponent extends AbstractForm {
 
     @Override
     protected void configResizeSmall() {
-        setRedimentionFields(inputID, columnsInputDefault, 40);
-        this.title.setFontSize(this.fontSizeTitle);
-        revalidate();
-        repaint();
+        setRedimentionFields(columnsInputDefault, 40);
+        title.setFontSize(fontSizeTitle);
+        Components.repaintComponent(this);
+
     }
 
 }

@@ -29,11 +29,11 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
 
     public InterfaceWithAppbar() {
         super(0);
-        this.initInterfaceWithAppbar();
+        initInterfaceWithAppbar();
     }
 
     private void initInterfaceWithAppbar() {
-        this.configInterfaceWithAppbar();
+        configInterfaceWithAppbar();
 
     }
 
@@ -47,7 +47,7 @@ public class InterfaceWithAppbar extends AbstractPanelRounded {
             }
         };
         content.setLayout(new GridBagLayout());
-        this.appBar = new AppBar() {
+        appBar = new AppBar() {
             @Override
             public void actionsIconLogOut() {
                 Main.setContent(new InterfaceWithoutAppbar(Env.PATH_IMAGE_MAIN));

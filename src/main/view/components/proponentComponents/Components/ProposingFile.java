@@ -1,5 +1,9 @@
 package main.view.components.proponentComponents.Components;
 
+import main.Env;
+import main.controller.Validator;
+import main.model.Proposal;
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
 import main.view.components.commonComponents.ScrollPaneWin11;
 import main.view.components.commonComponents.TextSubtitle;
@@ -115,12 +119,15 @@ public class ProposingFile extends AbstractPanelRounded {
         gbc.ipady = 46;
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
-
-        for (int i = 0; i < 4; i++) {
+        Validator validator = new Validator();
+        for (int i = 0; i < Main.getProponentControl().getProposals().size(); i++) {
             gbc.gridx = 0;
             gbc.gridy = i;
-            ItemTableProposingFile item = new ItemTableProposingFile(
-                    "<html>" + "Fundamentos de java" + "</html>", i);
+            Proposal proposal = Main.getProponentControl().getProposals().reversed().get(i);
+            String type = validator.isAcceptedProposal(proposal.getProposalId()) ? Env.TYPE_USER_ALIADO
+                    : Env.TYPE_USER_PROPONENT;
+            ItemTableProposingFile item = new ItemTableProposingFile(proposal.getTitle(), type,
+                    proposal.getProposalId());
             TableContent.add(item, gbc);
 
         }

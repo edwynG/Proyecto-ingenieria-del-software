@@ -1,10 +1,10 @@
 package main.controller;
 
-import main.controller.abstractControllers.UserControl;
+import main.controller.abstractControllers.AbstractUserControl;
 import main.model.abstractModels.User;
 
 
-public class AdministratorControl extends UserControl {
+public class AdministratorControl extends AbstractUserControl {
 
     public AdministratorControl(User user) {
         super(user);

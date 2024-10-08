@@ -1,5 +1,7 @@
 package main.view.components.proponentComponents.Components;
 
+import main.model.Proposal;
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
 import main.view.components.commonComponents.ButtonRounded;
 import main.view.components.commonComponents.ScrollPaneWin11;
@@ -146,10 +148,11 @@ public class MyCourses extends AbstractPanelRounded {
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < Main.getProponentControl().getProposals().size(); i++) {
             gbc.gridx = 0;
             gbc.gridy = i;
-            ItemTableMyCourse item = new ItemTableMyCourse("<html>Fundamentos</html>", "Diplomado", i);
+            Proposal proposal = Main.getProponentControl().getProposals().reversed().get(i);
+            ItemTableMyCourse item = new ItemTableMyCourse(proposal.getTitle(), proposal.getDenom(), proposal.getProposalId());
             TableContent.add(item, gbc);
 
         }

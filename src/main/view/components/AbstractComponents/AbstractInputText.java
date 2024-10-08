@@ -22,10 +22,10 @@ public class AbstractInputText extends AbstractEffectFields {
     }
 
     public void initAbstractInputText() {
-        this.configBorder = new RoundedBorder(0);
+        configBorder = new RoundedBorder(0);
         setMinimumSize(new Dimension(200, 30));
         setPreferredSize(new Dimension(200, 40));
-        setBorder(this.configBorder);
+        setBorder(configBorder);
 
     }
 
@@ -39,45 +39,45 @@ public class AbstractInputText extends AbstractEffectFields {
     }
 
     public void setFontSizeText(int size) {
-        Font font = this.getFont();
+        Font font = getFont();
         setFont(new Font(font.getName(), font.getStyle(), size));
     }
 
     public void setFontFamilyText(String family) {
-        Font font = this.getFont();
+        Font font = getFont();
         setFont(new Font(family, font.getStyle(), font.getSize()));
     }
 
     public void setFontWeightText(int weight) {
-        Font font = this.getFont();
+        Font font = getFont();
         setFont(new Font(font.getName(), weight, font.getSize()));
     }
 
     public void setRoundedField(int radius) {
-        this.configBorder.setBorderRounded(radius);
-        setBorder(this.configBorder);
+        configBorder.setBorderRounded(radius);
+        setBorder(configBorder);
         revalidate();
         repaint();
     }
 
     public void setBorderColorField(Color color) {
-        this.configBorder.setBorderColor(color);
-        setBorder(this.configBorder);
+        configBorder.setBorderColor(color);
+        setBorder(configBorder);
         revalidate();
         repaint();
     }
 
     public int getBorderRounded() {
-        return this.configBorder.getBorderRounded();
+        return configBorder.getBorderRounded();
     }
 
     public void setConfigBorder(RoundedBorder borde) {
-        this.configBorder = borde;
+        configBorder = borde;
         setBorder(borde);
     }
 
     public Color getColorBorderField() {
-        return this.configBorder.getBorderColor();
+        return configBorder.getBorderColor();
     }
 
     public String getInput() {

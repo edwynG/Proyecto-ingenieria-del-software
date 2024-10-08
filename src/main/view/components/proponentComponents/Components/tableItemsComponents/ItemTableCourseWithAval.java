@@ -1,5 +1,6 @@
 package main.view.components.proponentComponents.Components.tableItemsComponents;
 
+import main.Env;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
 import main.view.components.commonComponents.FileChooser;
 import main.view.components.commonComponents.TextSubtitle;
@@ -26,7 +27,7 @@ public class ItemTableCourseWithAval extends AbstractPanelRounded {
 
     public ItemTableCourseWithAval(String name, int id) {
         super(0);
-        this.name = new TextSubtitle(name);
+        this.name = new TextSubtitle("<html>" + name + "</html>");
         this.id = id;
         initItemTableCourseWithAval();
     }
@@ -68,23 +69,23 @@ public class ItemTableCourseWithAval extends AbstractPanelRounded {
         int height = 40;
         Schedule = new FileChooser("Cronograma de ejecución") {
             @Override
-            protected void DisapprovedFile() {
+            protected void uploadDisapprovedFile() {
 
             }
 
             @Override
-            protected void ApprovateFile() {
+            protected void uploadApprovateFile() {
 
             }
         };
         Costos = new FileChooser("Estructura de ejecución e costos") {
             @Override
-            protected void DisapprovedFile() {
+            protected void uploadDisapprovedFile() {
 
             }
 
             @Override
-            protected void ApprovateFile() {
+            protected void uploadApprovateFile() {
 
             }
         };
@@ -122,21 +123,18 @@ public class ItemTableCourseWithAval extends AbstractPanelRounded {
         Schedule.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(id);
-                InterfaceProponent.actions.actionsUploadDocument();
+                InterfaceProponent.actions.actionsUploadDocument(id, Schedule.getPath(), Env.TYPE_UPLOAD_SCHEDULE);
             }
         });
+
         Costos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(id);
-                InterfaceProponent.actions.actionsUploadDocument();
+                InterfaceProponent.actions.actionsUploadDocument(id, Costos.getPath(), Env.TYPE_UPLOAD_COSTOS);
 
             }
         });
     }
-
-    
 
     @Override
     public Insets getInsets() {

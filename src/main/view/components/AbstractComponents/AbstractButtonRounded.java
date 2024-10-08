@@ -45,22 +45,22 @@ public abstract class AbstractButtonRounded extends AbstractPanelRounded {
     }
 
     public void setColorText(Color color) {
-        this.text.setForeground(color);
+        text.setForeground(color);
     }
 
     public void setFontSizeText(int size) {
-        Font font = this.text.getFont();
-        this.text.setFont(new Font(font.getName(), font.getStyle(), size));
+        Font font = text.getFont();
+        text.setFont(new Font(font.getName(), font.getStyle(), size));
     }
 
     public void setFontFamilyText(String family) {
-        Font font = this.text.getFont();
-        this.text.setFont(new Font(family, font.getStyle(), font.getSize()));
+        Font font = text.getFont();
+        text.setFont(new Font(family, font.getStyle(), font.getSize()));
     }
 
     public void setFontWeightText(int weight) {
-        Font font = this.text.getFont();
-        this.text.setFont(new Font(font.getName(), weight, font.getSize()));
+        Font font = text.getFont();
+        text.setFont(new Font(font.getName(), weight, font.getSize()));
     }
 
     public void setText(String str){

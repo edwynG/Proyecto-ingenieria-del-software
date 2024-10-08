@@ -1,9 +1,9 @@
 package main.view.components.commonComponents;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
-
 import javax.swing.Box;
 import java.awt.GridBagLayout;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
@@ -35,12 +35,13 @@ public class CardMessage extends AbstractPanelRounded {
         containerTitle.add(title);
         title.setForeground(Color.RED);
         message.setForeground(ColorPalette.COLOR_SENCOD);
-        containerMessage.add(message);
+        container.setLayout(new BorderLayout());
+        containerMessage.add(message, BorderLayout.CENTER);
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         container.add(containerTitle);
         container.add(Box.createVerticalStrut(marginBottom));
         container.add(containerMessage);
-        Components.setRedimentionComponent(containerMessage, width, 50);
+
         setLayout(new GridBagLayout());
         add(container);
     }
@@ -63,6 +64,11 @@ public class CardMessage extends AbstractPanelRounded {
         this.height = height;
         Components.setRedimentionComponent(this, width, height);
 
+    }
+
+    public void setColorTitle(Color color) {
+        title.setForeground(color);
+        Components.repaintComponent(title);
     }
 
 }

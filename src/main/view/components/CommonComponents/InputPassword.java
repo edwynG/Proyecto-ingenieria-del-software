@@ -14,13 +14,13 @@ public class InputPassword extends AbstractInputPassword {
 
     public InputPassword(int comluns, String placeholder) {
         super(comluns, placeholder);
-        this.initInputPassword();
+        initInputPassword();
 
     }
 
     public void initInputPassword() {
-        setConfigBorder(Components.customrBorder(this.roundedInputGlobal, ColorPalette.COLOR_PRIMARY));
-        setFontFamilyText(this.fontFamilyGlobal);
+        setConfigBorder(Components.customrBorder(roundedInputGlobal, ColorPalette.COLOR_PRIMARY));
+        setFontFamilyText(fontFamilyGlobal);
         setBorderColorField(ColorPalette.COLOR_FIELD);
         setForeground(ColorPalette.COLOR_FIELD);
         setFontSizeText(fontSize);

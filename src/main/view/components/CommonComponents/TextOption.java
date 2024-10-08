@@ -21,7 +21,7 @@ public class TextOption extends AbstractText{
     }
 
     private void initTextOption(){
-        setConfig(new Font(this.fontFamilyGlobal, Font.PLAIN, this.fontSizeOptionPassword));
+        setConfig(new Font(fontFamilyGlobal, Font.PLAIN, fontSizeOptionPassword));
         addEffectHover(Color.BLUE);
     }
 }

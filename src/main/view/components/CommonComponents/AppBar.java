@@ -31,22 +31,22 @@ public class AppBar extends AbstractPanelRounded {
     }
 
     private void initAppbar() {
-        this.configAppBar();
-        this.createHeader();
-        this.createNav();
+        configAppBar();
+        createHeader();
+        createNav();
   
     }
 
     private void configAppBar() {
         setLayout(new BorderLayout());
         setBackground(ColorPalette.COLOR_PRIMARY);
-        setPreferredSize(new Dimension(getWidth(), this.height));
-        this.leftContent = new TransparentPanel();
-        this.rightContent = new TransparentPanel();
+        setPreferredSize(new Dimension(getWidth(), height));
+        leftContent = new TransparentPanel();
+        rightContent = new TransparentPanel();
         add(leftContent, BorderLayout.WEST);
         add(rightContent, BorderLayout.EAST);
         rightContent.setLayout(new GridBagLayout());
-        rightContent.setPreferredSize(new Dimension(this.widthRightContent, getHeight()));
+        rightContent.setPreferredSize(new Dimension(widthRightContent, getHeight()));
       
     }
 
@@ -61,7 +61,7 @@ public class AppBar extends AbstractPanelRounded {
             }
         };
 
-        this.leftContent.add(header);
+        leftContent.add(header);
 
     }
 
@@ -71,7 +71,7 @@ public class AppBar extends AbstractPanelRounded {
         }
         navContent = new TransparentPanel();
 
-        this.rightContent.add(navContent);
+        rightContent.add(navContent);
     }
 
     public void createNavProponent() {
@@ -148,7 +148,7 @@ public class AppBar extends AbstractPanelRounded {
         gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.EAST;
         navContent.add(backContent, gbc);
-        navContent.setPreferredSize(new Dimension(this.widthRightContent-15, 60));
+        navContent.setPreferredSize(new Dimension(widthRightContent-15, 60));
 
         back.addMouseListener(new MouseAdapter() {
             @Override
@@ -179,7 +179,7 @@ public class AppBar extends AbstractPanelRounded {
         gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.EAST;
         navContent.add(backContent, gbc);
-        navContent.setPreferredSize(new Dimension(this.widthRightContent-15, 60));
+        navContent.setPreferredSize(new Dimension(widthRightContent-15, 60));
 
         back.addMouseListener(new MouseAdapter() {
             @Override

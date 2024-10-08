@@ -21,15 +21,15 @@ import javax.swing.BorderFactory;
 public class ItemTableMyCourse extends AbstractPanelRounded {
     private TextSubtitle name;
     private TextSubtitle type;
-    private int id;
+    private int proposalID;
     private ButtonRounded buttonDetails;
     GridBagConstraints gbc;
 
-    public ItemTableMyCourse(String name, String type, int id) {
+    public ItemTableMyCourse(String name, String type, int proposalID) {
         super(0);
-        this.name = new TextSubtitle(name);
+        this.name = new TextSubtitle("<html>"+name+"</html>");
         this.type = new TextSubtitle(type, SwingConstants.CENTER);
-        this.id = id;
+        this.proposalID = proposalID;
         initItemTableMyCourse();
     }
 
@@ -74,7 +74,7 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
     }
 
     private void createComponents() {
-        buttonDetails = new ButtonRounded("Ver más " + id, CustomVariables.RADIO_DEFAULT_BUTTON);
+        buttonDetails = new ButtonRounded("Ver más", CustomVariables.RADIO_DEFAULT_BUTTON);
         Components.setRedimentionComponent(buttonDetails, 100, 40);
         TransparentPanel center = new TransparentPanel();
         TransparentPanel east = new TransparentPanel();
@@ -94,7 +94,7 @@ public class ItemTableMyCourse extends AbstractPanelRounded {
         buttonDetails.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                InterfaceProponent.actions.actionsButtonViewMore();
+                InterfaceProponent.actions.actionsButtonViewMore(proposalID);
             }
         });
 

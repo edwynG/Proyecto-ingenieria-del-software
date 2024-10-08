@@ -68,8 +68,8 @@ public class RegisterControl extends AbstractSesionControl {
         return false;
     }
 
-    public boolean isThereAnIdToRegisterProponent() {
-        if (getValidator().isThereAnIdRegister(getUser().getId())) {
+    public boolean isThereAnProponentIDToRegister() {
+        if (getValidator().isThereAnProponentIDRegister(getUser().getId())) {
             GlassPanePopup.showPopup(new CardMessage("Lo sentimos..", "La cedula pertenece a otro usuario."));
             return true;
         }

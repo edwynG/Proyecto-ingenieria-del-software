@@ -18,6 +18,7 @@ import main.view.components.commonComponents.FileChooser;
 import main.view.components.commonComponents.InputText;
 import main.view.components.commonComponents.TextTitle;
 import main.view.components.commonComponents.TransparentPanel;
+import main.view.utils.Components;
 import main.view.utils.CustomVariables;
 
 public class LegalProponent extends AbstractForm {
@@ -45,20 +46,20 @@ public class LegalProponent extends AbstractForm {
 
     public LegalProponent(int rounded) {
         super(rounded);
-        this.initLegalProponent();
+        initLegalProponent();
     }
 
     public LegalProponent() {
-        this.initLegalProponent();
+        initLegalProponent();
     }
 
     public void initLegalProponent() {
-        this.configLegalProponent();
-        this.configLegalProponentLayout();
-        this.createTitle();
-        this.createinput();
-        this.createFileChooser();
-        this.createButton();
+        configLegalProponent();
+        configLegalProponentLayout();
+        createTitle();
+        createinput();
+        createFileChooser();
+        createButton();
 
     }
 
@@ -66,55 +67,55 @@ public class LegalProponent extends AbstractForm {
         defaultWidth = 700;
         defaultHeigth = 400;
         setPreferredSize(new Dimension(defaultWidth, defaultHeigth));
-        this.containerTitle = new TransparentPanel() {
+        containerTitle = new TransparentPanel() {
             @Override
             public Insets getInsets() {
                 return new Insets(0, 0, 18, 0);
             }
         };
-        this.formulationContentLeft = new TransparentPanel();
-        this.formulationContentRight = new TransparentPanel();
-        this.containerFormulation = new TransparentPanel();
-        this.actions = new RegisterActions();
+        formulationContentLeft = new TransparentPanel();
+        formulationContentRight = new TransparentPanel();
+        containerFormulation = new TransparentPanel();
+        actions = new RegisterActions();
 
     }
 
     private void configLegalProponentLayout() {
-        addContent(this.containerTitle);
-        addContent(this.containerFormulation);
-        this.containerFormulation.setLayout(new GridBagLayout());
+        addContent(containerTitle);
+        addContent(containerFormulation);
+        containerFormulation.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        this.containerFormulation.add(formulationContentLeft, gbc);
+        containerFormulation.add(formulationContentLeft, gbc);
         gbc.gridx = 1;
         gbc.gridy = 0;
-        this.containerFormulation.add(this.formulationContentRight, gbc);
+        containerFormulation.add(formulationContentRight, gbc);
         formulationContentLeft.setLayout(new GridBagLayout());
         formulationContentRight.setLayout(new GridBagLayout());
 
     }
 
     private void createTitle() {
-        this.title = new TextTitle("Persona jurídica");
+        title = new TextTitle("Persona jurídica");
         title.setPreferredSize(new Dimension(320,45));
-        this.containerTitle.add(this.title, SwingConstants.CENTER);
+        containerTitle.add(title, SwingConstants.CENTER);
 
     }
 
     private void createinput() {
-        this.inputID = createInputText("Cédula de identidad del representante legal", this.columnsInputDefault);
+        inputID = createInputText("Cédula de identidad del representante legal", columnsInputDefault);
         TransparentPanel container = new TransparentPanel();
-        container.add(this.inputID);
+        container.add(inputID);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
-        this.formulationContentLeft.add(container, gbc);
+        formulationContentLeft.add(container, gbc);
 
-        this.inputID.addComponentListener(new ComponentAdapter() {
+        inputID.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 int width = inputID.getWidth();
@@ -128,25 +129,25 @@ public class LegalProponent extends AbstractForm {
 
     private void createFileChooser() {
 
-        this.fileChooserCommercialRegister = createFileChoosers("Registro mercantil");
+        fileChooserCommercialRegister = createFileChoosers("Registro mercantil");
         TransparentPanel container_1 = new TransparentPanel();
-        container_1.add(this.fileChooserCommercialRegister);
+        container_1.add(fileChooserCommercialRegister);
 
-        this.fileChooserRIF = createFileChoosers("Registro de información fiscal (RIF)");
+        fileChooserRIF = createFileChoosers("Registro de información fiscal (RIF)");
         TransparentPanel container_2 = new TransparentPanel();
-        container_2.add(this.fileChooserRIF);
+        container_2.add(fileChooserRIF);
 
-        this.fileChooserISLR = createFileChoosers("Certificado de declaración ISLR");
+        fileChooserISLR = createFileChoosers("Certificado de declaración ISLR");
         TransparentPanel container_3 = new TransparentPanel();
-        container_3.add(this.fileChooserISLR);
+        container_3.add(fileChooserISLR);
 
-        this.fileChooserCurriculum = createFileChoosers("Resumen curricular");
+        fileChooserCurriculum = createFileChoosers("Resumen curricular");
         TransparentPanel container_4 = new TransparentPanel();
-        container_4.add(this.fileChooserCurriculum);
+        container_4.add(fileChooserCurriculum);
 
-        this.fileChooserDegree = createFileChoosers("Copia del título universitario");
+        fileChooserDegree = createFileChoosers("Copia del título universitario");
         TransparentPanel container_5 = new TransparentPanel();
-        container_5.add(this.fileChooserDegree);
+        container_5.add(fileChooserDegree);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -176,10 +177,10 @@ public class LegalProponent extends AbstractForm {
     }
 
     private void createButton() {
-        this.button = new ButtonRounded("Registrarse", this.roundedButtonGlobal);
-        setRedimentionPane(button, inputID.getWidth(), this.heightButton);
+        button = new ButtonRounded("Registrarse", roundedButtonGlobal);
+        setRedimentionPane(button, inputID.getWidth(), heightButton);
         TransparentPanel container = new TransparentPanel();
-        container.add(this.button);
+        container.add(button);
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -187,10 +188,10 @@ public class LegalProponent extends AbstractForm {
         gbc.insets = new Insets(5, 0, 90, 0);
         formulationContentRight.add(container, gbc);
 
-         this.button.addMouseListener(new MouseAdapter() {
+         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // La lista tiene que tener por la estructura de la consulta
+                // La lista tiene que tener la estructura de la consulta
                 ArrayList<String> data = new ArrayList<>();
                 data.add(inputID.getText());
                 data.add(fileChooserRIF.getPath());
@@ -205,16 +206,15 @@ public class LegalProponent extends AbstractForm {
 
     @Override
     protected void configResizeLarge() {
-        setRedimentionFields(inputID, 34, 45);
-        revalidate();
-        repaint();
+        setRedimentionFields(34, 45);
+        Components.repaintComponent(this);
+
     }
 
     @Override
     protected void configResizeMedium() {
-        setRedimentionFields(inputID, columnsInputDefault, 40);
-        revalidate();
-        repaint();
+        setRedimentionFields(columnsInputDefault, 40);
+        Components.repaintComponent(this);
     }
 
     @Override

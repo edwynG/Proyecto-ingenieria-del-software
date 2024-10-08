@@ -53,14 +53,14 @@ public class ProponentType extends AbstractForm {
     }
 
     private void initProponentType() {
-        this.configProponentType();
-        this.createTitle();
-        this.createDropdown();
-        this.createButtons();
+        configProponentType();
+        createTitle();
+        createDropdown();
+        createButtons();
     }
 
     private void configProponentType() {
-        this.actions = new RegisterActions();
+        actions = new RegisterActions();
         defaultWidth = minWidthFormulation;
         defaultHeigth = minHeightFormulation;
         redimentionRestore();
@@ -70,17 +70,17 @@ public class ProponentType extends AbstractForm {
         int marginBottom = 7;
         int gap = 5;
         // Titula
-        this.title = new TextTitle("Proponente", SwingConstants.CENTER);
+        title = new TextTitle("Proponente", SwingConstants.CENTER);
 
         // sub-Titulo
-        this.subTitle = new TextSubtitle("<html>¡<b>Registrate</b> con nosotros y propón tu curso!</html>",
+        subTitle = new TextSubtitle("<html>¡<b>Registrate</b> con nosotros y propón tu curso!</html>",
                 SwingConstants.CENTER);
 
         // contenedor
         TransparentPanel container = new TransparentPanel();
         container.setLayout(new GridLayout(2, 1, gap, gap));
-        container.add(this.title);
-        container.add(this.subTitle);
+        container.add(title);
+        container.add(subTitle);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));// margin vertical
     }
@@ -92,8 +92,8 @@ public class ProponentType extends AbstractForm {
         ArrayList<String> options = new ArrayList<>();
         options.add(Env.TYPE_USER_PROPONENT_NATURAL);
         options.add(Env.TYPE_USER_PROPONENT_LEGAL);
-        this.dropdown = createDropdown("Tipo de persona", options);
-        this.dropdown.setListElements(options);
+        dropdown = createDropdown("Tipo de persona", options);
+        dropdown.setListElements(options);
         ImageAndComponent container = new ImageAndComponent(Env.PATH_ICON_USER, width, height, dropdown);
         addContent(container);
         addContent(Box.createVerticalStrut(marginBottom));
@@ -101,10 +101,10 @@ public class ProponentType extends AbstractForm {
     }
 
     private void createButtons() {
-        this.buttonBefore = new ButtonRounded("Anterior", this.roundedButtonGlobal);
-        this.buttonNext = new ButtonRounded("Siguente", this.roundedButtonGlobal);
+        buttonBefore = new ButtonRounded("Anterior", roundedButtonGlobal);
+        buttonNext = new ButtonRounded("Siguente", roundedButtonGlobal);
         containerbuttons = new TransparentPanel();
-        containerbuttons.setLayout(new GridLayout(1, 2, this.gapBetweenButtons, this.gapBetweenButtons));
+        containerbuttons.setLayout(new GridLayout(1, 2, gapBetweenButtons, gapBetweenButtons));
 
         // configuracion de botones
         GridBagConstraints gbc = new GridBagConstraints();
@@ -118,12 +118,12 @@ public class ProponentType extends AbstractForm {
         // Contenedor button before
         TransparentPanel container_1 = new TransparentPanel();
         container_1.setLayout(new GridBagLayout());
-        container_1.add(this.buttonBefore, gbc);
+        container_1.add(buttonBefore, gbc);
 
         // Contenedor boton next
         TransparentPanel container_2 = new TransparentPanel();
         container_2.setLayout(new GridBagLayout());
-        container_2.add(this.buttonNext, gbc);
+        container_2.add(buttonNext, gbc);
 
         // añade contendores
         containerbuttons.add(container_1);
@@ -131,7 +131,7 @@ public class ProponentType extends AbstractForm {
 
         addContent(containerbuttons);
         resizeButtonSm();
-        this.buttonBefore.addMouseListener(new MouseAdapter() {
+        buttonBefore.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
@@ -139,7 +139,7 @@ public class ProponentType extends AbstractForm {
             }
         });
 
-        this.buttonNext.addMouseListener(new MouseAdapter() {
+        buttonNext.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
@@ -175,7 +175,7 @@ public class ProponentType extends AbstractForm {
         title.setFontSize(fontSizeTitle);
         subTitle.setFontSize(fontSizeSubtitle);
         setRedimentionDropdowns(265, heightDropdown + 3);
-        if (getWidth() > this.lowerLimit + 150 && getWidth() <= this.upperLimit) {
+        if (getWidth() > lowerLimit + 150 && getWidth() <= upperLimit) {
             resizeButtonLg();
         } else {
             resizeButtonSm();

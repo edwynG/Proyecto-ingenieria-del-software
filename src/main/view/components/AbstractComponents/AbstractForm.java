@@ -17,6 +17,7 @@ import main.view.components.commonComponents.FileChooser;
 import main.view.components.commonComponents.InputPassword;
 import main.view.components.commonComponents.InputText;
 import main.view.components.commonComponents.TransparentPanel;
+import main.view.utils.Components;
 
 public abstract class AbstractForm extends AbstractPanelRounded {
     protected int defaultWidth = 0;
@@ -44,18 +45,18 @@ public abstract class AbstractForm extends AbstractPanelRounded {
 
         setPreferredSize(new Dimension(300, 400));
         setBackground(Color.white);
-        this.inputList = new ArrayList<>();
-        this.fileChoosersList = new ArrayList<>();
-        this.dropdownList = new ArrayList<>();
+        inputList = new ArrayList<>();
+        fileChoosersList = new ArrayList<>();
+        dropdownList = new ArrayList<>();
 
-        this.configDefault();
-        this.settingResize();
+        configDefault();
+        settingResize();
 
     }
 
     protected InputText createInputText(String placeholder, int columns) {
         InputText input = new InputText(columns, placeholder);
-        this.addInputList(input);
+        addInputList(input);
         input.addEffectPlaceHolder();
         return input;
 
@@ -63,21 +64,21 @@ public abstract class AbstractForm extends AbstractPanelRounded {
 
     protected InputPassword createInputPassword(String placeholder, int columns) {
         InputPassword input = new InputPassword(columns, placeholder);
-        this.addInputList(input);
+        addInputList(input);
         input.addEffectPlaceHolder();
         return input;
     }
 
     protected FileChooser createFileChoosers(String str) {
         FileChooser fileChooser = new FileChooser(str);
-        this.fileChoosersList.add(fileChooser);
+        fileChoosersList.add(fileChooser);
         return fileChooser;
     }
 
     protected Dropdown createDropdown(String str, ArrayList<String> elements) {
         Dropdown dropdown = new Dropdown(str);
         dropdown.setListElements(elements);
-        this.dropdownList.add(dropdown);
+        dropdownList.add(dropdown);
         return dropdown;
     }
 
@@ -94,20 +95,20 @@ public abstract class AbstractForm extends AbstractPanelRounded {
     }
 
     public void setRedimention(int width, int height) {
-        setPreferredSize(new Dimension(width, height));
-        revalidate();
-        repaint();
+        Components.setRedimentionComponent(this, width, height);
     }
 
     public void redimentionRestore() {
-        setRedimention(this.defaultWidth, this.defaultHeigth);
+        setRedimention(defaultWidth, defaultHeigth);
     }
 
-    protected void setRedimentionFields(JTextField input, int columns, int height) {
-        input.setColumns(columns);
-        input.setPreferredSize(new Dimension(input.getWidth(), height));
-        input.revalidate();
-        input.repaint();
+    protected void setRedimentionFields(int columns, int height) {
+
+        for (JTextField input : inputList) {
+            input.setColumns(columns);
+            Components.setRedimentionComponent(input, columns, height);
+        }
+     
     }
 
     protected void setRedimentionPane(Component component, int width, int height) {
@@ -120,7 +121,7 @@ public abstract class AbstractForm extends AbstractPanelRounded {
 
     private void settingResize() {
 
-        this.addComponentListener(new ComponentAdapter() {
+        addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 super.componentResized(e);
@@ -145,37 +146,37 @@ public abstract class AbstractForm extends AbstractPanelRounded {
     }
 
     protected void configDefault() {
-        this.content = new TransparentPanel();
-        this.content.setLayout(new BoxLayout(this.content, BoxLayout.Y_AXIS));
+        content = new TransparentPanel();
+        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
         setLayout(new GridBagLayout());
-        this.configDefauldLayout();
+        configDefauldLayout();
     }
 
     protected void configDefauldLayout() {
         GridBagConstraints gbc = new GridBagConstraints();
-        this.add(content, gbc);
+        add(content, gbc);
     }
 
     public void addContent(Component component) {
-        this.content.add(component);
+        content.add(component);
     }
 
     public void addContent(Component component, Object obj) {
-        this.content.add(component, obj);
+        content.add(component, obj);
     }
 
     public void removeContent(Component component) {
-        this.content.remove(component);
-        this.content.revalidate();
-        this.content.repaint();
+        content.remove(component);
+        content.revalidate();
+        content.repaint();
     }
 
     public void addInputList(JTextField input) {
-        this.inputList.add(input);
+        inputList.add(input);
     }
 
     public ArrayList<JTextField> getInputList() {
-        return this.inputList;
+        return inputList;
     }
 
     protected abstract void configResizeLarge();

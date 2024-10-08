@@ -32,7 +32,7 @@ public class TransformFileBinary {
             // Convertir la cadena Base64 a un arreglo de bytes
             fileBytes = convertBase64ABytes(base64);
             // Guardar los bytes en un archivo en la ubicación de destino
-            return this.saveBytesAsFile(fileBytes, route);
+            return saveBytesAsFile(fileBytes, route);
         } catch (Exception e) {
             System.out.println("Error al convertir la cadena Base64 a un archivo");
             return false;

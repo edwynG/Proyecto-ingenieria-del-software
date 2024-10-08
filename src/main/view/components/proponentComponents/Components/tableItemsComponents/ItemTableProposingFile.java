@@ -1,5 +1,6 @@
 package main.view.components.proponentComponents.Components.tableItemsComponents;
 
+import main.Env;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
 import main.view.components.commonComponents.FileChooser;
 import main.view.components.commonComponents.TextSubtitle;
@@ -24,9 +25,10 @@ public class ItemTableProposingFile extends AbstractPanelRounded {
     private TextSubtitle Status;
     private int id;
 
-    public ItemTableProposingFile(String name, int id) {
+    public ItemTableProposingFile(String name, String status, int id) {
         super(0);
-        this.name = new TextSubtitle(name, SwingConstants.LEFT);
+        this.name = new TextSubtitle("<html>" + name + "</html>", SwingConstants.LEFT);
+        this.Status = new TextSubtitle("<html>" + status + "</html>", SwingConstants.CENTER);
         this.id = id;
         initItemTableProposingFile();
     }
@@ -60,23 +62,23 @@ public class ItemTableProposingFile extends AbstractPanelRounded {
         int height = 40;
         LetterOfIntent = new FileChooser("Carta de inteción") {
             @Override
-            protected void DisapprovedFile() {
+            protected void uploadDisapprovedFile() {
 
             }
 
             @Override
-            protected void ApprovateFile() {
+            protected void uploadApprovateFile() {
 
             }
         };
         LetterOfCommitment = new FileChooser("Carta de compromiso") {
             @Override
-            protected void DisapprovedFile() {
+            protected void uploadDisapprovedFile() {
 
             }
 
             @Override
-            protected void ApprovateFile() {
+            protected void uploadApprovateFile() {
 
             }
         };
@@ -95,7 +97,7 @@ public class ItemTableProposingFile extends AbstractPanelRounded {
         TransparentPanel containerLetterOfCommitment = new TransparentPanel();
         containerLetterOfCommitment.setLayout(new GridBagLayout());
         containerLetterOfCommitment.add(LetterOfCommitment);
-        Status = new TextSubtitle("Proponente", SwingConstants.CENTER);
+
         Status.setFontSize(15);
         Status.setFontWeight(Font.BOLD);
         Status.setForeground(ColorPalette.COLOR_FIELD);
@@ -117,15 +119,17 @@ public class ItemTableProposingFile extends AbstractPanelRounded {
         LetterOfIntent.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(id);
-                InterfaceProponent.actions.actionsUploadDocument();
+
+                InterfaceProponent.actions.actionsUploadDocument(id, LetterOfIntent.getPath(),
+                        Env.TYPE_UPLOAD_LETTER_OF_INTENT);
             }
         });
         LetterOfCommitment.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(id);
-                InterfaceProponent.actions.actionsUploadDocument();
+
+                InterfaceProponent.actions.actionsUploadDocument(id, LetterOfCommitment.getPath(),
+                        Env.TYPE_UPLOAD_LETTER_OF_COMMITENT);
 
             }
         });

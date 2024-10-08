@@ -13,15 +13,15 @@ public class InputText extends AbstractInputText {
 
     public InputText(int comluns, String placeholder) {
         super(comluns, placeholder);
-        this.initInput();
+        initInput();
     }
 
     public void initInput() {
-        setConfigBorder(Components.customrBorder(this.roundedInputGlobal, ColorPalette.COLOR_PRIMARY));
-        setFontFamilyText(this.fontFamilyGlobal);
+        setConfigBorder(Components.customrBorder(roundedInputGlobal, ColorPalette.COLOR_PRIMARY));
+        setFontFamilyText(fontFamilyGlobal);
         setBorderColorField(ColorPalette.COLOR_FIELD);
         setForeground(ColorPalette.COLOR_FIELD);
-        setFontSizeText(this.fontSize);
+        setFontSizeText(fontSize);
        
     }
 

@@ -17,10 +17,10 @@ public class AbstractInputPassword extends AbstractInputText {
     }
 
     private void initAbstractInputPassword() {
-        this.ch = '*';
-        this.text = new StringBuilder();
+        ch = '*';
+        text = new StringBuilder();
 
-        this.addKeyListener(new KeyListener() {
+        addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
 
@@ -49,8 +49,8 @@ public class AbstractInputPassword extends AbstractInputText {
     }
 
     private void hidenPasswordEvent(KeyEvent e, char ch) {
-        boolean equals = !this.isEqualChar(e.getKeyCode(), KeyEvent.VK_DELETE)
-                && !this.isEqualChar(e.getKeyCode(), KeyEvent.VK_BACK_SPACE);
+        boolean equals = !isEqualChar(e.getKeyCode(), KeyEvent.VK_DELETE)
+                && !isEqualChar(e.getKeyCode(), KeyEvent.VK_BACK_SPACE);
 
         if (equals) {
             text.append(e.getKeyChar());
@@ -66,11 +66,11 @@ public class AbstractInputPassword extends AbstractInputText {
     }
 
     private void commonEvent(KeyEvent e) {
-        boolean equals = !this.isEqualChar(e.getKeyCode(), KeyEvent.VK_DELETE)
-                && !this.isEqualChar(e.getKeyCode(), KeyEvent.VK_BACK_SPACE);
+        boolean equals = !isEqualChar(e.getKeyCode(), KeyEvent.VK_DELETE)
+                && !isEqualChar(e.getKeyCode(), KeyEvent.VK_BACK_SPACE);
 
         if (equals) {
-            this.text.append(e.getKeyChar());
+            text.append(e.getKeyChar());
 
         } else {
             if (text.length() > 0) {
@@ -95,11 +95,11 @@ public class AbstractInputPassword extends AbstractInputText {
     }
 
     public String getPassword() {
-        return this.text.toString();
+        return text.toString();
     }
 
     public void setEchoChar(char c) {
-        this.ch = c;
+        ch = c;
     }
     
 }

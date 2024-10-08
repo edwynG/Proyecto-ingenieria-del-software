@@ -1,7 +1,8 @@
 package main.view;
 
 import main.Env;
-import main.controller.abstractControllers.UserControl;
+import main.controller.AdministratorControl;
+import main.controller.ProponentControl;
 import main.view.components.InterfaceWithoutAppbar;
 import main.view.components.commonComponents.ScrollPaneWin11;
 import main.view.components.loginComponents.Login;
@@ -22,7 +23,8 @@ public class Main extends JFrame {
     public static final JPanel WINDOW = new JPanel();
     private static JPanel content;
     private String windowName;
-    private static UserControl userControl;
+    private static AdministratorControl admin;
+    private static ProponentControl proponent;
 
     public Main(String name) {
         this.configMain(name);
@@ -30,7 +32,8 @@ public class Main extends JFrame {
     }
 
     private void configMain(String name) {
-        userControl = null;
+        admin = null;
+        proponent = null;
         content = new JPanel();
         this.height = 660;
         this.width = 980;
@@ -50,7 +53,7 @@ public class Main extends JFrame {
 
         // Configuración de los paneles principales
         this.configContentWindow(WINDOW);
-        this.configContentInitial(content); 
+        this.configContentInitial(content);
         System.out.println("Bienvenido a course stack!!");
 
     }
@@ -83,12 +86,20 @@ public class Main extends JFrame {
 
     }
 
-    public static void setUserControl(UserControl control) {
-        userControl = control;
+    public static void setUserControl(AdministratorControl control) {
+        admin = control;
     }
 
-    public static UserControl getUserControl() {
-        return userControl;
+    public static void setUserControl(ProponentControl control) {
+        proponent = control;
+    }
+
+    public static ProponentControl getProponentControl() {
+        return proponent;
+    }
+
+    public static AdministratorControl getAdminControl() {
+        return admin;
     }
 
 }

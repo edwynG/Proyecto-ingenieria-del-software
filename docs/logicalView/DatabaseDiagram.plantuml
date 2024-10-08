@@ -29,9 +29,10 @@ object DocumentosDeRegistros{
 object Propuestas{
     PropuestaID:int (PK)
     ProponenteID: int (FK)
+    Titulo : string 
     Denominacion: string
     ObjetivosYFundamentacion: string
-    ObjetivosYFundamentacion: string
+    PerfilDeIngresoYEgreso: string
     PerfilDocente: string
     EstructuraCurricularPorCompetencias: string
     EstrategiasDeEvaluacionYDuracion: string
@@ -39,6 +40,9 @@ object Propuestas{
     EstructuraDeCostos: string
     CronogramaDeEjecucionAnual: string
     UnidadResponsable: string
+    CartaDeIntecion: string
+    CartaDeCompromiso: string
+
 }
 
 object ResultadosPropuestas{
@@ -54,8 +58,6 @@ object Aliados{
     AliadoID: int (PK)
     ProponenteID: int (FK)
     PropuestaID: int (FK)
-    CartaDeIntecion: string
-    CartaDeCompromiso: string
     CronogramaDeEjecucion: string
     EstructuraDeCostosEingresos: string
 }

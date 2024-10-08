@@ -15,7 +15,7 @@ public class ManagerDatabase {
    private static ManagerDatabase managerDatabase = null;
 
    private ManagerDatabase() {
-      this.db = AccessDatabase.getAccessDatabase(Env.PATH_DATABASE, Env.NAME_DATABASE);
+      db = AccessDatabase.getAccessDatabase(Env.PATH_DATABASE, Env.NAME_DATABASE);
       System.out.println(
             db != null ? "Gestor de la base de datos activado!!." : "Hubo un error con el gestor de la base de datos.");
    }
@@ -40,12 +40,12 @@ public class ManagerDatabase {
 
    public ArrayList<ArrayList<String>> getData(String query) {
       ArrayList<ArrayList<String>> arrayRegister = new ArrayList<>();
-
-      if (!this.queryStartWith(query, Arrays.asList("SELECT"))) {
+      
+      if (!queryStartWith(query, Arrays.asList("SELECT"))) {
          return arrayRegister;
       }
 
-      Connection conn = this.db.openConnection();
+      Connection conn = db.openConnection();
       Statement statement = null;
       ResultSet result = null;
 
@@ -81,18 +81,18 @@ public class ManagerDatabase {
 
       }
 
-      this.db.closeConnection();
+      db.closeConnection();
       return arrayRegister;
    }
 
    public boolean updateOrInsertData(String query) {
 
-      if (!this.queryStartWith(query, Arrays.asList("UPDATE", "INSERT"))) {
+      if (!queryStartWith(query, Arrays.asList("UPDATE", "INSERT"))) {
          return false;
       }
 
       boolean isSuccess = true;
-      Connection conn = this.db.openConnection();
+      Connection conn = db.openConnection();
       Statement statement = null;
 
       try {
@@ -127,17 +127,17 @@ public class ManagerDatabase {
 
       }
 
-      this.db.closeConnection();
+      db.closeConnection();
       return isSuccess;
    }
 
    public boolean deleteData(String query) {
 
-      if (!this.queryStartWith(query, Arrays.asList("DELETE"))) {
+      if (!queryStartWith(query, Arrays.asList("DELETE"))) {
          return false;
       }
       boolean isDelete = true;
-      Connection conn = this.db.openConnection();
+      Connection conn = db.openConnection();
       Statement statement = null;
       try {
 
@@ -168,13 +168,13 @@ public class ManagerDatabase {
          }
       }
 
-      this.db.closeConnection();
+      db.closeConnection();
       return isDelete;
    }
 
    public boolean isThereDataInTheQuery(String query) {
       ArrayList<ArrayList<String>> arrayRegister = new ArrayList<>();
-      arrayRegister = this.getData(query);
+      arrayRegister = getData(query);
       if (arrayRegister.isEmpty())
          return false;
       return true;
@@ -183,7 +183,7 @@ public class ManagerDatabase {
    public ArrayList<String> getNameFields(String table) {
       ArrayList<String> nameFields = new ArrayList<>();
 
-      Connection conn = this.db.openConnection();
+      Connection conn = db.openConnection();
       Statement statement = null;
       ResultSet result = null;
 
@@ -210,7 +210,7 @@ public class ManagerDatabase {
 
       }
 
-      this.db.closeConnection();
+      db.closeConnection();
       return nameFields;
    }
 }

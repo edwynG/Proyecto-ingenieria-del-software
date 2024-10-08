@@ -22,7 +22,7 @@ public class TextTitle extends AbstractText {
     }
 
     private void initJText() {
-        setConfig(new Font(this.fontFamilyGlobal, Font.BOLD, this.fontSizeTitle));
+        setConfig(new Font(fontFamilyGlobal, Font.BOLD, fontSizeTitle));
         setForeground(ColorPalette.COLOR_TITLE);
         
     }

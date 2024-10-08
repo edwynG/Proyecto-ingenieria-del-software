@@ -1,5 +1,6 @@
 package main.controller;
 
+import main.Env;
 import main.model.ControlValidator;
 
 public class Validator {
@@ -13,11 +14,16 @@ public class Validator {
         return false;
     }
 
-    public boolean isThereAnIdRegister(Integer id) {
-        if (controlValidator.isThereAnIdRegister(id)) {
+    public boolean isThereAnProponentIDRegister(Integer id) {
+        if (controlValidator.isThereAnProponentIDRegister(id)) {
             return true;
         }
 
         return false;
     }
+
+    public boolean  isAcceptedProposal(Integer id){
+        return controlValidator.doesTheDataExist(Env.TABLE_FIELD_PROPOSAL_ID, Env.TABLE_FIELD_PROPOSAL_ID, id+"");
+    }
+    
 }

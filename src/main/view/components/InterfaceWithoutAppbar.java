@@ -37,10 +37,10 @@ public class InterfaceWithoutAppbar extends AbstractPanelRounded {
     }
 
     private void initInterfaceWithoutAppbar(String src) {
-        this.configInterfaceWithoutAppbar();
-        this.setImage(src);
-        this.configLayoutDefault();
-        this.configContainerImage(containerImage);
+        configInterfaceWithoutAppbar();
+        setImage(src);
+        configLayoutDefault();
+        configContainerImage(containerImage);
 
     }
 

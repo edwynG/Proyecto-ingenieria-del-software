@@ -27,16 +27,16 @@ public class ImageAndComponent extends TransparentPanel {
         gbc.gridy = 0;
         gbc.weightx = 1;
         gbc.weighty = 1;
-        gbc.insets = this.getGapIcon();
-        add(this.icon, gbc);
-        gbc.insets = this.getGapComponent();
+        gbc.insets = getGapIcon();
+        add(icon, gbc);
+        gbc.insets = getGapComponent();
         gbc.gridx = getLocationComponent();
         gbc.gridy = 0;
-        add(this.component, gbc);
+        add(component, gbc);
     }
 
     public Component getInput() {
-        return this.component;
+        return component;
     }
 
     protected Insets getGapIcon() {

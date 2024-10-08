@@ -45,7 +45,7 @@ public class LoginActions extends ActionsInterface{
         }
         InterfaceWithAppbar home = new InterfaceWithAppbar();
         Main.setContent(home);
-        user.refreshListOfProposals();
+        // user.refreshListOfProposals();
         if (user.getTypeUser().equals(Env.TYPE_USER_PROPONENT)) {
             Main.setUserControl(new ProponentControl(user));
             home.createInterfaceProponent();

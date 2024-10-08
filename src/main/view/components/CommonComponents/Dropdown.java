@@ -30,7 +30,7 @@ public class Dropdown extends AbstractDropdown {
 
     public Dropdown(String text, int width) {
         super(text);
-        this.widthDropdown = width;
+        widthDropdown = width;
         initDropdown();
     }
 
@@ -38,8 +38,8 @@ public class Dropdown extends AbstractDropdown {
         RoundedBorder borde = new RoundedBorder(borderInputGlobal);
         borde.setBorderColor(ColorPalette.COLOR_FIELD);
         setBorder(borde);
-        setStyleTitle(new Font(this.fontFamilyGlobal, Font.PLAIN, this.borderInputGlobal));
-        setPreferredSize(new Dimension(this.widthDropdown, this.heightDropdown));
+        setStyleTitle(new Font(fontFamilyGlobal, Font.PLAIN, borderInputGlobal));
+        setPreferredSize(new Dimension(widthDropdown, heightDropdown));
         setColorText(ColorPalette.COLOR_FIELD);
         setBackground(ColorPalette.TRANSPARENT);
         options.setSelectionBackground(Color.LIGHT_GRAY);

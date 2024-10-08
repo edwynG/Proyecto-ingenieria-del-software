@@ -2,6 +2,8 @@ package main.view.components.proponentComponents.Components.viewMorePanelCompone
 
 import java.awt.Insets;
 
+import main.Env;
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
 import main.view.components.commonComponents.FileChooser;
 import main.view.components.commonComponents.TextSubtitle;
@@ -18,19 +20,24 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class ViewMorePanel extends AbstractPanelRounded {
+    private Integer proposalID;
     private TextTitle title;
-    private String evaluation = "consejo de facultad";
-    private String result = "Rechazado";
-    private String status = "Proponente";
+    private String titleContent = "Curso";
+    private String evaluation = "Unidad resposanble";
+    private String result = "En espera";
+    private String status = Env.STATUS_PROPONENTS_REFUSED;
+    private String fileBase64 = null;
     private TransparentPanel registers;
     private FileChooser button;
     private int width = 600;
     private int height = 400;
 
-    public ViewMorePanel() {
+    public ViewMorePanel(Integer proposalId) {
         super(CustomVariables.RADIO_DEFAULT_PANEL);
+        this.proposalID = proposalId;
         initViewMorePanel();
 
     }
@@ -38,14 +45,31 @@ public class ViewMorePanel extends AbstractPanelRounded {
     private void initViewMorePanel() {
         Components.setRedimentionComponent(this, width, height);
         setBackground(ColorPalette.BG_COLOR_WRITE);
-        title = new TextTitle("Diplomado de inteligencfia artificial", SwingConstants.CENTER);
         setLayout(new BorderLayout());
+        configInfoPanel();
         createTitle();
         createTable();
         createbutton();
     }
 
+    private void configInfoPanel() {
+        String name = Main.getProponentControl().getNameCourse(proposalID);
+        String denom = Main.getProponentControl().getDenomCourse(proposalID);
+        titleContent = name != null && denom != null ? denom + " de " + name : titleContent;
+        String respUnit = Main.getProponentControl().getRespUnittCourse(proposalID);
+        evaluation = respUnit != null ? respUnit : evaluation;
+        ArrayList<String> proposalDetails = Main.getProponentControl().getDetailsResultProposal(proposalID);
+        if (proposalDetails == null || proposalDetails.isEmpty()) {
+            return;
+        }
+        // Este codigo es en base al orden en la base de datos
+        fileBase64 = proposalDetails.get(proposalDetails.size() - 2);
+        status = proposalDetails.getLast();
+
+    }
+
     private void createTitle() {
+        title = new TextTitle(titleContent, SwingConstants.CENTER);
         TransparentPanel container = new TransparentPanel() {
             @Override
             public Insets getInsets() {
@@ -107,7 +131,7 @@ public class ViewMorePanel extends AbstractPanelRounded {
                 return new Insets(10, 0, 10, 0);
             }
         };
-        Components.setRedimentionComponent(Evalutation, 218, 50);
+        Components.setRedimentionComponent(Evalutation, 200, 50);
         container.setLayout(new BorderLayout(10, 10));
         container.add(Evalutation, BorderLayout.WEST);
         container.add(Result, BorderLayout.CENTER);
@@ -130,7 +154,7 @@ public class ViewMorePanel extends AbstractPanelRounded {
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                InterfaceProponent.actions.actionsDownload();
+                InterfaceProponent.actions.actionsDownload(button.getPath(), fileBase64);
             }
         });
     };
