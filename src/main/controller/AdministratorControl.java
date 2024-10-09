@@ -1,8 +1,10 @@
 package main.controller;
 
+import java.util.ArrayList;
+
+import main.Env;
 import main.controller.abstractControllers.AbstractUserControl;
 import main.model.abstractModels.User;
-
 
 public class AdministratorControl extends AbstractUserControl {
 
@@ -10,33 +12,73 @@ public class AdministratorControl extends AbstractUserControl {
         super(user);
     }
 
-    // @Override
-    // public boolean evaluateCourse(String assessment, String observations, int id) {
-    //     TransformFileBinary transform = new TransformFileBinary();
-    //     String observation = observations != null && !observations.isEmpty()?transform.transformToBase(observations): null;
+    public boolean uploadObservations(Integer id, String path) {
+        if (!getValidator().existResultProposal(id)) {
+            getManagerDatabase()
+                    .updateOrInsertData(String.format(Env.QUERY_REGISTER_RESULT_PROPOSAL, id, getUser().getId()));
+        }
+        String file = getTransformfile().transformToBase(path);
+        return file != null
+                ? getManagerDatabase().updateOrInsertData(String.format(Env.QUERY_UPDATE_OBSERVATIONS, file, id))
+                : false;
+    }
 
-    //     String fields = "PropuestaID,AdministradorID,Observaciones,Resultado";
-    //     String values = Integer.toString(id) + "," + Integer.toString(this.user.getId()) + "," +"'"+ observation+"'" + "," +"'"+ assessment+"'";
+    public boolean evaluateProposal(Integer id, String result) {
+        if (!getValidator().existResultProposal(id)) {
+            getManagerDatabase()
+                    .updateOrInsertData(String.format(Env.QUERY_REGISTER_RESULT_PROPOSAL, id, getUser().getId()));
 
-    //     String query = String.format(Env.QUERY_EVALUATE_COURSE_INSERT, fields, values);
-    //     boolean evaluate = this.managerDatabase.updateOrInsertData(query);
+        }
+        if (result.equals(Env.ACCEPT)) {
+            createAliado(id);
+        }
+        if (result.equals(Env.REFUSED)) {
+            deleteAliado(id);
+        }
+        return getManagerDatabase().updateOrInsertData(String.format(Env.QUERY_UPDATE_EVALUATION_PROPOSAL, result, id));
 
-    //     if (!evaluate) {
-    //         System.err.println("Hubo un problema, la propuesta ya ha sido evaluada anteriormente.");
-    //         System.out.println("Actualizando resultado de la propuesta..");
+    }
 
-    //         query = String.format(Env.QUERY_EVALUATE_COURSE_UPDATE, observation, assessment, Integer.toString(id));
-            
-    //         boolean UpdateWithoutError = this.managerDatabase.updateOrInsertData(query);
-    //         boolean exists = new ControlValidator().doesTheDataExist("ResultadosPropuestas", "PropuestaID",Integer.toString(id));
+    private boolean createAliado(Integer id) {
+        if (getValidator().isAcceptedProposal(id)) {
+            return false;
+        }
 
-    //         boolean result = exists && UpdateWithoutError;
+        Integer proponentID = searchProponentForProposalID(id);
+        return proponentID == -1 ? false
+                : getManagerDatabase().updateOrInsertData(String.format(Env.QUERY_CREATE_ALIADO, proponentID, id));
+    }
 
-    //         System.out.println(result ? "Propuesta actualizada." : "No se pudo actualizar la propuesta.");
-    //         return result;
-    //     }
+    private boolean deleteAliado(Integer id) {
+        if (!getValidator().isAcceptedProposal(id)) {
+            return false;
+        }
+        return getManagerDatabase().deleteData(String.format(Env.QUERY_DELETE_ALIADO, id));
+    }
 
-    //     return evaluate;
-    // }
+    public String getFileProposalBase64(Integer id) {
+        ArrayList<ArrayList<String>> result = getManagerDatabase()
+                .getData(String.format(Env.QUERY_PROPOSAL_PROPOSAL, id));
+        return result.isEmpty() ? null : result.getFirst().getFirst();
+    }
+
+    public String getFileCredentialsBase64(Integer id) {
+        ArrayList<ArrayList<String>> result = getManagerDatabase()
+                .getData(String.format(Env.QUERY_PROPOSAL_CREDENTIAL, id));
+        return result.isEmpty() ? null : result.getFirst().getFirst();
+    }
+
+    public String getFileProbityBase64(Integer id) {
+        ArrayList<ArrayList<String>> result = getManagerDatabase()
+                .getData(String.format(Env.QUERY_PROPOSAL_PROBITY, id));
+        return result.isEmpty() ? null : result.getFirst().getFirst();
+    }
+
+    public String getResultProposal(Integer id) {
+        ArrayList<ArrayList<String>> result = getManagerDatabase()
+                .getData(String.format(Env.QUERY_RESULT_PROPOSAL_RESULT, id));
+        return result.isEmpty() ? null : result.getFirst().getFirst();
+    }
+
 
 }

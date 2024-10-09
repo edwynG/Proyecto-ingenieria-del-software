@@ -2,6 +2,9 @@ package main.view.components.administratorComponents.components;
 
 import javax.swing.BorderFactory;
 import javax.swing.SwingConstants;
+
+import main.model.Proposal;
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
 import main.view.components.administratorComponents.components.tableItemsComponents.ItemTableCoordination;
 import main.view.components.commonComponents.ScrollPaneWin11;
@@ -121,13 +124,14 @@ public class OutreachCoordination extends AbstractPanelRounded {
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < Main.getAdminControl().getProposals().size(); i++) {
             gbc.gridx = 0;
             gbc.gridy = i;
-            ItemTableCoordination item = new ItemTableCoordination(
-                    "<html>" + "Fundamentos de java asdasdasd" + "</html>", i);
+            Proposal proposal = Main.getAdminControl().getProposals().reversed().get(i);
+            ItemTableCoordination item = new ItemTableCoordination(proposal.getTitle(), proposal.getProposalId());
             TableContent.add(item, gbc);
 
         }
     }
+    
 }

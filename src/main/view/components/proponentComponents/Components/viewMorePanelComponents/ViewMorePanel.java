@@ -28,7 +28,7 @@ public class ViewMorePanel extends AbstractPanelRounded {
     private String titleContent = "Curso";
     private String evaluation = "Unidad resposanble";
     private String result = "En espera";
-    private String status = Env.STATUS_PROPONENTS_REFUSED;
+    private String statusText = Env.STATUS_PROPONENTS_REFUSED;
     private String fileBase64 = null;
     private TransparentPanel registers;
     private FileChooser button;
@@ -64,7 +64,21 @@ public class ViewMorePanel extends AbstractPanelRounded {
         }
         // Este codigo es en base al orden en la base de datos
         fileBase64 = proposalDetails.get(proposalDetails.size() - 2);
-        status = proposalDetails.getLast();
+        if (proposalDetails.getLast() == null) {
+            return;
+        }
+        if (proposalDetails.getLast().equals(Env.ACCEPT)) {
+            statusText = Env.STATUS_PROPONENTS_ACCEPTED;
+            result = Env.ACCEPT;
+            return;
+
+        }
+
+        if (proposalDetails.getLast().equals(Env.REFUSED)) {
+            statusText = Env.STATUS_PROPONENTS_REFUSED;
+            result = Env.REFUSED;
+            return;
+        }
 
     }
 
@@ -120,7 +134,7 @@ public class ViewMorePanel extends AbstractPanelRounded {
     private void createTableregister() {
         TextSubtitle Evalutation = new TextSubtitle("<html>" + evaluation + "</html>");
         TextSubtitle Result = new TextSubtitle(result, SwingConstants.LEFT);
-        TextSubtitle Status = new TextSubtitle(status);
+        TextSubtitle Status = new TextSubtitle(statusText);
         int fontsize = 18;
         Evalutation.setFontSize(fontsize);
         Result.setFontSize(fontsize);

@@ -23,13 +23,22 @@ public class Env {
         public final static String[] EXTESIONS_NAMES = { "Archivos PDF", "Archivos TXT" };
         public final static String[] EXTESIONS_EXT = { ".pdf", ".txt" };
 
+        // Tipos de admin
+        public final static String OUTREACH_COORDINATION = "Coordinación de extensión";
+        public final static String OUTREACH_DIRECTORATE = "Dirección de extensión";
+        public final static String OUTREACH_COMMITTEE = "Comisión de extensión";
+        public final static String FACULTY_COUNCIL = "Consejo de facultad";
+
         // Estados del proponente
         public final static String STATUS_PROPONENTS_REFUSED = "Proponente";
         public final static String STATUS_PROPONENTS_ACCEPTED = "Aliado";
+        public final static String ACCEPT = "Aprovado";
+        public final static String REFUSED = "Desaprovado";
         public final static String TYPE_UPLOAD_COSTOS = "Costos";
         public final static String TYPE_UPLOAD_SCHEDULE = "Cronograma";
         public final static String TYPE_UPLOAD_LETTER_OF_COMMITENT = "CartaCompromiso";
         public final static String TYPE_UPLOAD_LETTER_OF_INTENT = "cartaDeIntension";
+        public final static String TYPE_UPLOAD_OBSERVATIONS = "Observations";
         public final static String DOCUMENT_LETTER_OF_COMMITMENT = "SG9sYSwgc295IHVuaSBjYXJ0YSBkZSBjb21wcm9taXNvLg==";
         public final static String DOCUMENT_OBSERATIONS = "SG9sYSwgc295IGxhcyBvYnNlcnZhdGlvbmVzLg==";
 
@@ -47,6 +56,7 @@ public class Env {
         public final static String TABLE_NAME_PROPONENTS = "Proponentes";
         public final static String TABLE_NAME_PROPOSALS = "Propuestas";
         public final static String TABLE_NAME_ALIADO = "Aliados";
+        public final static String TABLE_NAME_RESULT_PROPOSAL = "ResultadosPropuestas";
         public final static String QUERY_DATA_TABLE = "PRAGMA table_info(%s)";
         public final static String QUERY_FOREING_KEY_ON = "PRAGMA foreign_keys = ON";
         public final static String QUERY_FOREING_KEY_OFF = "PRAGMA foreign_keys = OF";
@@ -54,14 +64,27 @@ public class Env {
         public final static String QUERY_EVALUATE_COURSE_INSERT = "INSERT INTO ResultadosPropuestas(%s)\nVALUES(%s);\n";
         public final static String QUERY_EVALUATE_COURSE_UPDATE = "UPDATE ResultadosPropuestas \r\n"
                         + "SET Observaciones = '%s',Resultado = '%s'\r\n" + "WHERE PropuestaID = %s";
+        public final static String QUERY_RESULT_PROPOSAL_RESULT = "SELECT Resultado FROM ResultadosPropuestas WHERE PropuestaID = %s";
+
+        public final static String QUERY_PROPOSAL_PROPOSAL = "SELECT ObjetivosYFundamentacion FROM Propuestas WHERE PropuestaID = %s";
+        public final static String QUERY_PROPOSAL_PROBITY = "SELECT PerfilDocente FROM Propuestas WHERE PropuestaID = %s";
+
+        public final static String QUERY_PROPOSAL_CREDENTIAL = "SELECT EstructuraCurricularPorCompetencias FROM Propuestas WHERE PropuestaID = %s";
+
         public final static String QUERY_UPDATE_LETTER_COMMITENT = "UPDATE Propuestas SET CartaDeCompromiso = '%s' WHERE PropuestaID = %s";
         public final static String QUERY_UPDATE_LETTER_INTENT = "UPDATE Propuestas SET CartaDeIntecion = '%s' WHERE PropuestaID = %s";
         public final static String QUERY_UPDATE_COSTOS = "UPDATE Aliados SET EstructuraDeCostosEingresos = '%s' WHERE PropuestaID = %s";
+        public final static String QUERY_UPDATE_OBSERVATIONS = "UPDATE ResultadosPropuestas SET Observaciones = '%s' WHERE PropuestaID = %s";
+
+        public final static String QUERY_UPDATE_EVALUATION_PROPOSAL = "UPDATE ResultadosPropuestas SET Resultado = '%s' WHERE PropuestaID = %s";
         public final static String QUERY_UPDATE_SCHEDULE = "UPDATE Aliados SET CronogramaDeEjecucion = '%s' WHERE PropuestaID = %s";
         public final static String QUERY_PROPOSAL_PROPONENT = "SELECT * FROM Propuestas WHERE ProponenteID = %s";
         public final static String QUERY_PROPOSAL_ADMINISTRADOR = "SELECT * FROM Propuestas WHERE UnidadResponsable = '%s'";
         public final static String QUERY_RESULT_PROPOSAL = "SELECT * FROM ResultadosPropuestas WHERE PropuestaID = %s";
         public final static String QUERY_REGISTER_DOCUMENT_NATURAL = "INSERT INTO DocumentosDeRegistros(ProponenteID,RIF,ISLR,Curriculum,TituloUniversitario)\nVALUES(%s);\n";
+        public final static String QUERY_REGISTER_RESULT_PROPOSAL = "INSERT INTO ResultadosPropuestas(PropuestaID,AdministradorID)\nVALUES(%s,%s)";
+        public final static String QUERY_DELETE_ALIADO = "DELETE FROM Aliados\nWHERE PropuestaID = %s";
+        public final static String QUERY_CREATE_ALIADO = "INSERT INTO Aliados(ProponenteID,PropuestaID)\nVALUES(%s,%s)";
         public final static String QUERY_REGISTER_DOCUMENT_LEGAL = "INSERT INTO DocumentosDeRegistros(ProponenteID,RIF,ISLR,Curriculum,TituloUniversitario,RegistroMercantil)\nVALUES(%s);\n";
         public final static String QUERY_REGISTER_USER = "INSERT INTO Proponentes(ProponenteID,Correo,Contraseña,TipoDePersona)\nVALUES(%s, '%s', '%s','%s');\n";
         public final static String QUERY_REGISTER_ADMIN = "UPDATE Administradores SET Contraseña = %s\nWHERE Correo = '%s' ";

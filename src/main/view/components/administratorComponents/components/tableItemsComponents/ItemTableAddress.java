@@ -4,8 +4,14 @@ import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import main.Env;
+import main.controller.Validator;
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
+import main.view.components.administratorComponents.InterfaceAdministrator;
 import main.view.components.commonComponents.Dropdown;
 import main.view.components.commonComponents.FileChooser;
 import main.view.components.commonComponents.TextSubtitle;
@@ -28,13 +34,16 @@ public class ItemTableAddress extends AbstractPanelRounded {
     private FileChooser probity;
     private FileChooser information;
     private FileChooser observation;
+    private String probityFileBase64;
+    private String informationFileBase64;
     private Dropdown result;
+    private String resultText="Evaluar";
     ArrayList<String> resultOptions;
-    private int id;
+    private Integer id;
 
     public ItemTableAddress(String course, int id) {
         super(0);
-        this.course = new TextSubtitle(course, SwingConstants.LEFT);
+        this.course = new TextSubtitle("<html>" + course + "</html>", SwingConstants.LEFT);
         this.id = id;
         initItemTableCoodination();
     }
@@ -43,6 +52,27 @@ public class ItemTableAddress extends AbstractPanelRounded {
         configItemTableCourseWithAval();
         configText();
         createComponents();
+        configFilesDownload();
+        configResultEvaluation();
+    }
+
+    private void configFilesDownload() {
+        probityFileBase64 = Main.getAdminControl().getFileProbityBase64(id);
+        informationFileBase64 = Main.getAdminControl().getFileProposalBase64(id);
+
+    }
+
+    private void configResultEvaluation() {
+        Validator validator = new Validator();
+        if (!validator.existResultProposal(id)) {
+            return;
+        }
+        String str = Main.getAdminControl().getResultProposal(id);
+        if (str == null) {
+            return;
+        }
+        result.setSelectionValue(str);
+
     }
 
     private void configItemTableCourseWithAval() {
@@ -53,7 +83,6 @@ public class ItemTableAddress extends AbstractPanelRounded {
     }
 
     private void configText() {
-
         TransparentPanel containerName = new TransparentPanel();
         containerName.setLayout(new GridBagLayout());
         containerName.add(course);
@@ -101,10 +130,10 @@ public class ItemTableAddress extends AbstractPanelRounded {
 
             }
         };
-        result = new Dropdown("Evaluar");
+        result = new Dropdown(resultText);
         resultOptions = new ArrayList<>();
-        resultOptions.add("Aprovado");
-        resultOptions.add("Desaprovado");
+        resultOptions.add(Env.ACCEPT);
+        resultOptions.add(Env.REFUSED);
         result.setListElements(resultOptions);
 
         information.NotVisibleText();
@@ -157,14 +186,14 @@ public class ItemTableAddress extends AbstractPanelRounded {
         probity.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(id);
+                InterfaceAdministrator.actions.actionsDownload(probity.getPath(), probityFileBase64);
 
             }
         });
         information.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(id);
+                InterfaceAdministrator.actions.actionsDownload(information.getPath(), informationFileBase64);
 
             }
         });
@@ -172,16 +201,16 @@ public class ItemTableAddress extends AbstractPanelRounded {
         observation.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(id);
+                InterfaceAdministrator.actions.actionsUploadDocument(id, observation.getPath(),
+                        Env.DOCUMENT_OBSERATIONS);
 
             }
         });
 
-        result.addMouseListener(new MouseAdapter() {
+        result.getOptionList().addListSelectionListener(new ListSelectionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println(id);
-
+            public void valueChanged(ListSelectionEvent e) {
+                InterfaceAdministrator.actions.evaluateProposal(id, result.getSelectElement());
             }
         });
 

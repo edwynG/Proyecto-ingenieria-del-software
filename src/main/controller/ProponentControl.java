@@ -58,7 +58,7 @@ public class ProponentControl extends AbstractUserControl {
     public ArrayList<Proposal> getCourseWithAval() {
         ArrayList<Proposal> proposals = new ArrayList<>();
         ArrayList<ArrayList<String>> arr = getManagerDatabase()
-                .getData(String.format(Env.QUERY_PROPOSAL_WITH_AVAL_ID, getUser().getId() + ""));
+                .getData(String.format(Env.QUERY_PROPOSAL_WITH_AVAL_ID, getUser().getId()));
 
         for (int i = 0; i < arr.size(); i++) {
             for (Proposal proposal : getProposals()) {

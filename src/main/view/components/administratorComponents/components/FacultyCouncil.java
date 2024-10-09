@@ -3,7 +3,10 @@ package main.view.components.administratorComponents.components;
 import javax.swing.BorderFactory;
 import javax.swing.SwingConstants;
 
+import main.model.Proposal;
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
+
 import main.view.components.administratorComponents.components.tableItemsComponents.ItemTableFacultyCouncil;
 import main.view.components.commonComponents.ScrollPaneWin11;
 import main.view.components.commonComponents.TextSubtitle;
@@ -121,13 +124,14 @@ public class FacultyCouncil extends AbstractPanelRounded {
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < Main.getAdminControl().getProposals().size(); i++) {
             gbc.gridx = 0;
             gbc.gridy = i;
-            ItemTableFacultyCouncil item = new ItemTableFacultyCouncil(
-                    "<html>" + "Fundamentos de java" + "</html>", i);
+            Proposal proposal = Main.getAdminControl().getProposals().reversed().get(i);
+            ItemTableFacultyCouncil item = new ItemTableFacultyCouncil(proposal.getTitle(), proposal.getProposalId());
             TableContent.add(item, gbc);
 
         }
+       
     }
 }

@@ -6,9 +6,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import main.Env;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
 import main.view.components.administratorComponents.components.ExtensionAddress;
-import main.view.components.administratorComponents.components.ExtensionCommission;
 import main.view.components.administratorComponents.components.FacultyCouncil;
 import main.view.components.administratorComponents.components.OutreachCoordination;
 import main.view.components.commonComponents.TransparentPanel;
@@ -20,6 +20,7 @@ public class InterfaceAdministrator extends AbstractPanelRounded {
     public static ActionsAdministrator actions;
     private int width = 870;
     private int height = 470;
+    GridBagConstraints gbc;
     int widthTemp;
     int heigthTemp;
 
@@ -40,80 +41,57 @@ public class InterfaceAdministrator extends AbstractPanelRounded {
 
     }
 
-    public void createOutreachCoordination() {
-        restoreContent();
+    private void configGBC() {
         content.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
+        gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(25, 35, 25, 35);
+    }
+
+    public void createOutreachCoordination() {
+        restoreContent();
+        configGBC();
         OutreachCoordination desing = new OutreachCoordination();
         content.add(desing, gbc);
-        System.out.println("Coordinación de extensión");
+
     }
 
     public void createExtensionAddress() {
         restoreContent();
-        content.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(25, 35, 25, 35);
+        configGBC();
         ExtensionAddress desing = new ExtensionAddress();
         content.add(desing, gbc);
-        System.out.println("Dirección de extensión");
 
     }
 
     public void createExtensionCommission() {
-        restoreContent();
-        content.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(25, 35, 25, 35);
-        ExtensionCommission desing = new ExtensionCommission();
-        content.add(desing, gbc);
-        System.out.println("Comisión de extensión");
+        createFacultyCouncil();
 
     }
 
     public void createFacultyCouncil() {
         restoreContent();
-        content.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.insets = new Insets(25, 35, 25, 35);
+        configGBC();
         FacultyCouncil desing = new FacultyCouncil();
         content.add(desing, gbc);
-        System.out.println("Consejo de facultad");
     }
 
     public void openAdminWidown(String option) {
         switch (option) {
-            case "Consejo de facultad":
+            case Env.FACULTY_COUNCIL:
                 createFacultyCouncil();
                 break;
-            case "Coordinación de extensión":
+            case Env.OUTREACH_COORDINATION:
                 createOutreachCoordination();
                 break;
-            case "Dirección de extensión":
+            case Env.OUTREACH_DIRECTORATE:
                 createExtensionAddress();
                 break;
-            case "Comisión de extensión":
+            case Env.OUTREACH_COMMITTEE:
                 createExtensionCommission();
                 break;
             default:

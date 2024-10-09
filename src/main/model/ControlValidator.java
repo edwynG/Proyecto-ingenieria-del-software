@@ -10,10 +10,6 @@ public class ControlValidator {
 
     }
 
-    public boolean doesTheDataExist(String table, String campo, String dato) {
-        return managerDatabase.isThereDataInTheQuery(String.format(Env.QUERY_VALIDATE_DATA, table, campo, dato));
-    }
-
     public boolean isThereAnProponentIDRegister(Integer id) {
         return managerDatabase.isThereDataInTheQuery(
                 String.format(Env.QUERY_VALIDATE_DATA, Env.TABLE_NAME_PROPONENTS, Env.TABLE_FIELD_PROPOENENT_ID,
@@ -30,4 +26,16 @@ public class ControlValidator {
                                 "'" + email + "'"));
 
     }
+
+    public boolean existResultProposal(Integer id) {
+        return managerDatabase.isThereDataInTheQuery(String.format(Env.QUERY_VALIDATE_DATA,
+                Env.TABLE_NAME_RESULT_PROPOSAL, Env.TABLE_FIELD_PROPOSAL_ID, id));
+    }
+
+    public boolean isAcceptedProposal(Integer id) {
+        return managerDatabase.isThereDataInTheQuery(
+                String.format(Env.QUERY_VALIDATE_DATA, Env.TABLE_NAME_ALIADO, Env.TABLE_FIELD_PROPOSAL_ID, id));
+    }
+
+  
 }

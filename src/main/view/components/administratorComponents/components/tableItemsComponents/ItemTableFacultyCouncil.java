@@ -17,7 +17,11 @@ import java.awt.event.MouseEvent;
 
 import java.awt.GridLayout;
 
+import main.Env;
+import main.controller.Validator;
+import main.view.Main;
 import main.view.components.AbstractComponents.AbstractPanelRounded;
+import main.view.components.administratorComponents.InterfaceAdministrator;
 import main.view.components.commonComponents.Dropdown;
 import main.view.components.commonComponents.FileChooser;
 import main.view.components.commonComponents.TextSubtitle;
@@ -30,13 +34,17 @@ public class ItemTableFacultyCouncil extends AbstractPanelRounded {
     private TextSubtitle status;
     private FileChooser proposal;
     private FileChooser observation;
+    private String proposalFileBase64;
     private Dropdown result;
+    private String resultText = "Evaluar";
+    private String statusValid = "Validado";
+    private String statusNotValid = "No validado";
     ArrayList<String> resultOptions;
-    private int id;
+    private Integer id;
 
-    public ItemTableFacultyCouncil(String course, int id) {
+    public ItemTableFacultyCouncil(String course, Integer id) {
         super(0);
-        this.course = new TextSubtitle(course, SwingConstants.LEFT);
+        this.course = new TextSubtitle("<html>" + course + "</html>", SwingConstants.LEFT);
         this.id = id;
         initItemTableFacultyCouncil();
     }
@@ -45,6 +53,28 @@ public class ItemTableFacultyCouncil extends AbstractPanelRounded {
         configItemTableCourseWithAval();
         configText();
         createComponents();
+        configFilesDownload();
+        configResultEvaluation();
+    }
+
+    private void configFilesDownload() {
+        proposalFileBase64 = Main.getAdminControl().getFileProposalBase64(id);
+
+    }
+
+    private void configResultEvaluation() {
+
+        Validator validator = new Validator();
+        if (!validator.existResultProposal(id)) {
+            return;
+        }
+        String str = Main.getAdminControl().getResultProposal(id);
+        if (str == null) {
+            return;
+        }
+        result.setSelectionValue(str);
+        status.setText(statusValid);
+
     }
 
     private void configItemTableCourseWithAval() {
@@ -55,7 +85,8 @@ public class ItemTableFacultyCouncil extends AbstractPanelRounded {
     }
 
     private void configText() {
-        status = new TextSubtitle("No validado", SwingConstants.CENTER);
+
+        status = new TextSubtitle(statusNotValid, SwingConstants.CENTER);
         TransparentPanel containerName = new TransparentPanel();
         containerName.setLayout(new GridBagLayout());
         containerName.add(course);
@@ -95,10 +126,10 @@ public class ItemTableFacultyCouncil extends AbstractPanelRounded {
 
             }
         };
-        result = new Dropdown("Evaluar");
+        result = new Dropdown(resultText);
         resultOptions = new ArrayList<>();
-        resultOptions.add("Aprovado");
-        resultOptions.add("Desaprovado");
+        resultOptions.add(Env.ACCEPT);
+        resultOptions.add(Env.REFUSED);
         result.setListElements(resultOptions);
         proposal.NotVisibleText();
         proposal.configMethodDownload();
@@ -147,7 +178,7 @@ public class ItemTableFacultyCouncil extends AbstractPanelRounded {
         proposal.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(id);
+                InterfaceAdministrator.actions.actionsDownload(proposal.getPath(), proposalFileBase64);
 
             }
         });
@@ -155,24 +186,28 @@ public class ItemTableFacultyCouncil extends AbstractPanelRounded {
         observation.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(id);
+                InterfaceAdministrator.actions.actionsUploadDocument(id, observation.getPath(),
+                        Env.DOCUMENT_OBSERATIONS);
 
             }
         });
 
         result.getOptionList().addListSelectionListener(new ListSelectionListener() {
             public void valueChanged(ListSelectionEvent e) {
+                InterfaceAdministrator.actions.evaluateProposal(id, result.getSelectElement());
+
                 if (result.getSelectElement() != null) {
-                    status.setText("Validado");
+                    status.setText(statusValid);
                     Components.repaintComponent(status);
                     return;
                 }
 
                 if (result.getSelectElement() == null) {
-                    status.setText("No validado");
+                    status.setText(statusNotValid);
                     Components.repaintComponent(status);
                     return;
                 }
+
             };
         });
 

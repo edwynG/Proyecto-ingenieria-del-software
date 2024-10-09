@@ -191,8 +191,16 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
 
     }
 
+    public void setSelectionValue(String str) {
+        options.setSelectedValue(str, getFocusTraversalKeysEnabled());
+    }
+
     public JList<String> getOptionList() {
         return options;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     @Override

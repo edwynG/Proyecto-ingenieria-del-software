@@ -1,5 +1,6 @@
 package main.view.components.proponentComponents.Components;
 
+import main.Env;
 import main.view.Main;
 import main.view.components.AbstractComponents.AbstractForm;
 import main.view.components.commonComponents.ButtonRounded;
@@ -47,6 +48,7 @@ public class CourseFormulation extends AbstractForm {
     private int inputheigthLarge = 45;
     private int columnsInputStandard = 28;
     private int columnsInputLarge = 34;
+
     public CourseFormulation(int rounded) {
         super(rounded);
         initCourseFormulation();
@@ -177,10 +179,10 @@ public class CourseFormulation extends AbstractForm {
         container_8.add(fileChooserExecutionSchedule);
 
         ArrayList<String> resp = new ArrayList<>();
-        resp.add("Coordinación de extensión");
-        resp.add("Dirección de extensión");
-        resp.add("Comisión de extensión");
-        resp.add("Consejo de facultad");
+        resp.add(Env.OUTREACH_COORDINATION);
+        resp.add(Env.OUTREACH_DIRECTORATE);
+        resp.add(Env.OUTREACH_COMMITTEE);
+        resp.add(Env.FACULTY_COUNCIL);
 
         ResponsibleUnit = createDropdown("Unidad responsable", resp);
         ResponsibleUnit.setPreferentPanel(420, 185);
@@ -208,7 +210,7 @@ public class CourseFormulation extends AbstractForm {
 
         setRedimentionFileChoosers(inputwidthMid, inputheigthMid);
         setRedimentionDropdowns(inputwidthMid, inputheigthMid);
-        setRedimentionFields(columnsInputStandard,inputheigthMid);
+        setRedimentionFields(columnsInputStandard, inputheigthMid);
 
     }
 
@@ -253,10 +255,10 @@ public class CourseFormulation extends AbstractForm {
         setRedimentionFileChoosers(inputwidthLarge, inputheigthLarge);
         setRedimentionDropdowns(inputwidthLarge, inputheigthLarge);
         setRedimentionPane(button, inputwidthLarge, inputheigthLarge);
-        setRedimentionFields(columnsInputLarge,inputheigthLarge);
+        setRedimentionFields(columnsInputLarge, inputheigthLarge);
 
         Components.repaintComponent(this);
-        
+
     }
 
     @Override
@@ -264,7 +266,7 @@ public class CourseFormulation extends AbstractForm {
         setRedimentionFileChoosers(inputwidthMid, inputheigthMid);
         setRedimentionDropdowns(inputwidthMid, inputheigthMid);
         setRedimentionPane(button, inputwidthMid, inputheigthMid);
-        setRedimentionFields(columnsInputStandard,inputheigthMid);
+        setRedimentionFields(columnsInputStandard, inputheigthMid);
         Components.repaintComponent(this);
 
     }

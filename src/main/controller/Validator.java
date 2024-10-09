@@ -1,29 +1,25 @@
 package main.controller;
-
-import main.Env;
 import main.model.ControlValidator;
 
 public class Validator {
     ControlValidator controlValidator = new ControlValidator();
 
     public boolean isThereAnEmailRegister(String email) {
-        if (controlValidator.isThereAnEmailRegister(email)) {
-            return true;
-        }
+        return controlValidator.isThereAnEmailRegister(email);
 
-        return false;
     }
 
     public boolean isThereAnProponentIDRegister(Integer id) {
-        if (controlValidator.isThereAnProponentIDRegister(id)) {
-            return true;
-        }
+        return controlValidator.isThereAnProponentIDRegister(id);
 
-        return false;
     }
 
-    public boolean  isAcceptedProposal(Integer id){
-        return controlValidator.doesTheDataExist(Env.TABLE_NAME_ALIADO, Env.TABLE_FIELD_PROPOSAL_ID, id+"");
+    public boolean isAcceptedProposal(Integer id) {
+        return controlValidator.isAcceptedProposal(id);
     }
-    
+
+    public boolean existResultProposal(Integer id) {
+        return controlValidator.existResultProposal(id);
+    }
+
 }
