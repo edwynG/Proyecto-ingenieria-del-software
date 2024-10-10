@@ -4,7 +4,9 @@
 *.db-journal
 *.txt
 *.pdf
+*.png
 # Ignora carpetas generadas por vscode
 bin
 build
+out
 .vscode
