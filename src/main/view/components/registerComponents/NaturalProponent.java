@@ -138,7 +138,7 @@ public class NaturalProponent extends AbstractForm {
             public void mousePressed(MouseEvent e) {
                 // La lista tiene que tener la estructura de la consulta
                 ArrayList<String> data = new ArrayList<>();
-                data.add(inputID.getText());
+                data.add(inputID.getText().trim());
                 data.add(fileChooserRIF.getPath());
                 data.add(fileChooserISLR.getPath());
                 data.add(fileChooserCurriculum.getPath());

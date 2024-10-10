@@ -234,7 +234,7 @@ public class CourseFormulation extends AbstractForm {
                 // La lista tiene que tener por la estructura de la consulta
                 ArrayList<String> data = new ArrayList<>();
                 data.add(Integer.toString(Main.getProponentControl().getUser().getId()));
-                data.add(inputTitle.getText());
+                data.add(inputTitle.getText().trim());
                 data.add(denomination.getSelectElement());
                 data.add(fileChooserObjectivesandFoundations.getPath());
                 data.add(fileChooserAdmissionAndGraduationProfile.getPath());

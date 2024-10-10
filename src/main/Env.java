@@ -54,7 +54,7 @@ public class Env {
         public final static String TYPE_UPLOAD_LETTER_OF_INTENT = "cartaDeIntension";
         public final static String TYPE_UPLOAD_OBSERVATIONS = "Observations";
         // Documentos fijos
-        public final static String DOCUMENT_LETTER_OF_COMMITMENT = "SG9sYSwgc295IHVuaSBjYXJ0YSBkZSBjb21wcm9taXNvLg==";
+        public final static String DOCUMENT_LETTER_OF_COMMITMENT = "W05vbWJyZSBkZSBsYSBFbXByZXNhXQpbRGlyZWNjacOzbiBkZSBsYSBFbXByZXNhXQpbQ2l1ZGFkLCBFc3RhZG8sIEPDs2RpZ28gUG9zdGFsXQpbVGVsw6lmb25vXQpbQ29ycmVvIEVsZWN0csOzbmljb10KW0ZlY2hhXQpbTm9tYnJlIGRlbCBFbXBsZWFkb10KW0RpcmVjY2nDs24gZGVsIEVtcGxlYWRvXQpbQ2l1ZGFkLCBFc3RhZG8sIEPDs2RpZ28gUG9zdGFsXQpFc3RpbWFkby9hIFtOb21icmUgZGVsIEVtcGxlYWRvXToKUG9yIG1lZGlvIGRlIGxhIHByZXNlbnRlLCBub3MgY29tcGxhY2UgZm9ybWFsaXphciBlbCBjb21wcm9taXNvIGxhYm9yYWwgcXVlIGhlbW9zIGVzdGFibGVjaWRvIGVudHJlIFtOb21icmUgZGUgbGEgRW1wcmVzYV0geSB1c3RlZC4gRXN0ZSBjb21wcm9taXNvIHJlZmxlamEgbnVlc3RyYSBpbnRlbmNpw7NuIGRlIHRyYWJhamFyIGp1bnRvcyBlbiB1biBhbWJpZW50ZSBkZSByZXNwZXRvLCBwcm9mZXNpb25hbGlzbW8geSBjb2xhYm9yYWNpw7NuLgoxLiBQdWVzdG8gZGUgVHJhYmFqbwpVc3RlZCBvY3VwYXLDoSBlbCBwdWVzdG8gZGUgW1TDrXR1bG8gZGVsIFB1ZXN0b10sIGNvbWVuemFuZG8gZWwgW0ZlY2hhIGRlIEluaWNpb10uIFN1cyByZXNwb25zYWJpbGlkYWRlcyBpbmNsdWlyw6FuLCBwZXJvIG5vIHNlIGxpbWl0YXLDoW4gYSwgW0Rlc2NyaXBjacOzbiBicmV2ZSBkZSBsYXMgcmVzcG9uc2FiaWxpZGFkZXMgZGVsIHB1ZXN0b10uCjIuIENvbXBlbnNhY2nDs24KU3Ugc2FsYXJpbyBzZXLDoSBkZSBbTW9udG9dIFtNb25lZGFdIHBvciBbUGVyaW9kbyBkZSBQYWdvLCBwb3IgZWplbXBsbywgbWVuc3VhbF0sIHkgc2UgbGUgaW5mb3JtYXLDoSBzb2JyZSBsb3MgYmVuZWZpY2lvcyBhZGljaW9uYWxlcyBxdWUgY29ycmVzcG9uZGVuIGEgc3UgcHVlc3RvLgozLiBIb3JhcmlvIExhYm9yYWwKRWwgaG9yYXJpbyBkZSB0cmFiYWpvIHNlcsOhIGRlIFtIb3JhIGRlIEluaWNpb10gYSBbSG9yYSBkZSBGaW5dLCBkZSBbRMOtYXMgZGUgVHJhYmFqb10sIGNvbiB1biBkZXNjYW5zbyBkZSBbRHVyYWNpw7NuIGRlbCBEZXNjYW5zb10uCjQuIFBvbMOtdGljYXMgeSBOb3JtYXRpdmFzCkNvbW8gZW1wbGVhZG8gZGUgW05vbWJyZSBkZSBsYSBFbXByZXNhXSwgc2UgZXNwZXJhIHF1ZSBjdW1wbGEgY29uIGxhcyBwb2zDrXRpY2FzIHkgbm9ybWF0aXZhcyBlc3RhYmxlY2lkYXMgZW4gZWwgbWFudWFsIGRlbCBlbXBsZWFkbywgYXPDrSBjb21vIGNvbiBsb3MgdmFsb3JlcyBkZSBudWVzdHJhIG9yZ2FuaXphY2nDs24uCjUuIER1cmFjacOzbiBkZWwgQ29tcHJvbWlzbwpFc3RlIGNvbXByb21pc28gbGFib3JhbCBzZSBlc3RhYmxlY2UgcG9yIHRpZW1wbyBpbmRlZmluaWRvLCBzdWpldG8gYSBsYXMgY29uZGljaW9uZXMgZGUgZW1wbGVvIHkgZGVzZW1wZcOxbyBxdWUgc2UgZXZhbHVhcsOhbiBkZSBtYW5lcmEgcGVyacOzZGljYS4KQWdyYWRlY2Vtb3Mgc3UgYWNlcHRhY2nDs24geSBjb25maWFuemEgZW4gW05vbWJyZSBkZSBsYSBFbXByZXNhXS4gRXN0YW1vcyBlbnR1c2lhc21hZG9zIHBvciBjb250YXIgY29uIHVzdGVkIGVuIG51ZXN0cm8gZXF1aXBvIHkgY29uZmlhbW9zIGVuIHF1ZSBqdW50b3MgbG9ncmFyZW1vcyBncmFuZGVzIG9iamV0aXZvcy4KUG9yIGZhdm9yLCBmaXJtZSB5IGRldnVlbHZhIHVuYSBjb3BpYSBkZSBlc3RhIGNhcnRhIGNvbW8gY29uZmlybWFjacOzbiBkZSBzdSBhY2VwdGFjacOzbiBkZSBlc3RlIGNvbXByb21pc28gbGFib3JhbC4KQXRlbnRhbWVudGUsCltGaXJtYV0KW05vbWJyZSBkZWwgRmlybWFudGVdCltUw610dWxvIGRlbCBGaXJtYW50ZV0KW05vbWJyZSBkZSBsYSBFbXByZXNhXQpbRmlybWEgZGVsIEVtcGxlYWRvXQpbTm9tYnJlIGRlbCBFbXBsZWFkb10KW0ZlY2hhXQ==";
         // Consultas de SQL
         public final static String TABLE_FIELD_PROPOSAL_ID = "PropuestaID";
         public final static String TABLE_FIELD_EMAIL = "Correo";
@@ -99,138 +99,129 @@ public class Env {
         public final static String QUERY_VALIDATE_DATA = "SELECT * FROM %s WHERE %s = %s;\n";
         // Consulta para crear la base de datos;
         public final static String CREATE_DATABASE = "DROP TABLE IF EXISTS Proponentes;\r\n" + //
-                        "\r\n" + //
-                        "DROP TABLE IF EXISTS DocumentosDeRegistros;\r\n" + //
-                        "\r\n" + //
-                        "DROP TABLE IF EXISTS Administradores;\r\n" + //
-                        "\r\n" + //
-                        "DROP TABLE IF EXISTS Propuestas;\r\n" + //
-                        "\r\n" + //
-                        "DROP TABLE IF EXISTS Aliados;\r\n" + //
-                        "\r\n" + //
-                        "DROP TABLE IF EXISTS ResultadosPropuestas;\r\n" + //
-                        "\r\n" + //
-                        "CREATE TABLE\r\n" + //
-                        "    Proponentes (\r\n" + //
-                        "        ProponenteID INTEGER PRIMARY KEY,\r\n" + //
-                        "        Correo TEXT UNIQUE,\r\n" + //
-                        "        'Contraseña' TEXT,\r\n" + //
-                        "        TipoDePersona TEXT\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "CREATE TABLE\r\n" + //
-                        "    Administradores (\r\n" + //
-                        "        AdministradorID INTEGER PRIMARY KEY,\r\n" + //
-                        "        Correo TEXT UNIQUE,\r\n" + //
-                        "        'Contraseña' TEXT,\r\n" + //
-                        "        Unidad TEXT\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "CREATE TABLE\r\n" + //
-                        "    DocumentosDeRegistros (\r\n" + //
-                        "        DocumentosDeRegistrosID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
-                        "        ProponenteID INTEGER,\r\n" + //
-                        "        RIF TEXT,\r\n" + //
-                        "        ISLR TEXT,\r\n" + //
-                        "        Curriculum TEXT,\r\n" + //
-                        "        TituloUniversitario TEXT,\r\n" + //
-                        "        RegistroMercantil TEXT,\r\n" + //
-                        "        FOREIGN KEY (ProponenteID) REFERENCES Proponentes (ProponenteID)\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "CREATE TABLE\r\n" + //
-                        "    Propuestas (\r\n" + //
-                        "        PropuestaID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
-                        "        ProponenteID INTEGER,\r\n" + //
-                        "        Titulo TEXT,\r\n" + //
-                        "        Denominacion TEXT,\r\n" + //
-                        "        ObjetivosYFundamentacion TEXT,\r\n" + //
-                        "        PerfilDeIngresoYEgreso TEXT,\r\n" + //
-                        "        PerfilDocente TEXT,\r\n" + //
-                        "        EstructuraCurricularPorCompetencias TEXT,\r\n" + //
-                        "        EstrategiasDeEvaluacionYDuracion TEXT,\r\n" + //
-                        "        ExigenciasEnMaterialesYservicios TEXT,\r\n" + //
-                        "        EstructuraDeCostos TEXT,\r\n" + //
-                        "        CronogramaDeEjecucionAnual TEXT,\r\n" + //
-                        "        UnidadResponsable TEXT,\r\n" + //
-                        "        CartaDeIntecion TEXT,\r\n" + //
-                        "        CartaDeCompromiso TEXT,\r\n" + //
-                        "        FOREIGN KEY (ProponenteID) REFERENCES Proponentes (ProponenteID)\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "CREATE TABLE\r\n" + //
-                        "    ResultadosPropuestas (\r\n" + //
-                        "        ResultadosPropuestasID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
-                        "        PropuestaID INTEGER,\r\n" + //
-                        "        AdministradorID INTEGER,\r\n" + //
-                        "        Observaciones TEXT,\r\n" + //
-                        "        Resultado TEXT,\r\n" + //
-                        "        FOREIGN KEY (PropuestaID) REFERENCES Propuestas (PropuestaID),\r\n" + //
-                        "        FOREIGN KEY (AdministradorID) REFERENCES Administradores (AdministradorID)\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "CREATE TABLE\r\n" + //
-                        "    Aliados (\r\n" + //
-                        "        AliadoID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
-                        "        ProponenteID INTEGER,\r\n" + //
-                        "        PropuestaID INTEGER,\r\n" + //
-                        "        CronogramaDeEjecucion TEXT,\r\n" + //
-                        "        EstructuraDeCostosEingresos TEXT,\r\n" + //
-                        "        FOREIGN KEY (ProponenteID) REFERENCES Proponentes (ProponenteID),\r\n" + //
-                        "        FOREIGN KEY (PropuestaID) REFERENCES Propuestas (PropuestaID)\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "INSERT INTO\r\n" + //
-                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
-                        "VALUES\r\n" + //
-                        "    (\r\n" + //
-                        "        30326271,\r\n" + //
-                        "        'edwynjesus@gmail.com',\r\n" + //
-                        "        'Consejo de facultad'\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "INSERT INTO\r\n" + //
-                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
-                        "VALUES\r\n" + //
-                        "    (\r\n" + //
-                        "        30326276,\r\n" + //
-                        "        'edwyn@gmail.com',\r\n" + //
-                        "        'Consejo de facultad'\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "INSERT INTO\r\n" + //
-                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
-                        "VALUES\r\n" + //
-                        "    (\r\n" + //
-                        "        30326272,\r\n" + //
-                        "        'ewy@gmail.com',\r\n" + //
-                        "        'Coordinación de extensión'\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "INSERT INTO\r\n" + //
-                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
-                        "VALUES\r\n" + //
-                        "    (\r\n" + //
-                        "        30326279,\r\n" + //
-                        "        'test@gmail.com',\r\n" + //
-                        "        'Coordinación de extensión'\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "INSERT INTO\r\n" + //
-                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
-                        "VALUES\r\n" + //
-                        "    (\r\n" + //
-                        "        30326273,\r\n" + //
-                        "        'jesus@gmail.com',\r\n" + //
-                        "        'Dirección de extensión'\r\n" + //
-                        "    );\r\n" + //
-                        "\r\n" + //
-                        "INSERT INTO\r\n" + //
-                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
-                        "VALUES\r\n" + //
-                        "    (\r\n" + //
-                        "        30326274,\r\n" + //
-                        "        'guzman@gmail.com',\r\n" + //
-                        "        'Comisión de extensión'\r\n" + //
-                        "    );";
+                                "\r\n" + //
+                                "DROP TABLE IF EXISTS DocumentosDeRegistros;\r\n" + //
+                                "\r\n" + //
+                                "DROP TABLE IF EXISTS Administradores;\r\n" + //
+                                "\r\n" + //
+                                "DROP TABLE IF EXISTS Propuestas;\r\n" + //
+                                "\r\n" + //
+                                "DROP TABLE IF EXISTS Aliados;\r\n" + //
+                                "\r\n" + //
+                                "DROP TABLE IF EXISTS ResultadosPropuestas;\r\n" + //
+                                "\r\n" + //
+                                "CREATE TABLE\r\n" + //
+                                "    Proponentes (\r\n" + //
+                                "        ProponenteID INTEGER PRIMARY KEY,\r\n" + //
+                                "        Correo TEXT UNIQUE,\r\n" + //
+                                "        'Contraseña' TEXT,\r\n" + //
+                                "        TipoDePersona TEXT\r\n" + //
+                                "    );\r\n" + //
+                                "\r\n" + //
+                                "CREATE TABLE\r\n" + //
+                                "    Administradores (\r\n" + //
+                                "        AdministradorID INTEGER PRIMARY KEY,\r\n" + //
+                                "        Correo TEXT UNIQUE,\r\n" + //
+                                "        'Contraseña' TEXT,\r\n" + //
+                                "        Unidad TEXT\r\n" + //
+                                "    );\r\n" + //
+                                "\r\n" + //
+                                "CREATE TABLE\r\n" + //
+                                "    DocumentosDeRegistros (\r\n" + //
+                                "        DocumentosDeRegistrosID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
+                                "        ProponenteID INTEGER,\r\n" + //
+                                "        RIF TEXT,\r\n" + //
+                                "        ISLR TEXT,\r\n" + //
+                                "        Curriculum TEXT,\r\n" + //
+                                "        TituloUniversitario TEXT,\r\n" + //
+                                "        RegistroMercantil TEXT,\r\n" + //
+                                "        FOREIGN KEY (ProponenteID) REFERENCES Proponentes (ProponenteID)\r\n" + //
+                                "    );\r\n" + //
+                                "\r\n" + //
+                                "CREATE TABLE\r\n" + //
+                                "    Propuestas (\r\n" + //
+                                "        PropuestaID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
+                                "        ProponenteID INTEGER,\r\n" + //
+                                "        Titulo TEXT,\r\n" + //
+                                "        Denominacion TEXT,\r\n" + //
+                                "        ObjetivosYFundamentacion TEXT,\r\n" + //
+                                "        PerfilDeIngresoYEgreso TEXT,\r\n" + //
+                                "        PerfilDocente TEXT,\r\n" + //
+                                "        EstructuraCurricularPorCompetencias TEXT,\r\n" + //
+                                "        EstrategiasDeEvaluacionYDuracion TEXT,\r\n" + //
+                                "        ExigenciasEnMaterialesYservicios TEXT,\r\n" + //
+                                "        EstructuraDeCostos TEXT,\r\n" + //
+                                "        CronogramaDeEjecucionAnual TEXT,\r\n" + //
+                                "        UnidadResponsable TEXT,\r\n" + //
+                                "        CartaDeIntecion TEXT,\r\n" + //
+                                "        CartaDeCompromiso TEXT,\r\n" + //
+                                "        FOREIGN KEY (ProponenteID) REFERENCES Proponentes (ProponenteID)\r\n" + //
+                                "    );\r\n" + //
+                                "\r\n" + //
+                                "CREATE TABLE\r\n" + //
+                                "    ResultadosPropuestas (\r\n" + //
+                                "        ResultadosPropuestasID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
+                                "        PropuestaID INTEGER,\r\n" + //
+                                "        AdministradorID INTEGER,\r\n" + //
+                                "        Observaciones TEXT,\r\n" + //
+                                "        Resultado TEXT,\r\n" + //
+                                "        FOREIGN KEY (PropuestaID) REFERENCES Propuestas (PropuestaID),\r\n" + //
+                                "        FOREIGN KEY (AdministradorID) REFERENCES Administradores (AdministradorID)\r\n" + //
+                                "    );\r\n" + //
+                                "\r\n" + //
+                                "CREATE TABLE\r\n" + //
+                                "    Aliados (\r\n" + //
+                                "        AliadoID INTEGER PRIMARY KEY AUTOINCREMENT,\r\n" + //
+                                "        ProponenteID INTEGER,\r\n" + //
+                                "        PropuestaID INTEGER,\r\n" + //
+                                "        CronogramaDeEjecucion TEXT,\r\n" + //
+                                "        EstructuraDeCostosEingresos TEXT,\r\n" + //
+                                "        FOREIGN KEY (ProponenteID) REFERENCES Proponentes (ProponenteID),\r\n" + //
+                                "        FOREIGN KEY (PropuestaID) REFERENCES Propuestas (PropuestaID)\r\n" + //
+                                "    );\r\n" + //
+                                "\r\n" + //
+                                "INSERT INTO\r\n" + //
+                                "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
+                                "VALUES\r\n" + //
+                                "    (\r\n" + //
+                                "        30326271,\r\n" + //
+                                "        'edwynjesus30@gmail.com',\r\n" + //
+                                "        'Consejo de facultad'\r\n" + //
+                                "    );\r\n" + //
+                                "\r\n" + //
+                                "INSERT INTO\r\n" + //
+                                "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
+                                "VALUES\r\n" + //
+                                "    (\r\n" + //
+                                "        30326278,\r\n" + //
+                                "        'juandavid2002111@gmail.com',\r\n" + //
+                                "        'Consejo de facultad'\r\n" + //
+                                "    );\r\n" + //
+                                "\r\n" + //
+                                "INSERT INTO\r\n" + //
+                                "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
+                                "VALUES\r\n" + //
+                                "    (\r\n" + //
+                                "        30326279,\r\n" + //
+                                "        'uzcasimon@gmail.com',\r\n" + //
+                                "        'Coordinación de extensión'\r\n" + //
+                                "    );\r\n" + //
+                                "\r\n" + //
+                                "INSERT INTO\r\n" + //
+                                "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
+                                "VALUES\r\n" + //
+                                "    (\r\n" + //
+                                "        30326273,\r\n" + //
+                                "        'diegoaherediaruni@gmail.com',\r\n" + //
+                                "        'Dirección de extensión'\r\n" + //
+                                "    );\r\n" + //
+                                "\r\n" + //
+                                "INSERT INTO\r\n" + //
+                                "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
+                                "VALUES\r\n" + //
+                                "    (\r\n" + //
+                                "        30326274,\r\n" + //
+                                "        'patydanicc@gmail.com',\r\n" + //
+                                "        'Comisión de extensión'\r\n" + //
+                                "    );";
 }
