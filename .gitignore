@@ -1,1 +1,10 @@
 *.class
+*.db
+*.sql
+*.db-journal
+*.txt
+*.pdf
+# Ignora carpetas generadas por vscode
+bin
+build
+.vscode

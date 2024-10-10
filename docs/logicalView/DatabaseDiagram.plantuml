@@ -1,0 +1,74 @@
+@startuml DatabaseDiagram
+
+object Proponentes{
+    ProponenteID:int (PK)
+    Correo: string
+    Contraseña: int
+    TipoDePersona: string
+}
+
+object Administradores{
+    AdministradorID: int (PK)
+    Correo: string
+    Contraseña: int
+    Unidad: string
+}
+
+object DocumentosDeRegistros{
+    DocumentosDeRegistrosID :int (PK)
+    ProponenteID: int (FK)
+    RIF: string
+    ISLR: string
+    Curriculum: string
+    TituloUniversitario: string
+    RegistroMercantil: string
+}
+
+
+
+object Propuestas{
+    PropuestaID:int (PK)
+    ProponenteID: int (FK)
+    Titulo : string 
+    Denominacion: string
+    ObjetivosYFundamentacion: string
+    PerfilDeIngresoYEgreso: string
+    PerfilDocente: string
+    EstructuraCurricularPorCompetencias: string
+    EstrategiasDeEvaluacionYDuracion: string
+    ExigenciasEnMaterialesYservicios: string
+    EstructuraDeCostos: string
+    CronogramaDeEjecucionAnual: string
+    UnidadResponsable: string
+    CartaDeIntecion: string
+    CartaDeCompromiso: string
+
+}
+
+object ResultadosPropuestas{
+    ResultadosPropuestasID: int (PK)
+    PropuestaID: int (FK)
+    AdministradorID: int (FK)
+    Observaciones: string
+    Resultado: string
+}
+
+
+object Aliados{
+    AliadoID: int (PK)
+    ProponenteID: int (FK)
+    PropuestaID: int (FK)
+    CronogramaDeEjecucion: string
+    EstructuraDeCostosEingresos: string
+}
+
+
+
+ResultadosPropuestas "1"--"1" Propuestas
+Administradores "1   "-l- " 1..n" ResultadosPropuestas
+DocumentosDeRegistros "1"-u-"1" Proponentes
+Propuestas "1..n "-r-" 1" Proponentes
+Aliados "1"-u-"1" Proponentes
+Aliados "1"-u-"1..n" Propuestas
+
+@enduml
