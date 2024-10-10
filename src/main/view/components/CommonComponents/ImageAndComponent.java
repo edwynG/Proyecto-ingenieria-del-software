@@ -8,6 +8,8 @@ import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import main.view.utils.Components;
+
 public class ImageAndComponent extends TransparentPanel {
     private JLabel icon;
     private Component component;
@@ -15,7 +17,7 @@ public class ImageAndComponent extends TransparentPanel {
     protected final int RIGHT = 1;
 
     public ImageAndComponent(String image, int width, int height, Component component) {
-        icon = new LabelWithImage(new ImageIcon(image), width, height);
+        icon = new LabelWithImage(new ImageIcon(Components.getClassImage(this, image)), width, height);
         this.component = component;
         initImageAndComponent();
     }

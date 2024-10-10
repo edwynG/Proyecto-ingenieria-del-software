@@ -11,8 +11,6 @@ import main.view.utils.CustomVariables;
 import raven.glasspanepopup.GlassPanePopup;
 
 import java.awt.BorderLayout;
-import java.awt.Toolkit;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -61,7 +59,8 @@ public class Main extends JFrame {
     private void configContentWindow(JPanel main) {
         main.setLayout(new BorderLayout());
         main.add(content, BorderLayout.CENTER);
-        setIconImage(Toolkit.getDefaultToolkit().getImage(Env.PATH_ICON_WINDOW));
+        setIconImage(Components.getClassImage(this, Env.PATH_ICON_WINDOW));
+
     }
 
     private void configContentInitial(JPanel panel) {

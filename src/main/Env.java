@@ -2,22 +2,22 @@ package main;
 
 public class Env {
         // Base de datos
-        public final static String PATH_DATABASE = "./src/database/";
+        public final static String PATH_DATABASE = "./database/";
         public final static String NAME_DATABASE = "data-Course_Stack.db";
         // imagenes
-        public final static String PATH_ICON_WINDOW = "src/assets/icon_window.png";
-        public final static String PATH_IMAGE_MAIN = "src/assets/main_image.png";
-        public final static String PATH_ICON_USER = "src/assets/user_image.png";
-        public final static String PATH_ICON_PADLOCK = "src/assets/padlock_image.png";
-        public final static String PATH_ICON_UPLOAD = "src/assets/upload_image.png";
-        public final static String PATH_ICON_EMAIL = "src/assets/email_image.png";
-        public final static String PATH_IMAGE_APPBAR = "src/assets/appbar_image.png";
-        public final static String PATH_ICON_HOME = "src/assets/icon_home.png";
-        public final static String PATH_ICON_BACK = "src/assets/icon_back.png";
-        public final static String PATH_ICON_DROPDOWN = "src/assets/icon_dropdown.png";
-        public final static String PATH_ICON_ERROR = "src/assets/Error_icon.png";
-        public final static String PATH_ICON_CHECK = "src/assets/Check_icon.png";
-        public final static String PATH_ICON_DOWNLOAD = "src/assets/download_imagen.png";
+        public final static String PATH_ICON_WINDOW = "/assets/icon_window.png";
+        public final static String PATH_IMAGE_MAIN = "/assets/main_image.png";
+        public final static String PATH_ICON_USER = "/assets/user_image.png";
+        public final static String PATH_ICON_PADLOCK = "/assets/padlock_image.png";
+        public final static String PATH_ICON_UPLOAD = "/assets/upload_image.png";
+        public final static String PATH_ICON_EMAIL = "/assets/email_image.png";
+        public final static String PATH_IMAGE_APPBAR = "/assets/appbar_image.png";
+        public final static String PATH_ICON_HOME = "/assets/icon_home.png";
+        public final static String PATH_ICON_BACK = "/assets/icon_back.png";
+        public final static String PATH_ICON_DROPDOWN = "/assets/icon_dropdown.png";
+        public final static String PATH_ICON_ERROR = "/assets/Error_icon.png";
+        public final static String PATH_ICON_CHECK = "/assets/Check_icon.png";
+        public final static String PATH_ICON_DOWNLOAD = "/assets/download_imagen.png";
 
         // expresiones regulares
         public final static String REGEX_EMAIL = "^[#\\w.-_+]+@(.+).com$";

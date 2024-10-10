@@ -82,18 +82,18 @@ public class AppBar extends AbstractPanelRounded {
         int size = 5;
 
         TransparentPanel homeContent = new TransparentPanel();
-        LabelWithImage home = new LabelWithImage(new ImageIcon(Env.PATH_ICON_HOME), iconWidth, iconHeight);
+        LabelWithImage home = new LabelWithImage(new ImageIcon(Components.getClassImage(this, Env.PATH_ICON_HOME)), iconWidth, iconHeight);
         homeContent.add(home);
         aplicateCursorHand(home);
 
         TransparentPanel userContent = new TransparentPanel();
-        LabelWithImage user = new LabelWithImage(new ImageIcon(Env.PATH_ICON_USER), iconWidth + size,
+        LabelWithImage user = new LabelWithImage(new ImageIcon(Components.getClassImage(this, Env.PATH_ICON_USER)), iconWidth + size,
                 iconHeight + size);
         userContent.add(user);
         aplicateCursorHand(user);
 
         TransparentPanel backContent = new TransparentPanel();
-        LabelWithImage back = new LabelWithImage(new ImageIcon(Env.PATH_ICON_BACK), iconWidth, iconHeight);
+        LabelWithImage back = new LabelWithImage(new ImageIcon(Components.getClassImage(this, Env.PATH_ICON_BACK)), iconWidth, iconHeight);
         backContent.add(back);
         aplicateCursorHand(back);
 
@@ -136,7 +136,7 @@ public class AppBar extends AbstractPanelRounded {
         int iconHeight = 40;
         int iconWidth = 40;
         TransparentPanel backContent = new TransparentPanel();
-        LabelWithImage back = new LabelWithImage(new ImageIcon(Env.PATH_ICON_BACK), iconWidth, iconHeight);
+        LabelWithImage back = new LabelWithImage(new ImageIcon(Components.getClassImage(this, Env.PATH_ICON_BACK)), iconWidth, iconHeight);
 
         backContent.add(back);
         aplicateCursorHand(back);
@@ -167,7 +167,7 @@ public class AppBar extends AbstractPanelRounded {
         int iconHeight = 40;
         int iconWidth = 40;
         TransparentPanel backContent = new TransparentPanel();
-        LabelWithImage back = new LabelWithImage(new ImageIcon(Env.PATH_ICON_BACK), iconWidth, iconHeight);
+        LabelWithImage back = new LabelWithImage(new ImageIcon(Components.getClassImage(this, Env.PATH_ICON_BACK)), iconWidth, iconHeight);
 
         backContent.add(back);
         aplicateCursorHand(back);

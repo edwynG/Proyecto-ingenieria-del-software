@@ -32,7 +32,7 @@ Para poder trabajar en el proyecto utilizando Visual Studio Code, se recomienda 
     "./src/lib/Glasspane/miglayout-4.0.jar",
     "./src/lib/TimingTargetAdapter/TimingFramework-0.55.jar"
   ],
-  "java.debug.settings.onBuildFailureProceed": true
+  "java.project.exportJar.targetPath": "${workspaceFolder}/build/Course stack.jar"
 }
 ```
 

@@ -62,7 +62,7 @@ public class AbstractFileChooser extends AbstractPanelRounded {
     }
 
     private ImageIcon createIcon(int width, int height) {
-        ImageIcon src = new ImageIcon(getIcon());
+        ImageIcon src = new ImageIcon(Components.getClassImage(this, getIconPath()));
         Image img = src.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
         return new ImageIcon(img);
     }
@@ -200,7 +200,7 @@ public class AbstractFileChooser extends AbstractPanelRounded {
         text.setFont(new Font(font.getName(), weight, font.getSize()));
     }
 
-    public String getIcon() {
+    public String getIconPath() {
         return icon;
     }
 

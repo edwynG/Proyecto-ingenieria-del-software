@@ -127,7 +127,7 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
     }
 
     private ImageIcon createIcon() {
-        ImageIcon src = new ImageIcon(Env.PATH_ICON_DROPDOWN);
+        ImageIcon src = new ImageIcon(Components.getClassImage(this, Env.PATH_ICON_DROPDOWN));
         Image img = src.getImage().getScaledInstance(12, 11, Image.SCALE_SMOOTH);
         return new ImageIcon(img);
     }

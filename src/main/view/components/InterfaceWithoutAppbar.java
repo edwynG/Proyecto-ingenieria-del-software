@@ -115,7 +115,7 @@ public class InterfaceWithoutAppbar extends AbstractPanelRounded {
     }
 
     public void setImage(String path) {
-        ImageIcon img = new ImageIcon(path);
+        ImageIcon img = new ImageIcon(Components.getClassImage(this, path));
         image.setIcon(img);
         revalidate();
         repaint();
