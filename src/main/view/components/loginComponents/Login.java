@@ -133,7 +133,7 @@ public class Login extends AbstractForm {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                actions.actionsButtonLogin(inputEmail.getInput().toLowerCase(), inputPassword.getPassword());
+                actions.actionsButtonLogin(inputEmail.getInput().toLowerCase(), inputPassword.getInput());
             }
         });
 

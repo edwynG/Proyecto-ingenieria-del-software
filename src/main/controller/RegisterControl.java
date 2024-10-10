@@ -6,8 +6,6 @@ import main.Env;
 import main.controller.abstractControllers.AbstractSesionControl;
 import main.model.Proponent;
 import main.model.abstractModels.User;
-import main.view.components.commonComponents.CardMessage;
-import raven.glasspanepopup.GlassPanePopup;
 
 public class RegisterControl extends AbstractSesionControl {
     private ArrayList<String> documents;
@@ -49,40 +47,6 @@ public class RegisterControl extends AbstractSesionControl {
         this.documents = documents;
     }
 
-    public boolean isThereAnEmailToRegisterAdmin() {
-        if (getValidator().isThereAnEmailRegister(getUser().getUser())) {
-            return true;
-        }
-        CardMessage pane = new CardMessage("No eres administrador", "El usuario no se encuantra registrado.");
-        pane.settWidthCard(500);
-        pane.setHeightCard(280);
-        GlassPanePopup.showPopup(pane);
-        return false;
-    }
-
-    public boolean isThereAnEmailToRegister() {
-        if (getValidator().isThereAnEmailRegister(getUser().getUser())) {
-            GlassPanePopup.showPopup(new CardMessage("Lo sentimos..", "El correo pertenece a otro usuario."));
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isThereAnProponentIDToRegister() {
-        if (getValidator().isThereAnProponentIDRegister(getUser().getId())) {
-            GlassPanePopup.showPopup(new CardMessage("Lo sentimos..", "La cedula pertenece a otro usuario."));
-            return true;
-        }
-        return false;
-    }
-
-    public boolean IsThereAnPasswordToRegister(String password, String confirmPassword) {
-        if (!password.equals(confirmPassword)) {
-            GlassPanePopup.showPopup(new CardMessage("Contraseña", "La contraseña no coincide."));
-            return false;
-        }
-
-        return true;
-    }
+    
 
 }

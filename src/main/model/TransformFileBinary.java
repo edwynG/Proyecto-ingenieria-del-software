@@ -69,6 +69,7 @@ public class TransformFileBinary {
 
     public ArrayList<String> tranformToBaseOnlyWidthExt(ArrayList<String> data, String serialization) {
         ArrayList<String> newList = new ArrayList<>();
+        ControlValidator validator = new ControlValidator();
         boolean state = true;
         for (String item : data) {
             for (String ext : Env.EXTESIONS_EXT) {
@@ -80,7 +81,7 @@ public class TransformFileBinary {
             }
 
             if (state) {
-                if (isNumber(item))
+                if (validator.isValidString(item, Env.REGEX_DIGI))
                     newList.add(item);
                 else
                     newList.add(serialization + item + serialization);
@@ -91,14 +92,6 @@ public class TransformFileBinary {
         return newList;
     }
 
-    private boolean isNumber(String str) {
-        try {
-            Integer.parseInt(str);
-            return true;
-        } catch (Exception e) {
 
-        }
-        return false;
-    }
 
 }

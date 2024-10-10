@@ -7,7 +7,6 @@ import main.Env;
 import main.view.Main;
 import main.view.components.InterfaceWithAppbar;
 import main.view.components.commonComponents.ActionsInterface;
-import main.view.components.commonComponents.CardMessage;
 import main.view.components.proponentComponents.Components.viewMorePanelComponents.ViewMorePanel;
 import raven.glasspanepopup.GlassPanePopup;
 
@@ -20,7 +19,6 @@ public class ActionsProponent extends ActionsInterface {
         }
         
         Boolean status = false;
-        System.out.println(path);
         switch (type) {
             case Env.TYPE_UPLOAD_COSTOS:
                 status = Main.getProponentControl().uploadDocumentCostos(id, path);
@@ -40,14 +38,10 @@ public class ActionsProponent extends ActionsInterface {
         }
 
         if (!status) {
-            CardMessage pane = new CardMessage("Lo sentimos", "No se pudo subir el archivo.");
-            pane.setColorTitle(Color.RED);
-            GlassPanePopup.showPopup(pane);
+            informationPanePopup("Lo sentimos", "No se pudo subir el archivo.");
             return;
         }
-        CardMessage pane = new CardMessage("Actualizado", "Archivo subido exitosamente.");
-        pane.setColorTitle(Color.GREEN);
-        GlassPanePopup.showPopup(pane);
+        informationPanePopup("Actualizado", "Archivo subido exitosamente.", Color.GREEN);
 
     }
 
@@ -68,17 +62,15 @@ public class ActionsProponent extends ActionsInterface {
         if (!isValidData(data)) {
             return;
         }
+        Integer width = 400;
+        Integer heigth = 240;
         if (Main.getProponentControl().proposeCourse(data)) {
-            CardMessage pane = new CardMessage("Propuesta exitosa!!", "Se ha realizado la propuesta.");
-            pane.settWidthCard(400);
-            pane.setHeightCard(240);
-            GlassPanePopup.showPopup(pane);
+            informationPanePopup("Propuesta exitosa!!", "Se ha realizado la propuesta.",  width, heigth);
+            InterfaceWithAppbar.ProponentDesing.createCourseFormulation();
             return;
         }
-        CardMessage pane = new CardMessage("Hubo un problema", "Lo sentimos, no se pudo registrar la propuesta.");
-        pane.settWidthCard(400);
-        pane.setHeightCard(240);
-        GlassPanePopup.showPopup(pane);
+        informationPanePopup("Hubo un problema", "Lo sentimos, no se pudo registrar la propuesta.",  width, heigth);
+
     }
 
 }

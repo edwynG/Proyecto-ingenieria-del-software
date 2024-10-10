@@ -12,40 +12,39 @@ import main.view.Main;
 import main.view.components.InterfaceWithAppbar;
 import main.view.components.InterfaceWithoutAppbar;
 import main.view.components.commonComponents.ActionsInterface;
-import main.view.components.commonComponents.CardMessage;
 import main.view.components.registerComponents.Register;
-import raven.glasspanepopup.GlassPanePopup;
+import main.view.utils.CustomVariables;
 
-public class LoginActions extends ActionsInterface{
+
+public class LoginActions extends ActionsInterface {
     private LoginControl control = new LoginControl();
 
     public void actionsOptionPassword() {
-        CardMessage pane = new CardMessage("No disponible", "Lo sentimos, sistema en mantenimiento.");
-        pane.settWidthCard(350);
-        pane.setHeightCard(250);
-        GlassPanePopup.showPopup(pane);
+        informationPanePopup("No disponible", "Lo sentimos, sistema en mantenimiento.", 350,250);
 
     }
 
     public void actionsOptionRegister() {
-        InterfaceWithoutAppbar.setFormulation(new Register(25));
+        InterfaceWithoutAppbar.setFormulation(new Register(CustomVariables.RADIO_DEFAULT_PANEL));
 
     }
 
     public void actionsButtonLogin(String email, String password) {
-        if (!isValidData(new ArrayList<>(Arrays.asList(email,password)))) {
+        if (!isValidData(new ArrayList<>(Arrays.asList(email, password)))) {
             return;
         }
-
+        if (!isThisValidEmail(email) || !isThisValidPassword(password)) {
+            return;
+        }
+        
         control.setEmail(email);
         control.setPassword(password);
         User user = control.initLoginUser();
-        if (!isValidUser(user,"Lo sentimos..","El usuario proposionado no existe.")) {
+        if (!isValidUser(user, "Lo sentimos..", "El usuario proposionado no existe.")) {
             return;
         }
         InterfaceWithAppbar home = new InterfaceWithAppbar();
         Main.setContent(home);
-        // user.refreshListOfProposals();
         if (user.getTypeUser().equals(Env.TYPE_USER_PROPONENT)) {
             Main.setUserControl(new ProponentControl(user));
             home.createInterfaceProponent();
@@ -55,9 +54,6 @@ public class LoginActions extends ActionsInterface{
         home.createInterfaceAdministrator();
         InterfaceWithAppbar.AdministratorDesing.openAdminWidown(user.getType());
 
-
     }
 
-
- 
 }

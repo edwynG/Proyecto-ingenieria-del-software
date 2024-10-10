@@ -1,105 +1,84 @@
 package main.view.components.AbstractComponents;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Insets;
+import main.view.utils.RoundedBorder;
 
-public class AbstractInputPassword extends AbstractInputText {
-    private char ch;
-    private StringBuilder text;
+public class AbstractInputPassword extends AbstractEffectFieldsPassword {
+    protected RoundedBorder configBorder;
 
     public AbstractInputPassword(int comluns) {
         super(comluns);
         initAbstractInputPassword();
     }
+
     public AbstractInputPassword(int comluns, String placeholder) {
         super(comluns, placeholder);
         initAbstractInputPassword();
     }
 
     private void initAbstractInputPassword() {
-        ch = '*';
-        text = new StringBuilder();
-
-        addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (ch != ' ' && ch != '\u0000') {
-                    hidenPasswordEvent(e, ch);
-                    return;
-                }
-
-                commonEvent(e);
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                if (ch != ' ' && ch != '\u0000') {
-                    setText(repeatCharacter(ch, text.length()));
-                    return;
-                }
-                setText(text.toString());
-
-            }
-        });
+        configBorder = new RoundedBorder(0);
+        setMinimumSize(new Dimension(200, 30));
+        setPreferredSize(new Dimension(200, 40));
+        setBorder(configBorder);
     }
 
-    private void hidenPasswordEvent(KeyEvent e, char ch) {
-        boolean equals = !isEqualChar(e.getKeyCode(), KeyEvent.VK_DELETE)
-                && !isEqualChar(e.getKeyCode(), KeyEvent.VK_BACK_SPACE);
-
-        if (equals) {
-            text.append(e.getKeyChar());
-
-        } else {
-            if (text.length() > 0) {
-                text.deleteCharAt(text.length() - 1);
-
-            }
-
-        }
-
+    @Override
+    public Insets getInsets() {
+        return new Insets(10, 10, 10, 10);
     }
 
-    private void commonEvent(KeyEvent e) {
-        boolean equals = !isEqualChar(e.getKeyCode(), KeyEvent.VK_DELETE)
-                && !isEqualChar(e.getKeyCode(), KeyEvent.VK_BACK_SPACE);
-
-        if (equals) {
-            text.append(e.getKeyChar());
-
-        } else {
-            if (text.length() > 0) {
-                text.deleteCharAt(text.length() - 1);
-
-            }
-
-        }
-
+    public void setColorText(Color color) {
+        setForeground(color);
     }
 
-    private boolean isEqualChar(int m, int n) {
-        return m == n;
+    public void setFontSizeText(int size) {
+        Font font = getFont();
+        setFont(new Font(font.getName(), font.getStyle(), size));
     }
 
-    private String repeatCharacter(char c, int n) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < n; i++) {
-            sb.append(c);
-        }
-        return sb.toString();
+    public void setFontFamilyText(String family) {
+        Font font = getFont();
+        setFont(new Font(family, font.getStyle(), font.getSize()));
     }
 
-    public String getPassword() {
-        return text.toString();
+    public void setFontWeightText(int weight) {
+        Font font = getFont();
+        setFont(new Font(font.getName(), weight, font.getSize()));
     }
 
-    public void setEchoChar(char c) {
-        ch = c;
+    public void setRoundedField(int radius) {
+        configBorder.setBorderRounded(radius);
+        setBorder(configBorder);
+        revalidate();
+        repaint();
     }
-    
+
+    public void setBorderColorField(Color color) {
+        configBorder.setBorderColor(color);
+        setBorder(configBorder);
+        revalidate();
+        repaint();
+    }
+
+    public int getBorderRounded() {
+        return configBorder.getBorderRounded();
+    }
+
+    public void setConfigBorder(RoundedBorder borde) {
+        configBorder = borde;
+        setBorder(borde);
+    }
+
+    public Color getColorBorderField() {
+        return configBorder.getBorderColor();
+    }
+
+    public String getInput() {
+        return getText().equals(getPlaceholder()) ? "" : getText();
+    };
+
 }

@@ -20,7 +20,7 @@ public class InterfaceAdministrator extends AbstractPanelRounded {
     public static ActionsAdministrator actions;
     private int width = 870;
     private int height = 470;
-    GridBagConstraints gbc;
+    private GridBagConstraints gbc;
     int widthTemp;
     int heigthTemp;
 
@@ -37,7 +37,6 @@ public class InterfaceAdministrator extends AbstractPanelRounded {
         redimentionRestore();
         widthTemp = width;
         heigthTemp = height;
-        System.out.println("Bienvenido administrador!!");
 
     }
 

@@ -6,15 +6,14 @@ import main.Env;
 import main.controller.AdministratorControl;
 import main.controller.ProponentControl;
 import main.controller.RegisterControl;
+import main.controller.Validator;
 import main.model.abstractModels.User;
 import main.view.Main;
 import main.view.components.InterfaceWithAppbar;
 import main.view.components.InterfaceWithoutAppbar;
 import main.view.components.commonComponents.ActionsInterface;
-import main.view.components.commonComponents.CardMessage;
 import main.view.components.loginComponents.Login;
 import main.view.utils.CustomVariables;
-import raven.glasspanepopup.GlassPanePopup;
 
 public class RegisterActions extends ActionsInterface {
     public static RegisterControl control = new RegisterControl();
@@ -25,32 +24,39 @@ public class RegisterActions extends ActionsInterface {
     }
 
     public void actionsButtonContinueRegisterProponent(ArrayList<String> data) {
-        if (!isValidData(data) || !control.IsThereAnPasswordToRegister(data.get(1), data.get(2))) {
+        if (!isValidData(data) || !IsThereAnPasswordToRegister(data.get(1), data.get(2))) {
+            return;
+        }
+
+        if (!isThisValidEmail(data.getFirst()) || !isThisValidPassword(data.get(1))) {
+            return;
+        }
+        if (isThereAnEmailToRegister(data.getFirst())) {
             return;
         }
         control.getUser().setUser(data.getFirst());
         control.getUser().setPassword(data.get(1));
         control.getUser().setTypeUser(data.getLast());
-
-        if (control.isThereAnEmailToRegister()) {
-            return;
-        }
 
         InterfaceWithoutAppbar.setFormulation(new ProponentType(CustomVariables.RADIO_DEFAULT_PANEL));
 
     }
 
     public void actionsTerminateRegistrationAdmin(ArrayList<String> data) {
-        if (!isValidData(data) || !control.IsThereAnPasswordToRegister(data.get(1), data.get(2))) {
+        if (!isValidData(data) || !IsThereAnPasswordToRegister(data.get(1), data.get(2))) {
             return;
         }
+
+        if (!isThisValidEmail(data.getFirst()) || !isThisValidPassword(data.get(1))) {
+            return;
+        }
+        if (!isThereAnEmailToRegisterAdmin(data.getFirst())) {
+            return;
+        }
+
         control.getUser().setUser(data.getFirst());
         control.getUser().setPassword(data.get(1));
         control.getUser().setTypeUser(data.getLast());
-
-        if (!control.isThereAnEmailToRegisterAdmin()) {
-            return;
-        }
 
         User user = control.initRegisterAdministrator();
         if (!isValidUser(user, "Lo sentimos..", "hubo un problema al intentar registrarlo.")) {
@@ -67,10 +73,14 @@ public class RegisterActions extends ActionsInterface {
         if (!isValidData(documents)) {
             return;
         }
-        control.getUser().setId(Integer.parseInt(documents.getFirst()));
-        if (control.isThereAnProponentIDToRegister()) {
+        if (!isNumber(documents.getFirst())) {
             return;
         }
+
+        if (isThereAnProponentIDToRegister(Integer.parseInt(documents.getFirst()))) {
+            return;
+        }
+        control.getUser().setId(Integer.parseInt(documents.getFirst()));
         control.setDocuments(documents);
         User user = control.initRegisterProponent();
         if (!isValidUser(user, "Lo sentimos..", "hubo un problema al intentar registrarlo.")) {
@@ -81,6 +91,7 @@ public class RegisterActions extends ActionsInterface {
         InterfaceWithAppbar home = new InterfaceWithAppbar();
         home.createInterfaceProponent();
         Main.setContent(home);
+
     }
 
     public void actionsButtonBefore() {
@@ -89,7 +100,7 @@ public class RegisterActions extends ActionsInterface {
 
     public void actionsButtonNext(String type) {
         if (type == null) {
-            GlassPanePopup.showPopup(new CardMessage("Oops..", "Aún faltan datos por completar."));
+            informationPanePopup("Oops..", "Aún faltan datos por completar.");
             return;
         }
         InterfaceWithAppbar UI = new InterfaceWithAppbar();
@@ -105,4 +116,36 @@ public class RegisterActions extends ActionsInterface {
 
     }
 
+    private boolean isThereAnEmailToRegisterAdmin(String email) {
+        if (new Validator().isThereAnEmailRegister(email)) {
+            return true;
+        }
+        informationPanePopup("No eres administrador", "El usuario no se encuantra registrado.", 500, 280);
+        return false;
+    }
+
+    private boolean isThereAnEmailToRegister(String email) {
+        if (new Validator().isThereAnEmailRegister(email)) {
+            informationPanePopup("Lo sentimos..", "El correo pertenece a otro usuario.");
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isThereAnProponentIDToRegister(Integer id) {
+        if (new Validator().isThereAnProponentIDRegister(id)) {
+            informationPanePopup("Lo sentimos..", "La cedula pertenece a otro usuario.");
+            return true;
+        }
+        return false;
+    }
+
+    public boolean IsThereAnPasswordToRegister(String password, String confirmPassword) {
+        if (!password.equals(confirmPassword)) {
+            informationPanePopup("Contraseña", "La contraseña no coincide.");
+            return false;
+        }
+
+        return true;
+    }
 }

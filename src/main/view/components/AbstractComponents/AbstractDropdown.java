@@ -24,6 +24,7 @@ import javax.swing.event.ListSelectionListener;
 import main.Env;
 import main.view.components.commonComponents.ScrollPaneWin11;
 import main.view.utils.ColorPalette;
+import main.view.utils.Components;
 import main.view.utils.RoundedBorder;
 import raven.glasspanepopup.GlassPanePopup;
 
@@ -105,7 +106,7 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 text.setText(options.getSelectedValue());
-                GlassPanePopup.closePopupLast();
+                GlassPanePopup.closePopup(0);
             }
         });
 
@@ -137,8 +138,7 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
             elements.addElement(element);
         }
         options.setModel(elements);
-        options.revalidate();
-        options.repaint();
+        Components.repaintComponent(options);
     }
 
     public void addElement(String element) {
@@ -191,10 +191,6 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
 
     }
 
-    public void setSelectionValue(String str) {
-        options.setSelectedValue(str, getFocusTraversalKeysEnabled());
-    }
-
     public JList<String> getOptionList() {
         return options;
     }
@@ -206,6 +202,10 @@ public abstract class AbstractDropdown extends AbstractPanelRounded {
     @Override
     public Insets getInsets() {
         return new Insets(10, 10, 10, 10);
+    }
+
+    public void setText(String text) {
+        this.text.setText(text);
     }
 
 }

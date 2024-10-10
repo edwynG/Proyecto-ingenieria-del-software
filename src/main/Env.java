@@ -4,7 +4,6 @@ public class Env {
         // Base de datos
         public final static String PATH_DATABASE = "./src/database/";
         public final static String NAME_DATABASE = "data-Course_Stack.db";
-
         // imagenes
         public final static String PATH_ICON_WINDOW = "src/assets/icon_window.png";
         public final static String PATH_IMAGE_MAIN = "src/assets/main_image.png";
@@ -19,9 +18,16 @@ public class Env {
         public final static String PATH_ICON_ERROR = "src/assets/Error_icon.png";
         public final static String PATH_ICON_CHECK = "src/assets/Check_icon.png";
         public final static String PATH_ICON_DOWNLOAD = "src/assets/download_imagen.png";
+
+        // expresiones regulares
+        public final static String REGEX_EMAIL = "^[#\\w.-_+]+@(.+).com$";
+        public final static String REGEX_PASSWORD = "^[#_\\w.+-]{5,20}$";
+        public final static String REGEX_DIGI = "^(\\d){5,9}$";
+
+
         // Archivos permitidos
-        public final static String[] EXTESIONS_NAMES = { "Archivos PDF", "Archivos TXT" };
-        public final static String[] EXTESIONS_EXT = { ".pdf", ".txt" };
+        public final static String[] EXTESIONS_NAMES = { "Archivos TXT" };
+        public final static String[] EXTESIONS_EXT = { ".txt" };
 
         // Tipos de admin
         public final static String OUTREACH_COORDINATION = "Coordinación de extensión";
@@ -29,28 +35,30 @@ public class Env {
         public final static String OUTREACH_COMMITTEE = "Comisión de extensión";
         public final static String FACULTY_COUNCIL = "Consejo de facultad";
 
-        // Estados del proponente
-        public final static String STATUS_PROPONENTS_REFUSED = "Proponente";
+        // proponente y admins
+        public final static String STATUS_PROPONENT = "Proponente";
         public final static String STATUS_PROPONENTS_ACCEPTED = "Aliado";
         public final static String ACCEPT = "Aprovado";
         public final static String REFUSED = "Desaprovado";
-        public final static String TYPE_UPLOAD_COSTOS = "Costos";
-        public final static String TYPE_UPLOAD_SCHEDULE = "Cronograma";
-        public final static String TYPE_UPLOAD_LETTER_OF_COMMITENT = "CartaCompromiso";
-        public final static String TYPE_UPLOAD_LETTER_OF_INTENT = "cartaDeIntension";
-        public final static String TYPE_UPLOAD_OBSERVATIONS = "Observations";
-        public final static String DOCUMENT_LETTER_OF_COMMITMENT = "SG9sYSwgc295IHVuaSBjYXJ0YSBkZSBjb21wcm9taXNvLg==";
-        public final static String DOCUMENT_OBSERATIONS = "SG9sYSwgc295IGxhcyBvYnNlcnZhdGlvbmVzLg==";
-
-        // Consultas de SQL
+        public final static String WAIT = "En revisión";
         public final static String TYPE_USER_PROPONENT = "Proponente";
         public final static String TYPE_USER_ALIADO = "Aliado";
         public final static String TYPE_USER_PROPONENT_NATURAL = "Natural";
         public final static String TYPE_USER_PROPONENT_LEGAL = "Jurídico";
         public final static String TYPE_USER_ADMINISTRADOR = "Administrador";
-        public final static String TABLE_FIELD_PROPOSAL_ID = "PropuestaID";
 
+        // Opciones de descarga
+        public final static String TYPE_UPLOAD_COSTOS = "Costos";
+        public final static String TYPE_UPLOAD_SCHEDULE = "Cronograma";
+        public final static String TYPE_UPLOAD_LETTER_OF_COMMITENT = "CartaCompromiso";
+        public final static String TYPE_UPLOAD_LETTER_OF_INTENT = "cartaDeIntension";
+        public final static String TYPE_UPLOAD_OBSERVATIONS = "Observations";
+        // Documentos fijos
+        public final static String DOCUMENT_LETTER_OF_COMMITMENT = "SG9sYSwgc295IHVuaSBjYXJ0YSBkZSBjb21wcm9taXNvLg==";
+        // Consultas de SQL
+        public final static String TABLE_FIELD_PROPOSAL_ID = "PropuestaID";
         public final static String TABLE_FIELD_EMAIL = "Correo";
+        public final static String TABLE_FIELD_ADMINISTRATOR_ID = "AdministradorID";
         public final static String TABLE_FIELD_PROPOENENT_ID = "ProponenteID";
         public final static String TABLE_NAME_ADMINISTRATORS = "Administradores";
         public final static String TABLE_NAME_PROPONENTS = "Proponentes";
@@ -65,22 +73,19 @@ public class Env {
         public final static String QUERY_EVALUATE_COURSE_UPDATE = "UPDATE ResultadosPropuestas \r\n"
                         + "SET Observaciones = '%s',Resultado = '%s'\r\n" + "WHERE PropuestaID = %s";
         public final static String QUERY_RESULT_PROPOSAL_RESULT = "SELECT Resultado FROM ResultadosPropuestas WHERE PropuestaID = %s";
-
         public final static String QUERY_PROPOSAL_PROPOSAL = "SELECT ObjetivosYFundamentacion FROM Propuestas WHERE PropuestaID = %s";
         public final static String QUERY_PROPOSAL_PROBITY = "SELECT PerfilDocente FROM Propuestas WHERE PropuestaID = %s";
-
         public final static String QUERY_PROPOSAL_CREDENTIAL = "SELECT EstructuraCurricularPorCompetencias FROM Propuestas WHERE PropuestaID = %s";
-
         public final static String QUERY_UPDATE_LETTER_COMMITENT = "UPDATE Propuestas SET CartaDeCompromiso = '%s' WHERE PropuestaID = %s";
         public final static String QUERY_UPDATE_LETTER_INTENT = "UPDATE Propuestas SET CartaDeIntecion = '%s' WHERE PropuestaID = %s";
         public final static String QUERY_UPDATE_COSTOS = "UPDATE Aliados SET EstructuraDeCostosEingresos = '%s' WHERE PropuestaID = %s";
         public final static String QUERY_UPDATE_OBSERVATIONS = "UPDATE ResultadosPropuestas SET Observaciones = '%s' WHERE PropuestaID = %s";
-
         public final static String QUERY_UPDATE_EVALUATION_PROPOSAL = "UPDATE ResultadosPropuestas SET Resultado = '%s' WHERE PropuestaID = %s";
         public final static String QUERY_UPDATE_SCHEDULE = "UPDATE Aliados SET CronogramaDeEjecucion = '%s' WHERE PropuestaID = %s";
         public final static String QUERY_PROPOSAL_PROPONENT = "SELECT * FROM Propuestas WHERE ProponenteID = %s";
         public final static String QUERY_PROPOSAL_ADMINISTRADOR = "SELECT * FROM Propuestas WHERE UnidadResponsable = '%s'";
         public final static String QUERY_RESULT_PROPOSAL = "SELECT * FROM ResultadosPropuestas WHERE PropuestaID = %s";
+        public final static String QUERY_PROPOSAL_EVALUATE_FOR_ADMIN = "SELECT * FROM ResultadosPropuestas WHERE PropuestaID = %s and AdministradorID = %s;";
         public final static String QUERY_REGISTER_DOCUMENT_NATURAL = "INSERT INTO DocumentosDeRegistros(ProponenteID,RIF,ISLR,Curriculum,TituloUniversitario)\nVALUES(%s);\n";
         public final static String QUERY_REGISTER_RESULT_PROPOSAL = "INSERT INTO ResultadosPropuestas(PropuestaID,AdministradorID)\nVALUES(%s,%s)";
         public final static String QUERY_DELETE_ALIADO = "DELETE FROM Aliados\nWHERE PropuestaID = %s";
@@ -90,8 +95,9 @@ public class Env {
         public final static String QUERY_REGISTER_ADMIN = "UPDATE Administradores SET Contraseña = %s\nWHERE Correo = '%s' ";
         public final static String QUERY_LOGIN_PROPONENT = "SELECT * FROM Proponentes WHERE Correo = '%s' and Contraseña = '%s';\n";
         public final static String QUERY_LOGIN_ADMISTRATOR = "SELECT * FROM Administradores WHERE Correo = '%s' and Contraseña = '%s';\n";
-        public final static String QUERY_REGISTER_PROPOSAL = "INSERT INTO Propuestas(ProponenteID, Titulo, Denominacion, ObjetivosYFundamentacion, PerfilDeIngresoYEgreso,PerfilDocente, EstructuraCurricularPorCompetencias, EstrategiasDeEvaluacionYDuracion, ExigenciasEnMaterialesYservicios, EstructuraDeCostos, CronogramaDeEjecucionAnual, UnidadResponsable)\nVALUES(%s);";
+        public final static String QUERY_REGISTER_PROPOSAL = "INSERT INTO Propuestas(ProponenteID, Titulo, Denominacion, ObjetivosYFundamentacion,PerfilDeIngresoYEgreso,PerfilDocente, EstructuraCurricularPorCompetencias, EstrategiasDeEvaluacionYDuracion, ExigenciasEnMaterialesYservicios, EstructuraDeCostos, CronogramaDeEjecucionAnual, UnidadResponsable)\nVALUES(%s);";
         public final static String QUERY_VALIDATE_DATA = "SELECT * FROM %s WHERE %s = %s;\n";
+        // Consulta para crear la base de datos;
         public final static String CREATE_DATABASE = "DROP TABLE IF EXISTS Proponentes;\r\n" + //
                         "\r\n" + //
                         "DROP TABLE IF EXISTS DocumentosDeRegistros;\r\n" + //
@@ -187,8 +193,26 @@ public class Env {
                         "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
                         "VALUES\r\n" + //
                         "    (\r\n" + //
+                        "        30326276,\r\n" + //
+                        "        'edwyn@gmail.com',\r\n" + //
+                        "        'Consejo de facultad'\r\n" + //
+                        "    );\r\n" + //
+                        "\r\n" + //
+                        "INSERT INTO\r\n" + //
+                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
+                        "VALUES\r\n" + //
+                        "    (\r\n" + //
                         "        30326272,\r\n" + //
                         "        'ewy@gmail.com',\r\n" + //
+                        "        'Coordinación de extensión'\r\n" + //
+                        "    );\r\n" + //
+                        "\r\n" + //
+                        "INSERT INTO\r\n" + //
+                        "    Administradores (AdministradorID, Correo, Unidad)\r\n" + //
+                        "VALUES\r\n" + //
+                        "    (\r\n" + //
+                        "        30326279,\r\n" + //
+                        "        'test@gmail.com',\r\n" + //
                         "        'Coordinación de extensión'\r\n" + //
                         "    );\r\n" + //
                         "\r\n" + //

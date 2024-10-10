@@ -5,20 +5,28 @@ import java.awt.Color;
 import main.Env;
 import main.view.Main;
 import main.view.components.commonComponents.ActionsInterface;
-import main.view.components.commonComponents.CardMessage;
-import raven.glasspanepopup.GlassPanePopup;
 
 public class ActionsAdministrator extends ActionsInterface {
 
     public void evaluateProposal(Integer id, String result) {
-        Main.getAdminControl().evaluateProposal(id, result);
+        if (wasEvaluated(id)) {
+            return;
+        }
+        if (Main.getAdminControl().evaluateProposal(id, result)) {
+            informationPanePopup("Actualizado", "La evaluación ha sido exisitosa.", Color.GREEN);
+            return;
+        }
+        informationPanePopup("Lo sentimos", "No se pudo evaluar la propuesta.", Color.RED);
     }
 
     @Override
     public void actionsUploadDocument(Integer id, String path, String type) {
+        if (wasEvaluated(id)) {
+            return;
+        }
         Boolean status = false;
         switch (type) {
-            case Env.DOCUMENT_OBSERATIONS:
+            case Env.TYPE_UPLOAD_OBSERVATIONS:
                 status = Main.getAdminControl().uploadObservations(id, path);
                 break;
 
@@ -27,13 +35,21 @@ public class ActionsAdministrator extends ActionsInterface {
         }
 
         if (!status) {
-            CardMessage pane = new CardMessage("Lo sentimos", "No se pudo subir el archivo.");
-            pane.setColorTitle(Color.RED);
-            GlassPanePopup.showPopup(pane);
+            informationPanePopup("Lo sentimos", "No se pudo subir el archivo.", Color.RED);
             return;
         }
-        CardMessage pane = new CardMessage("Actualizado", "Archivo subido exitosamente.");
-        pane.setColorTitle(Color.GREEN);
-        GlassPanePopup.showPopup(pane);
+        informationPanePopup("Actualizado", "Archivo subido exitosamente.", Color.GREEN);
+
     }
+
+    private boolean wasEvaluated(Integer id) {
+        if (Main.getAdminControl().getValidator().isValidEvaluate(id, Main.getAdminControl().getUser().getId())) {
+            return false;
+        }
+        informationPanePopup("Lo sentimos", "Propuesta evaluada por otro administrador", Color.RED);
+        return true;
+
+    }
+
+    
 }

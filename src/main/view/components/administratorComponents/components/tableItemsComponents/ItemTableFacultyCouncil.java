@@ -72,7 +72,7 @@ public class ItemTableFacultyCouncil extends AbstractPanelRounded {
         if (str == null) {
             return;
         }
-        result.setSelectionValue(str);
+        result.setText(str);
         status.setText(statusValid);
 
     }
@@ -130,6 +130,7 @@ public class ItemTableFacultyCouncil extends AbstractPanelRounded {
         resultOptions = new ArrayList<>();
         resultOptions.add(Env.ACCEPT);
         resultOptions.add(Env.REFUSED);
+        resultOptions.add(Env.WAIT);
         result.setListElements(resultOptions);
         proposal.NotVisibleText();
         proposal.configMethodDownload();
@@ -187,13 +188,17 @@ public class ItemTableFacultyCouncil extends AbstractPanelRounded {
             @Override
             public void mouseClicked(MouseEvent e) {
                 InterfaceAdministrator.actions.actionsUploadDocument(id, observation.getPath(),
-                        Env.DOCUMENT_OBSERATIONS);
+                        Env.TYPE_UPLOAD_OBSERVATIONS);
 
             }
         });
 
         result.getOptionList().addListSelectionListener(new ListSelectionListener() {
+            
             public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()) {
+                    return;
+                }
                 InterfaceAdministrator.actions.evaluateProposal(id, result.getSelectElement());
 
                 if (result.getSelectElement() != null) {

@@ -13,6 +13,9 @@ public class AdministratorControl extends AbstractUserControl {
     }
 
     public boolean uploadObservations(Integer id, String path) {
+        if (!getValidator().isValidEvaluate(id, getUser().getId())) {
+            return false;
+        }
         if (!getValidator().existResultProposal(id)) {
             getManagerDatabase()
                     .updateOrInsertData(String.format(Env.QUERY_REGISTER_RESULT_PROPOSAL, id, getUser().getId()));
@@ -24,6 +27,10 @@ public class AdministratorControl extends AbstractUserControl {
     }
 
     public boolean evaluateProposal(Integer id, String result) {
+        if (!getValidator().isValidEvaluate(id, getUser().getId())) {
+            return false;
+        }
+        
         if (!getValidator().existResultProposal(id)) {
             getManagerDatabase()
                     .updateOrInsertData(String.format(Env.QUERY_REGISTER_RESULT_PROPOSAL, id, getUser().getId()));
@@ -32,7 +39,7 @@ public class AdministratorControl extends AbstractUserControl {
         if (result.equals(Env.ACCEPT)) {
             createAliado(id);
         }
-        if (result.equals(Env.REFUSED)) {
+        if (result.equals(Env.REFUSED) || result.equals(Env.WAIT)) {
             deleteAliado(id);
         }
         return getManagerDatabase().updateOrInsertData(String.format(Env.QUERY_UPDATE_EVALUATION_PROPOSAL, result, id));
@@ -79,6 +86,5 @@ public class AdministratorControl extends AbstractUserControl {
                 .getData(String.format(Env.QUERY_RESULT_PROPOSAL_RESULT, id));
         return result.isEmpty() ? null : result.getFirst().getFirst();
     }
-
 
 }

@@ -71,7 +71,7 @@ public class ItemTableAddress extends AbstractPanelRounded {
         if (str == null) {
             return;
         }
-        result.setSelectionValue(str);
+        result.setText(str);
 
     }
 
@@ -134,6 +134,7 @@ public class ItemTableAddress extends AbstractPanelRounded {
         resultOptions = new ArrayList<>();
         resultOptions.add(Env.ACCEPT);
         resultOptions.add(Env.REFUSED);
+        resultOptions.add(Env.WAIT);
         result.setListElements(resultOptions);
 
         information.NotVisibleText();
@@ -202,7 +203,7 @@ public class ItemTableAddress extends AbstractPanelRounded {
             @Override
             public void mouseClicked(MouseEvent e) {
                 InterfaceAdministrator.actions.actionsUploadDocument(id, observation.getPath(),
-                        Env.DOCUMENT_OBSERATIONS);
+                        Env.TYPE_UPLOAD_OBSERVATIONS);
 
             }
         });
@@ -210,6 +211,9 @@ public class ItemTableAddress extends AbstractPanelRounded {
         result.getOptionList().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
+                if (e.getValueIsAdjusting()) {
+                    return;
+                }
                 InterfaceAdministrator.actions.evaluateProposal(id, result.getSelectElement());
             }
         });

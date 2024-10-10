@@ -171,9 +171,9 @@ public class Register extends AbstractForm {
                 super.mousePressed(e);
                 // La lista tiene que tener por la estructura de la consulta
                 ArrayList<String> data = new ArrayList<>();
-                data.add(inputEmail.getText().toLowerCase());
-                data.add(inputPassword.getPassword());
-                data.add(inputPasswordConfirm.getPassword());
+                data.add(inputEmail.getInput().toLowerCase());
+                data.add(inputPassword.getInput());
+                data.add(inputPasswordConfirm.getInput());
                 data.add(dropdown.getSelectElement());
                 String option = dropdown.getSelectElement();
                 if (option != null && option.equals(Env.TYPE_USER_PROPONENT)) {

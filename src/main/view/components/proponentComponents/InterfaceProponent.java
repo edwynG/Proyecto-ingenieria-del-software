@@ -37,7 +37,6 @@ public class InterfaceProponent extends AbstractPanelRounded {
         redimentionRestore();
         widthTemp = width;
         heigthTemp = height;
-        System.out.println("Bienvenido proponente");
         createMyCourseHome();
     }
 
@@ -58,7 +57,6 @@ public class InterfaceProponent extends AbstractPanelRounded {
         gbc.insets = new Insets(25, 35, 25, 35);
         MyCourses desing = new MyCourses();
         content.add(desing, gbc);
-        System.out.println("Mis cursos");
 
     }
 
@@ -77,7 +75,6 @@ public class InterfaceProponent extends AbstractPanelRounded {
         gbc.fill = GridBagConstraints.BOTH;
         CourseFormulation desing = new CourseFormulation(CustomVariables.RADIO_DEFAULT_PANEL);
         content.add(desing, gbc);
-        System.out.println("Formulación de cursos");
 
     }
 
@@ -94,7 +91,6 @@ public class InterfaceProponent extends AbstractPanelRounded {
         gbc.insets = new Insets(25, 35, 25, 35);
         CourseWithAval desing = new CourseWithAval();
         content.add(desing, gbc);
-        System.out.println("Cursos con aval");
 
     }
 
@@ -113,7 +109,6 @@ public class InterfaceProponent extends AbstractPanelRounded {
         gbc.insets = new Insets(25, 35, 25, 35);
         ProposingFile desing = new ProposingFile();
         content.add(desing, gbc);
-        System.out.println("Expediente del proponente");
 
     }
 

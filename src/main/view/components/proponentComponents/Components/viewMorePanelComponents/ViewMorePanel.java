@@ -28,7 +28,7 @@ public class ViewMorePanel extends AbstractPanelRounded {
     private String titleContent = "Curso";
     private String evaluation = "Unidad resposanble";
     private String result = "En espera";
-    private String statusText = Env.STATUS_PROPONENTS_REFUSED;
+    private String statusText = Env.STATUS_PROPONENT;
     private String fileBase64 = null;
     private TransparentPanel registers;
     private FileChooser button;
@@ -75,8 +75,14 @@ public class ViewMorePanel extends AbstractPanelRounded {
         }
 
         if (proposalDetails.getLast().equals(Env.REFUSED)) {
-            statusText = Env.STATUS_PROPONENTS_REFUSED;
+            statusText = Env.STATUS_PROPONENT;
             result = Env.REFUSED;
+            return;
+        }
+
+        if (proposalDetails.getLast().equals(Env.WAIT)) {
+            statusText = Env.STATUS_PROPONENT;
+            result = Env.WAIT;
             return;
         }
 
