@@ -65,7 +65,7 @@ public class ActionsProponent extends ActionsInterface {
         Integer width = 400;
         Integer heigth = 240;
         if (Main.getProponentControl().proposeCourse(data)) {
-            informationPanePopup("Propuesta exitosa!!", "Se ha realizado la propuesta.",  width, heigth);
+            informationPanePopup("Propuesta exitosa!!", "Se ha realizado la propuesta.",Color.GREEN, width, heigth);
             InterfaceWithAppbar.ProponentDesing.createCourseFormulation();
             return;
         }
